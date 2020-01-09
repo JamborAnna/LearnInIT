@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Tanulas3Activity"
+    android:orientation="horizontal">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tanulas3linear">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/ic_menu_revert"
+            android:id="@+id/tanulas3vissza"
+            >
+
+        </Button>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_below="@+id/tanulas3linear"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/tanulas3linear2"
+        android:orientation="vertical">
+
+    <ImageButton
+
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:id="@+id/imageBut1">
+    </ImageButton>
+    <TextView
+        android:layout_below="@+id/imageBut1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:text="Bekerdezett szó"
+        android:id="@+id/BekerdezendoSzoViev"
+        android:gravity="center"
+        android:layout_centerInParent="true">
+
+
+    </TextView>
+        <ImageButton
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/imageBut2">
+        </ImageButton>
+    </LinearLayout>
+
+</RelativeLayout>

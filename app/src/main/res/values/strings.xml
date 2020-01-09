@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">LearnInIT</string>
+    <string name="felhaszn_l_n_v">Felhasználónév:</string>
+    <string name="e_mail_c_m">E-mail cím:</string>
+    <string name="regisztr_ci">Regisztráció</string>
+    <string name="jelsz">Jelszó:</string>
+    <string name="bejelentkez_s">Bejelentkezés</string>
+    <string name="title_activity_fomenu">FomenuActivity</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+</resources>

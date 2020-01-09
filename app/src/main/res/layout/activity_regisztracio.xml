@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Regisztracio"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/visszaopciokhoz"
+        >
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/ic_menu_revert"
+            android:id="@+id/visszaregisztracios">
+
+        </Button>
+    </LinearLayout>
+
+<EditText
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Felhasználónév"
+    android:id="@+id/FelhasznalonevText"
+    android:layout_above="@+id/EmailText"
+    android:layout_centerInParent="true"
+    android:textSize="25sp"
+    android:inputType="text"
+    >
+
+</EditText>
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="E-mail cím"
+        android:textSize="25sp"
+        android:id="@+id/EmailText"
+        android:layout_centerInParent="true"
+        android:inputType="textEmailAddress"
+
+        >
+
+    </EditText>
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Jelszó:"
+        android:textSize="25sp"
+        android:id="@+id/JelszoText"
+        android:layout_below="@+id/EmailText"
+        android:layout_centerInParent="true"
+        android:inputType="textPassword">
+    </EditText>
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Jelszó:"
+        android:textSize="25sp"
+        android:id="@+id/JelszoIsmText"
+        android:layout_centerInParent="true"
+        android:layout_below="@+id/JelszoText"
+        android:inputType="textPassword"
+        >
+    </EditText>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Regisztráció"
+        android:textSize="25sp"
+        android:id="@+id/RegKuldBut"
+        android:layout_centerInParent="true"
+        android:layout_below="@+id/JelszoIsmText"
+        >
+    </Button>
+
+</RelativeLayout>

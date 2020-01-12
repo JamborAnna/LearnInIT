@@ -20,9 +20,9 @@
         </Button>
     </LinearLayout>
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Felasználónév:"
+        android:hint="Felasználónév:"
         android:textSize="25sp"
         android:id="@+id/FelasznalonevBej"
         android:layout_centerInParent="true"
@@ -30,9 +30,9 @@
         android:inputType="text">
     </EditText>
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="jelszó"
+        android:hint="jelszó"
         android:textSize="25sp"
         android:layout_centerInParent="true"
         android:id="@+id/JelszoBej"
@@ -48,10 +48,16 @@
         android:layout_centerInParent="true"
         android:id="@+id/BejelentkezesButBej"
         android:layout_below="@+id/JelszoBej"
-
-
         >
     </Button>
+    <ProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:id="@+id/progressLogin"
 
+        >
+
+    </ProgressBar>
 
 </RelativeLayout>

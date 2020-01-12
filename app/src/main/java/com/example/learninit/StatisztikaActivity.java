@@ -17,7 +17,7 @@ private Button visszatanulnimenube;
         visszatanulnimenube.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(StatisztikaActivity.this,TanulasmenuActivity.class);
+                Intent intent = new Intent(StatisztikaActivity.this,fomenu.class);
                 startActivity(intent);
                 finish();
             }

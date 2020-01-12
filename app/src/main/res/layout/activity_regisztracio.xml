@@ -23,7 +23,7 @@
 <EditText
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="Felhasználónév"
+    android:hint="Felhasználónév"
     android:id="@+id/FelhasznalonevText"
     android:layout_above="@+id/EmailText"
     android:layout_centerInParent="true"
@@ -35,7 +35,7 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="E-mail cím"
+        android:hint="E-mail cím"
         android:textSize="25sp"
         android:id="@+id/EmailText"
         android:layout_centerInParent="true"
@@ -47,7 +47,7 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Jelszó:"
+        android:hint="Jelszó:"
         android:textSize="25sp"
         android:id="@+id/JelszoText"
         android:layout_below="@+id/EmailText"
@@ -57,7 +57,7 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Jelszó:"
+        android:hint="Jelszó ismétlés:"
         android:textSize="25sp"
         android:id="@+id/JelszoIsmText"
         android:layout_centerInParent="true"
@@ -75,5 +75,14 @@
         android:layout_below="@+id/JelszoIsmText"
         >
     </Button>
+    <ProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:id="@+id/progressRegistry"
+
+        >
+
+    </ProgressBar>
 
 </RelativeLayout>

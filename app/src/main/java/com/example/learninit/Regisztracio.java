@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,6 +15,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class Regisztracio extends AppCompatActivity {
 
@@ -25,6 +28,7 @@ public class Regisztracio extends AppCompatActivity {
     private Button RegKuldBut;
     private FirebaseAuth mAuth;
     private ProgressBar progressRegistry;
+    private DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,10 +50,29 @@ public class Regisztracio extends AppCompatActivity {
         RegKuldBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String felhasznaloNev=FelhasznalonevText.getText().toString();
+                String email=EmailText.getText().toString();
+                String jelszo=JelszoText.getText().toString();
+                String jelszoism=JelszoIsmText.getText().toString();
+
+                if (TextUtils.isEmpty(jelszo) ){
+                    Toast.makeText(Regisztracio.this,"A két jelszó nem egyezik meg!",Toast.LENGTH_LONG).show();
+
+                }
+                if (TextUtils.isEmpty(felhasznaloNev)  ){
+                    Toast.makeText(Regisztracio.this,"A felhasználó név üres!",Toast.LENGTH_LONG).show();
+
+                }
+                if (TextUtils.isEmpty(email)  ){
+                    Toast.makeText(Regisztracio.this,"Az email üres!",Toast.LENGTH_LONG).show();
+
+                }
+
+
                 progressRegistry.setVisibility(View.VISIBLE);
                 mAuth.createUserWithEmailAndPassword(EmailText.getText().toString(),
                         JelszoText.getText().toString())
-                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        .addOnCompleteListener(new  OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(Task<AuthResult> task) {
                                 progressRegistry.setVisibility(View.GONE);
@@ -71,12 +94,13 @@ public class Regisztracio extends AppCompatActivity {
 
     private void init() {
         progressRegistry= findViewById(R.id.progressRegistry);
-
         visszaregisztracios = findViewById(R.id.visszaregisztracios);
         FelhasznalonevText = findViewById(R.id.FelhasznalonevText);
         EmailText = findViewById(R.id.EmailText);
         JelszoText = findViewById(R.id.JelszoText);
         JelszoIsmText = findViewById(R.id.JelszoIsmText);
         RegKuldBut = findViewById(R.id.RegKuldBut);
+        //databaseReference=FirebaseDatabase.getInstance().getReference("RegistryUser");
+        mAuth=FirebaseAuth.getInstance();
     }
 }

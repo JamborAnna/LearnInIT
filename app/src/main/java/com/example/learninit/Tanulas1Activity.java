@@ -8,12 +8,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.Random;
 
 public class Tanulas1Activity extends AppCompatActivity {
 private Button tanulas1vissza;
 private TextView bekerendoSzoview;
 private EditText bekertszoedit;
 private  Button tanulas1Ellenorzesbut;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,9 +29,62 @@ private  Button tanulas1Ellenorzesbut;
                 Intent intent = new Intent(Tanulas1Activity.this,TanulasmenuActivity.class);
                 startActivity(intent);
                 finish();
+
+
+
+            }
+        });
+
+        tanulas1Ellenorzesbut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Random randomom = new Random();
+                int number= randomom.nextInt(3)+1;
+                if (bekerendoSzoview==bekertszoedit) {
+                    if (number == 1) {
+                        Intent intent = new Intent(Tanulas1Activity.this, Tanulas1Activity.class);
+                        startActivity(intent);
+                        finish();
+
+
+                    } else if (number == 2) {
+                        Intent intent = new Intent(Tanulas1Activity.this, Tanulas2Activity.class);
+                        startActivity(intent);
+                        finish();
+
+                    } else if (number == 3) {
+                        Intent intent = new Intent(Tanulas1Activity.this, Tanulas3Activity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+
+                    } else {
+                        Toast.makeText(Tanulas1Activity.this, "Rossz válasz!", Toast.LENGTH_LONG).show();
+                        if (number == 1) {
+                            Intent intent = new Intent(Tanulas1Activity.this, Tanulas1Activity.class);
+                            startActivity(intent);
+                            finish();
+
+                        } else if (number == 2) {
+                            Intent intent = new Intent(Tanulas1Activity.this, Tanulas2Activity.class);
+                            startActivity(intent);
+                            finish();
+
+                        } else if (number == 3) {
+                            Intent intent = new Intent(Tanulas1Activity.this, Tanulas3Activity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+
+                    }
+
+
+
             }
         });
     }
+
+
 
     private void init() {
         tanulas1vissza=findViewById(R.id.tanulas1vissza);

@@ -3,15 +3,21 @@ package com.example.learninit;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
+
+import java.util.Random;
 
 public class TanulasmenuActivity extends AppCompatActivity {
 
     private Button visszatanulas;
     private  Button napibut;
     private  Button tanultBut;
+    private SharedPreferences sharedPreferences;
+    //private int randomom;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,14 +35,45 @@ public class TanulasmenuActivity extends AppCompatActivity {
         napibut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(TanulasmenuActivity.this,fomenu.class);
-                startActivity(intent);
-                finish();
+                Random randomom = new Random();
+                int number= randomom.nextInt(3)+1;
+                int szamlalo=0;
+               // sharedPreferences= getSharedPreferences("database",MODE_PRIVATE);
+                for (int i=0; i<1; i++){
+                    if (number==1){
+                        Intent intent = new Intent(TanulasmenuActivity.this,Tanulas1Activity.class);
+                        startActivity(intent);
+                        finish();
+                        szamlalo++;
+                    }
+                    else if (number==2){
+                        Intent intent = new Intent(TanulasmenuActivity.this,Tanulas2Activity.class);
+                        startActivity(intent);
+                        finish();
+                        szamlalo++;
+                    }
+                    else if (number==3){
+                        Intent intent = new Intent(TanulasmenuActivity.this,Tanulas3Activity.class);
+                        startActivity(intent);
+                        finish();
+                        szamlalo++;
+                    }else{
+                        if (szamlalo==10) {
+                            Intent intent = new Intent(TanulasmenuActivity.this, fomenu.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    }
+
+
+                }
             }
         });
+
         tanultBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent intent = new Intent(TanulasmenuActivity.this,TanultActivity.class);
                 startActivity(intent);
                 finish();

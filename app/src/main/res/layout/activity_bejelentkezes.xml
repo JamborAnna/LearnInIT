@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Bejelentkezes"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/hatter">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,39 +17,47 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:drawable/ic_menu_revert"
-            android:id="@+id/visszabejelentkezes">
+            android:id="@+id/visszabejelentkezes"
+
+            >
 
         </Button>
     </LinearLayout>
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:hint="Felasználónév:"
         android:textSize="25sp"
         android:id="@+id/FelasznalonevBej"
         android:layout_centerInParent="true"
         android:layout_above="@+id/JelszoBej"
-        android:inputType="text">
+        android:background="@drawable/button_shape"
+        android:inputType="text"
+        android:layout_margin="5dp">
     </EditText>
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="jelszó"
+        android:layout_height="50dp"
+        android:hint="Jelszó"
         android:textSize="25sp"
         android:layout_centerInParent="true"
         android:id="@+id/JelszoBej"
         android:layout_below="@+id/RegKuldBut"
         android:inputType="textPassword"
+        android:background="@drawable/button_shape"
+        android:layout_margin="5dp"
         >
     </EditText>
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+
         android:text="Bejelentkezés"
         android:textSize="25sp"
         android:layout_centerInParent="true"
         android:id="@+id/BejelentkezesButBej"
         android:layout_below="@+id/JelszoBej"
+        android:background="@drawable/button_shape"
         >
     </Button>
     <ProgressBar

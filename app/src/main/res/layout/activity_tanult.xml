@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".TanultActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/hatter">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -27,7 +28,9 @@
         android:layout_below="@+id/linearTanult"
         android:gravity="center"
         android:text="Tanult Szavak"
-        android:textSize="30dp">
+        android:textSize="30dp"
+        android:background="@drawable/button_shape"
+        android:layout_margin="5dp">
     </TextView>
     <ListView
         android:layout_below="@+id/tanault"

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".KijelentkezesActivity">
+    tools:context=".KijelentkezesActivity"
+    android:background="@drawable/hatter">
 
     <TextView
         android:layout_width="wrap_content"
@@ -13,7 +14,8 @@
         android:textSize="30sp"
         android:id="@+id/bucsuview"
         android:layout_centerInParent="true"
-        android:inputType="text">
+        android:inputType="text"
+        >
     </TextView>
     <Button
         android:layout_width="wrap_content"
@@ -23,7 +25,9 @@
         android:id="@+id/Bejelentkezeshez"
         android:layout_marginBottom="@dimen/activity_horizontal_margin"
         android:layout_below="@+id/bucsuview"
-        android:inputType="text">
+        android:inputType="text"
+        android:layout_margin="5dp"
+        android:background="@drawable/button_shape">
     </Button>
 
 </RelativeLayout>

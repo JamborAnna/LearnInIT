@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".TanulasmenuActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/hatter">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -27,7 +28,9 @@
         android:textSize="30dp"
         android:text="Napi Szavak"
         android:layout_centerInParent="true"
-        android:id="@+id/napibut">
+        android:id="@+id/napibut"
+        android:background="@drawable/button_shape"
+        android:layout_margin="5dp">
     </Button>
     <Button
         android:layout_width="wrap_content"
@@ -36,7 +39,9 @@
         android:text="Tanult szavak"
         android:layout_centerInParent="true"
         android:textSize="30dp"
-        android:id="@+id/tanultBut">
+        android:id="@+id/tanultBut"
+        android:background="@drawable/button_shape"
+        android:layout_margin="5dp">
     </Button>
 
 </RelativeLayout>

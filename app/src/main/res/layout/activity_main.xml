@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:orientation="vertical"
+    android:background="@drawable/hatter"
     >
 
     <Button
@@ -17,7 +18,9 @@
         android:textSize="25sp"
         android:layout_above="@+id/RegisztracioBut"
         android:visibility="visible"
-        android:id="@+id/BejelentkezesBut">
+        android:id="@+id/BejelentkezesBut"
+        android:background="@drawable/button_shape"
+        android:layout_margin="5dp">
 
     </Button>
 
@@ -28,7 +31,9 @@
         android:layout_centerInParent="true"
         android:text="Regisztráció"
         android:textSize="25sp"
-        android:visibility="visible">
+        android:visibility="visible"
+        android:background="@drawable/button_shape"
+        android:layout_margin="5dp">
 
     </Button>
     <ProgressBar

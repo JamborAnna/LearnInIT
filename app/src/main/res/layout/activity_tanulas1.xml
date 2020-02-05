@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Tanulas1Activity"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:background="@drawable/hatter">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,6 +17,7 @@
             android:layout_height="wrap_content"
             android:background="@android:drawable/ic_menu_revert"
             android:id="@+id/tanulas1vissza"
+
             >
 
         </Button>
@@ -27,7 +29,8 @@
         android:id="@+id/bekerendoSzoview"
         android:gravity="center"
         android:textSize="30dp"
-        android:text="Magyar szó">
+        android:text="Magyar szó"
+        >
     </TextView>
 <EditText
     android:layout_width="match_parent"
@@ -45,7 +48,9 @@
         android:layout_height="wrap_content"
         android:text="Ellenöriz"
         android:textSize="30dp"
-        android:layout_below="@+id/bekertszoedit">
+        android:layout_below="@+id/bekertszoedit"
+        android:background="@drawable/button_shape"
+        android:layout_margin="5dp">
     </Button>
 
 </RelativeLayout>

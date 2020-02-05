@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Regisztracio"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/hatter">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,23 +24,27 @@
 <EditText
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:hint="Felhasználónév"
+    android:hint="Felhasználónév:"
     android:id="@+id/FelhasznalonevText"
     android:layout_above="@+id/EmailText"
     android:layout_centerInParent="true"
     android:textSize="25sp"
     android:inputType="text"
+    android:background="@drawable/button_shape"
+    android:layout_margin="5dp"
     >
 
 </EditText>
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="E-mail cím"
+        android:hint="E-mail cím:"
         android:textSize="25sp"
         android:id="@+id/EmailText"
         android:layout_centerInParent="true"
         android:inputType="textEmailAddress"
+        android:background="@drawable/button_shape"
+        android:layout_margin="5dp"
 
         >
 
@@ -52,7 +57,9 @@
         android:id="@+id/JelszoText"
         android:layout_below="@+id/EmailText"
         android:layout_centerInParent="true"
-        android:inputType="textPassword">
+        android:inputType="textPassword"
+        android:background="@drawable/button_shape"
+        android:layout_margin="5dp">
     </EditText>
     <EditText
         android:layout_width="wrap_content"
@@ -63,6 +70,8 @@
         android:layout_centerInParent="true"
         android:layout_below="@+id/JelszoText"
         android:inputType="textPassword"
+        android:background="@drawable/button_shape"
+        android:layout_margin="5dp"
         >
     </EditText>
     <Button
@@ -73,6 +82,8 @@
         android:id="@+id/RegKuldBut"
         android:layout_centerInParent="true"
         android:layout_below="@+id/JelszoIsmText"
+        android:background="@drawable/button_shape"
+        android:layout_margin="5dp"
         >
     </Button>
     <ProgressBar

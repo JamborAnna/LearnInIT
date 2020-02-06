@@ -61,7 +61,7 @@ public class TanulasmenuActivity extends AppCompatActivity {
 
 
 
-                   /* AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(TanulasmenuActivity.this);
+                   AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(TanulasmenuActivity.this);
 
                     alertDialogBuilder.setTitle("Ma már tanultál")
                                 .setMessage("Ma már tanultál, térj vissza holnap!")
@@ -72,9 +72,9 @@ public class TanulasmenuActivity extends AppCompatActivity {
                         }
                     });
                         AlertDialog alert = alertDialogBuilder.create();
-                        alert.show();*/
+                        alert.show();
 
-                   Toast.makeText(TanulasmenuActivity.this, "Térj vissza holnap!", Toast.LENGTH_LONG).show();
+                   //Toast.makeText(TanulasmenuActivity.this, "Térj vissza holnap!", Toast.LENGTH_LONG).show();
                 }
                 else {
 

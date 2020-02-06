@@ -14,7 +14,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@android:drawable/ic_menu_revert"
+            android:background="@drawable/back"
             android:id="@+id/tanulas2vissza"
             >
 

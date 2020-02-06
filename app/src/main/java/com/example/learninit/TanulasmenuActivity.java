@@ -55,10 +55,10 @@ public class TanulasmenuActivity extends AppCompatActivity {
                 Calendar jelenlegiDatum = Calendar.getInstance();
                 Calendar tanulasDatuma=Calendar.getInstance();
                 TanulasmenuActivity.szamlalo++;
-                sharedPreferences= getSharedPreferences("Ido",MODE_PRIVATE);
+                //sharedPreferences= getSharedPreferences("Ido",MODE_PRIVATE);
 
-                tanulhat=false;
-                tanulasDatuma.set(Calendar.HOUR,Calendar.MINUTE);
+
+                tanulasDatuma.set(Calendar.YEAR, Calendar.MONTH, Calendar.DAY_OF_MONTH);
 
 
 
@@ -112,11 +112,11 @@ public class TanulasmenuActivity extends AppCompatActivity {
                                     finish();
                                     szamlalo++;
                                 } else {
-                                    if (szamlalo == 10) {
+
                                         Intent intent = new Intent(TanulasmenuActivity.this, fomenu.class);
                                         startActivity(intent);
                                         finish();
-                                    }
+                                        szamlalo++;
                                 }
 
                             }

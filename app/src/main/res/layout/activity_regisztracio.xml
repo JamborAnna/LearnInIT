@@ -41,8 +41,9 @@
         android:hint="E-mail cím:"
         android:textSize="25sp"
         android:id="@+id/EmailText"
-        android:layout_centerInParent="true"
+        android:layout_above ="@+id/JelszoText"
         android:inputType="textEmailAddress"
+        android:layout_centerInParent="true"
         android:background="@drawable/button_shape"
         android:layout_margin="5dp"
 
@@ -55,7 +56,7 @@
         android:hint="Jelszó:"
         android:textSize="25sp"
         android:id="@+id/JelszoText"
-        android:layout_below="@+id/EmailText"
+        android:layout_above ="@+id/JelszoIsmText"
         android:layout_centerInParent="true"
         android:inputType="textPassword"
         android:background="@drawable/button_shape"
@@ -67,11 +68,10 @@
         android:hint="Jelszó ismétlés:"
         android:textSize="25sp"
         android:id="@+id/JelszoIsmText"
-        android:layout_centerInParent="true"
-        android:layout_below="@+id/JelszoText"
         android:inputType="textPassword"
         android:background="@drawable/button_shape"
         android:layout_margin="5dp"
+        android:layout_centerInParent="true"
         >
     </EditText>
     <Button

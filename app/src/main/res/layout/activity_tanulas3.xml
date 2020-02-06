@@ -34,7 +34,7 @@
     <ImageButton
 
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="305dp"
         android:id="@+id/imageBut1">
     </ImageButton>
     <TextView
@@ -54,7 +54,7 @@
         <ImageButton
 
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="305dp"
             android:id="@+id/imageBut2">
         </ImageButton>
     </LinearLayout>

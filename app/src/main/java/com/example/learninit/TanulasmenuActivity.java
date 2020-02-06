@@ -13,9 +13,6 @@ import android.widget.Toast;
 import java.util.Calendar;
 import java.util.Random;
 
-
-
-
 public class TanulasmenuActivity extends AppCompatActivity {
 
     private Button visszatanulas;
@@ -26,6 +23,10 @@ public class TanulasmenuActivity extends AppCompatActivity {
     private String jelenlegiDatum="";
     private  Calendar tanulasDatuma;
     public static int szamlalo=0;
+   private Boolean tanulhat=true;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +43,8 @@ public class TanulasmenuActivity extends AppCompatActivity {
             }
         });
 
+        //---------------------------------------------------------------------------------------------------------------
+
         //itt kezdődik majd a tanulás
 
         napibut.setOnClickListener(new View.OnClickListener() {
@@ -52,7 +55,14 @@ public class TanulasmenuActivity extends AppCompatActivity {
                 Calendar jelenlegiDatum = Calendar.getInstance();
                 Calendar tanulasDatuma=Calendar.getInstance();
                 TanulasmenuActivity.szamlalo++;
-                tanulasDatuma.set(Calendar.YEAR, Calendar.MONTH, Calendar.DAY_OF_MONTH);
+                sharedPreferences= getSharedPreferences("Ido",MODE_PRIVATE);
+
+                tanulhat=false;
+                tanulasDatuma.set(Calendar.HOUR,Calendar.MINUTE);
+
+
+
+
                 jelenlegiDatum.set(Calendar.YEAR, Calendar.MONTH, Calendar.DAY_OF_MONTH);
 
 
@@ -84,7 +94,7 @@ public class TanulasmenuActivity extends AppCompatActivity {
                     int number = randomom.nextInt(3) + 1;
 
                     int szamlalo = 0;
-                    // sharedPreferences= getSharedPreferences("database",MODE_PRIVATE);
+
                             for (int i = 0; i < 1; i++) {
                                 if (number == 1) {
                                     Intent intent = new Intent(TanulasmenuActivity.this, Tanulas1Activity.class);
@@ -115,7 +125,7 @@ public class TanulasmenuActivity extends AppCompatActivity {
                      }
                 }
         });
-
+        //-------------------------------------------------------------------------------------------------------------------------
         tanultBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -131,5 +141,7 @@ public class TanulasmenuActivity extends AppCompatActivity {
         visszatanulas=findViewById(R.id.visszatanulas);
         napibut=findViewById(R.id.napibut);
         tanultBut=findViewById(R.id.tanultBut);
+
+
     }
 }

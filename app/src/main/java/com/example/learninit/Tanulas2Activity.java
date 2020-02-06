@@ -16,7 +16,6 @@ public class Tanulas2Activity extends AppCompatActivity {
     private Button tanulas2vissza;
     private TextView bekerendoSzoview2;
     private EditText bekertszoedit2;
-
     private  Button tanulas1Ellenorzesbut2;
 
     @Override
@@ -38,43 +37,49 @@ public class Tanulas2Activity extends AppCompatActivity {
             public void onClick(View view) {
                 Random randomom = new Random();
                 int number= randomom.nextInt(3)+1;
-                if (bekerendoSzoview2==bekertszoedit2) {
-                    if (number == 1) {
-                        Intent intent = new Intent(Tanulas2Activity.this, Tanulas1Activity.class);
-                        startActivity(intent);
-                        finish();
+                TanulasmenuActivity.szamlalo++;
+                if (TanulasmenuActivity.szamlalo==15){
+                    Intent intent = new Intent(Tanulas2Activity.this,TanulasmenuActivity.class);
+                    startActivity(intent);
+                    finish();
+                }else {
+                    if (bekerendoSzoview2 == bekertszoedit2) {
+                        if (number == 1) {
+                            Intent intent = new Intent(Tanulas2Activity.this, Tanulas1Activity.class);
+                            startActivity(intent);
+                            finish();
 
-                    } else if (number == 2) {
-                        Intent intent = new Intent(Tanulas2Activity.this, Tanulas2Activity.class);
-                        startActivity(intent);
-                        finish();
+                        } else if (number == 2) {
+                            Intent intent = new Intent(Tanulas2Activity.this, Tanulas2Activity.class);
+                            startActivity(intent);
+                            finish();
 
-                    } else if (number == 3) {
-                        Intent intent = new Intent(Tanulas2Activity.this, Tanulas3Activity.class);
-                        startActivity(intent);
-                        finish();
+                        } else if (number == 3) {
+                            Intent intent = new Intent(Tanulas2Activity.this, Tanulas3Activity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+
+                    } else {
+
+                        Toast.makeText(Tanulas2Activity.this, "Rossz válasz!", Toast.LENGTH_LONG).show();
+                        if (number == 1) {
+                            Intent intent = new Intent(Tanulas2Activity.this, Tanulas1Activity.class);
+                            startActivity(intent);
+                            finish();
+
+                        } else if (number == 2) {
+                            Intent intent = new Intent(Tanulas2Activity.this, Tanulas2Activity.class);
+                            startActivity(intent);
+                            finish();
+
+                        } else if (number == 3) {
+                            Intent intent = new Intent(Tanulas2Activity.this, Tanulas3Activity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+
                     }
-
-                }
-                else{
-
-                    Toast.makeText(Tanulas2Activity.this,"Rossz válasz!",Toast.LENGTH_LONG).show();
-                    if (number == 1) {
-                        Intent intent = new Intent(Tanulas2Activity.this, Tanulas1Activity.class);
-                        startActivity(intent);
-                        finish();
-
-                    } else if (number == 2) {
-                        Intent intent = new Intent(Tanulas2Activity.this, Tanulas2Activity.class);
-                        startActivity(intent);
-                        finish();
-
-                    } else if (number == 3) {
-                        Intent intent = new Intent(Tanulas2Activity.this, Tanulas3Activity.class);
-                        startActivity(intent);
-                        finish();
-                    }
-
                 }
             }
         });

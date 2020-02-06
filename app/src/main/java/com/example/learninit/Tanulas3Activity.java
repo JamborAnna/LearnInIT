@@ -38,20 +38,27 @@ public class Tanulas3Activity extends AppCompatActivity  {
             public void onClick(View view) {
                 Random randomom = new Random();
                 int number= randomom.nextInt(3)+1;
-                if (number == 1) {
-                    Intent intent = new Intent(Tanulas3Activity.this, Tanulas1Activity.class);
+                TanulasmenuActivity.szamlalo++;
+                if (TanulasmenuActivity.szamlalo==15){
+                    Intent intent = new Intent(Tanulas3Activity.this,TanulasmenuActivity.class);
                     startActivity(intent);
                     finish();
+                }else {
+                    if (number == 1) {
+                        Intent intent = new Intent(Tanulas3Activity.this, Tanulas1Activity.class);
+                        startActivity(intent);
+                        finish();
 
-                } else if (number == 2) {
-                    Intent intent = new Intent(Tanulas3Activity.this, Tanulas2Activity.class);
-                    startActivity(intent);
-                    finish();
+                    } else if (number == 2) {
+                        Intent intent = new Intent(Tanulas3Activity.this, Tanulas2Activity.class);
+                        startActivity(intent);
+                        finish();
 
-                } else if (number == 3) {
-                    Intent intent = new Intent(Tanulas3Activity.this, Tanulas3Activity.class);
-                    startActivity(intent);
-                    finish();
+                    } else if (number == 3) {
+                        Intent intent = new Intent(Tanulas3Activity.this, Tanulas3Activity.class);
+                        startActivity(intent);
+                        finish();
+                    }
                 }
 
             }
@@ -61,23 +68,29 @@ public class Tanulas3Activity extends AppCompatActivity  {
             public void onClick(View view) {
                 Random randomom = new Random();
                 int number= randomom.nextInt(3)+1;
+                TanulasmenuActivity.szamlalo++;
 
-
-                Toast.makeText(Tanulas3Activity.this,"Rossz válasz!",Toast.LENGTH_LONG).show();
-                if (number == 1) {
-                    Intent intent = new Intent(Tanulas3Activity.this, Tanulas1Activity.class);
+                if (TanulasmenuActivity.szamlalo==15){
+                    Intent intent = new Intent(Tanulas3Activity.this,TanulasmenuActivity.class);
                     startActivity(intent);
                     finish();
+                }else {
+                    Toast.makeText(Tanulas3Activity.this, "Rossz válasz!", Toast.LENGTH_LONG).show();
+                    if (number == 1) {
+                        Intent intent = new Intent(Tanulas3Activity.this, Tanulas1Activity.class);
+                        startActivity(intent);
+                        finish();
 
-                } else if (number == 2) {
-                    Intent intent = new Intent(Tanulas3Activity.this, Tanulas2Activity.class);
-                    startActivity(intent);
-                    finish();
+                    } else if (number == 2) {
+                        Intent intent = new Intent(Tanulas3Activity.this, Tanulas2Activity.class);
+                        startActivity(intent);
+                        finish();
 
-                } else if (number == 3) {
-                    Intent intent = new Intent(Tanulas3Activity.this, Tanulas3Activity.class);
-                    startActivity(intent);
-                    finish();
+                    } else if (number == 3) {
+                        Intent intent = new Intent(Tanulas3Activity.this, Tanulas3Activity.class);
+                        startActivity(intent);
+                        finish();
+                    }
                 }
 
             }

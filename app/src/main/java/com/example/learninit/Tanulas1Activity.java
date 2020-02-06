@@ -40,23 +40,27 @@ private  Button tanulas1Ellenorzesbut;
             public void onClick(View view) {
                 Random randomom = new Random();
                 int number= randomom.nextInt(3)+1;
-                if (bekerendoSzoview==bekertszoedit) {
-                    if (number == 1) {
-                        Intent intent = new Intent(Tanulas1Activity.this, Tanulas1Activity.class);
-                        startActivity(intent);
-                        finish();
+                TanulasmenuActivity.szamlalo++;
+                if (TanulasmenuActivity.szamlalo==15){
+
+                }else {
+                    if (bekerendoSzoview == bekertszoedit) {
+                        if (number == 1) {
+                            Intent intent = new Intent(Tanulas1Activity.this, Tanulas1Activity.class);
+                            startActivity(intent);
+                            finish();
 
 
-                    } else if (number == 2) {
-                        Intent intent = new Intent(Tanulas1Activity.this, Tanulas2Activity.class);
-                        startActivity(intent);
-                        finish();
+                        } else if (number == 2) {
+                            Intent intent = new Intent(Tanulas1Activity.this, Tanulas2Activity.class);
+                            startActivity(intent);
+                            finish();
 
-                    } else if (number == 3) {
-                        Intent intent = new Intent(Tanulas1Activity.this, Tanulas3Activity.class);
-                        startActivity(intent);
-                        finish();
-                    }
+                        } else if (number == 3) {
+                            Intent intent = new Intent(Tanulas1Activity.this, Tanulas3Activity.class);
+                            startActivity(intent);
+                            finish();
+                        }
 
                     } else {
                         Toast.makeText(Tanulas1Activity.this, "Rossz válasz!", Toast.LENGTH_LONG).show();
@@ -79,7 +83,7 @@ private  Button tanulas1Ellenorzesbut;
                     }
 
 
-
+                }
             }
         });
     }

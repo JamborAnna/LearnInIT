@@ -24,7 +24,7 @@ public class TanulasmenuActivity extends AppCompatActivity {
     private  AlertDialog alertDialog;
     private String jelenlegiDatum="";
     private  Calendar tanulasDatuma;
-    public static int szamlalo;
+    public static int szamlalo=0;
    private Boolean tanulhat=true;
 
 
@@ -52,12 +52,12 @@ public class TanulasmenuActivity extends AppCompatActivity {
         napibut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sharedPreference(0);
+                sharedPreference( 0);
+
 
                 // a napi egyszeri tanulás megengedésére szolgál
                 Calendar jelenlegiDatum = Calendar.getInstance();
                 Calendar tanulasDatuma=Calendar.getInstance();
-                //TanulasmenuActivity.szamlalo++;
                tanulasDatuma.set(Calendar.HOUR,Calendar.MINUTE);
                SharedPreferences setora =getSharedPreferences("ora", Context.MODE_PRIVATE);
                // SharedPreferences.Editor editor=setora.edit();
@@ -75,10 +75,10 @@ public class TanulasmenuActivity extends AppCompatActivity {
                 if (tanulasDatuma.get(Calendar.HOUR)==0){
                     tanulhat=true;
                 }
-                if (tanulhat==false && szamlalo>15) {
+                if (tanulhat==false && szamlalo==15) {
 
 
-
+                    sharedPreference(0);
 
                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(TanulasmenuActivity.this);
 
@@ -102,7 +102,6 @@ public class TanulasmenuActivity extends AppCompatActivity {
                     Random randomom = new Random();
                     int number = randomom.nextInt(3) + 1;
 
-                    //int szamlalo = 0;
 
                             for (int i = 0; i < 1; i++) {
                                 if (number == 1) {

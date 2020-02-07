@@ -2,7 +2,9 @@ package com.example.learninit;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -37,8 +39,11 @@ public class Tanulas2Activity extends AppCompatActivity {
             public void onClick(View view) {
                 Random randomom = new Random();
                 int number= randomom.nextInt(3)+1;
-                TanulasmenuActivity.szamlalo++;
-                if (TanulasmenuActivity.szamlalo==15){
+                //TanulasmenuActivity.szamlalo++;
+                int szamlalo = Integer.parseInt(getSharedPreferences("szam", Context.MODE_PRIVATE).getString("szamlalo", ""));
+                szamlalo++;
+                sharedPreference(szamlalo);
+                if (szamlalo==15){
                     Intent intent = new Intent(Tanulas2Activity.this,TanulasmenuActivity.class);
                     startActivity(intent);
                     finish();
@@ -62,7 +67,7 @@ public class Tanulas2Activity extends AppCompatActivity {
 
                     } else {
 
-                        Toast.makeText(Tanulas2Activity.this, "Rossz válasz!", Toast.LENGTH_LONG).show();
+                                Toast.makeText(Tanulas2Activity.this, "Rossz válasz!", Toast.LENGTH_SHORT).show();
                         if (number == 1) {
                             Intent intent = new Intent(Tanulas2Activity.this, Tanulas1Activity.class);
                             startActivity(intent);
@@ -94,5 +99,9 @@ public class Tanulas2Activity extends AppCompatActivity {
         bekertszoedit2=findViewById(R.id.bekertszoedit2);
         tanulas1Ellenorzesbut2=findViewById(R.id.tanulas1Ellenorzesbut2);
 
+    }
+    private void sharedPreference(int szamlalo) {
+        SharedPreferences s = getSharedPreferences("szam", Context.MODE_PRIVATE);
+        s.edit().putString("szamlalo", String.valueOf(szamlalo)).apply();
     }
 }

@@ -3,6 +3,8 @@ package com.example.learninit;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentProvider;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -22,7 +24,7 @@ public class TanulasmenuActivity extends AppCompatActivity {
     private  AlertDialog alertDialog;
     private String jelenlegiDatum="";
     private  Calendar tanulasDatuma;
-    public static int szamlalo=0;
+    public static int szamlalo;
    private Boolean tanulhat=true;
 
 
@@ -50,23 +52,30 @@ public class TanulasmenuActivity extends AppCompatActivity {
         napibut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                sharedPreference(0);
 
                 // a napi egyszeri tanulás megengedésére szolgál
                 Calendar jelenlegiDatum = Calendar.getInstance();
                 Calendar tanulasDatuma=Calendar.getInstance();
-                TanulasmenuActivity.szamlalo++;
-                //sharedPreferences= getSharedPreferences("Ido",MODE_PRIVATE);
+                //TanulasmenuActivity.szamlalo++;
+               tanulasDatuma.set(Calendar.HOUR,Calendar.MINUTE);
+               SharedPreferences setora =getSharedPreferences("ora", Context.MODE_PRIVATE);
+               // SharedPreferences.Editor editor=setora.edit();
+               //editor.putInt("szam",tanulasDatuma.get(Calendar.HOUR));
+               // editor.apply();
+                oraSharedPreference(tanulasDatuma.get(Calendar.HOUR));
 
-
-                tanulasDatuma.set(Calendar.YEAR, Calendar.MONTH, Calendar.DAY_OF_MONTH);
-
-
+                //kiolvasas
+                SharedPreferences getora =getSharedPreferences("szam", Context.MODE_PRIVATE);
+                int oraido=getora.getInt("ora",0);
 
 
                 jelenlegiDatum.set(Calendar.YEAR, Calendar.MONTH, Calendar.DAY_OF_MONTH);
 
-
-                if (jelenlegiDatum.equals(tanulasDatuma)&& TanulasmenuActivity.szamlalo<15) {
+                if (tanulasDatuma.get(Calendar.HOUR)==0){
+                    tanulhat=true;
+                }
+                if (tanulhat==false && szamlalo>15) {
 
 
 
@@ -86,39 +95,46 @@ public class TanulasmenuActivity extends AppCompatActivity {
 
                    //Toast.makeText(TanulasmenuActivity.this, "Térj vissza holnap!", Toast.LENGTH_LONG).show();
                 }
-                else {
+                else if (tanulhat==true){
 
 
                     //Random Activity választó
                     Random randomom = new Random();
                     int number = randomom.nextInt(3) + 1;
 
-                    int szamlalo = 0;
+                    //int szamlalo = 0;
 
                             for (int i = 0; i < 1; i++) {
                                 if (number == 1) {
+                                    sharedPreference(szamlalo);
+                                    szamlalo++;
                                     Intent intent = new Intent(TanulasmenuActivity.this, Tanulas1Activity.class);
                                     startActivity(intent);
                                     finish();
-                                    szamlalo++;
+
+
                                 } else if (number == 2) {
+                                    szamlalo++;
+                                    sharedPreference(szamlalo);
                                     Intent intent = new Intent(TanulasmenuActivity.this, Tanulas2Activity.class);
                                     startActivity(intent);
                                     finish();
-                                    szamlalo++;
+
                                 } else if (number == 3) {
+                                    szamlalo++;
+                                    sharedPreference(szamlalo);
                                     Intent intent = new Intent(TanulasmenuActivity.this, Tanulas3Activity.class);
                                     startActivity(intent);
                                     finish();
-                                    szamlalo++;
+
                                 } else {
 
                                         Intent intent = new Intent(TanulasmenuActivity.this, fomenu.class);
                                         startActivity(intent);
                                         finish();
-                                        szamlalo++;
-                                }
 
+                                }
+                                //sharedPreference(szamlalo);
                             }
 
 
@@ -143,5 +159,14 @@ public class TanulasmenuActivity extends AppCompatActivity {
         tanultBut=findViewById(R.id.tanultBut);
 
 
+    }
+
+    private void sharedPreference(int szamlalo) {
+        SharedPreferences s = getSharedPreferences("szam", Context.MODE_PRIVATE);
+        s.edit().putString("szamlalo", String.valueOf(szamlalo)).apply();
+    }
+    private void oraSharedPreference(int ora) {
+        SharedPreferences s = getSharedPreferences("szam", Context.MODE_PRIVATE);
+        s.edit().putInt("ora", ora).apply();
     }
 }

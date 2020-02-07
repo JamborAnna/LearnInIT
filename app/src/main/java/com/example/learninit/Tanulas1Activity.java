@@ -2,7 +2,9 @@ package com.example.learninit;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -40,8 +42,15 @@ private  Button tanulas1Ellenorzesbut;
             public void onClick(View view) {
                 Random randomom = new Random();
                 int number= randomom.nextInt(3)+1;
-                TanulasmenuActivity.szamlalo++;
-                if (TanulasmenuActivity.szamlalo==15){
+
+                int szamlalo = Integer.parseInt(getSharedPreferences("szam", Context.MODE_PRIVATE).getString("szamlalo", ""));
+
+
+
+                if (szamlalo==15){
+                    Intent intent = new Intent(Tanulas1Activity.this, TanulasmenuActivity.class);
+                    startActivity(intent);
+                    finish();
 
                 }else {
                     if (bekerendoSzoview == bekertszoedit) {
@@ -63,22 +72,29 @@ private  Button tanulas1Ellenorzesbut;
                         }
 
                     } else {
-                        Toast.makeText(Tanulas1Activity.this, "Rossz válasz!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(Tanulas1Activity.this, "Rossz válasz!", Toast.LENGTH_SHORT).show();
                         if (number == 1) {
+                            szamlalo++;
+                            sharedPreference(szamlalo);
                             Intent intent = new Intent(Tanulas1Activity.this, Tanulas1Activity.class);
                             startActivity(intent);
                             finish();
 
                         } else if (number == 2) {
+                            szamlalo++;
+                            sharedPreference(szamlalo);
                             Intent intent = new Intent(Tanulas1Activity.this, Tanulas2Activity.class);
                             startActivity(intent);
                             finish();
 
                         } else if (number == 3) {
+                            szamlalo++;
+                            sharedPreference(szamlalo);
                             Intent intent = new Intent(Tanulas1Activity.this, Tanulas3Activity.class);
                             startActivity(intent);
                             finish();
                         }
+
 
                     }
 
@@ -99,4 +115,13 @@ private  Button tanulas1Ellenorzesbut;
 
 
     }
+    private void sharedPreference(int szamlalo) {
+        SharedPreferences s = getSharedPreferences("szam", Context.MODE_PRIVATE);
+        s.edit().putString("szamlalo", String.valueOf(szamlalo)).apply();
+    }
+
+   /* private void oraSharedPreference(int ora) {
+        SharedPreferences s = getSharedPreferences("szam", Context.MODE_PRIVATE);
+        s.edit().putString("ora", String.valueOf(ora)).apply();
+    }*/
 }

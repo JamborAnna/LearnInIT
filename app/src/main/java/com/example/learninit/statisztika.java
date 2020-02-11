@@ -1,4 +1,4 @@
-package com.example.learninit.ui;
+package com.example.learninit;
 
 public class statisztika {
     public String user_id;

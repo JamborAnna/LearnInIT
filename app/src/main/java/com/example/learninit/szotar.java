@@ -1,4 +1,4 @@
-package com.example.learninit.ui;
+package com.example.learninit;
 
 public class szotar {
     public String user_id;

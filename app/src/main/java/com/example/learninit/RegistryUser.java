@@ -1,9 +1,20 @@
 package com.example.learninit;
 
 public class RegistryUser {
+    public String  user_id;
     public String felhasznaloNev;
     public String email;
+    public  Boolean tanult;
 
+
+
+    public String getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
+    }
 
     public String getFelhasznaloNev() {
         return felhasznaloNev;
@@ -21,9 +32,15 @@ public class RegistryUser {
         this.email = email;
     }
 
-
-    public  RegistryUser(){
-
+    public Boolean getTanult() {
+        return tanult;
     }
+
+    public void setTanult(Boolean tanult) {
+        this.tanult = tanult;
+    }
+
+
+
 
 }

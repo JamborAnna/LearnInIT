@@ -1,17 +1,18 @@
 package com.example.learninit;
 
 public class szotar {
-    public String user_id;
+    public String szo_id;
     public String magyar;
     public String angol;
-    public String kep;
+    public String kep_id;
+    public boolean tanult;
 
-    public String getUser_id() {
-        return user_id;
+    public String getSzo_id() {
+        return szo_id;
     }
 
-    public void setUser_id(String user_id) {
-        this.user_id = user_id;
+    public void setSzo_id(String szo_id) {
+        this.szo_id = szo_id;
     }
 
     public String getMagyar() {
@@ -30,11 +31,19 @@ public class szotar {
         this.angol = angol;
     }
 
-    public String getKep() {
-        return kep;
+    public String getKep_id() {
+        return kep_id;
     }
 
-    public void setKep(String kep) {
-        this.kep = kep;
+    public void setKep_id(String kep_id) {
+        this.kep_id = kep_id;
+    }
+
+    public boolean isTanult() {
+        return tanult;
+    }
+
+    public void setTanult(boolean tanult) {
+        this.tanult = tanult;
     }
 }

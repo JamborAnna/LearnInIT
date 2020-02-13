@@ -1,5 +1,6 @@
 package com.example.learninit;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -15,8 +16,12 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class Regisztracio extends AppCompatActivity {
 
@@ -29,6 +34,9 @@ public class Regisztracio extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private ProgressBar progressRegistry;
     private DatabaseReference databaseReference;
+    private RegistryUser registryUser;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +62,16 @@ public class Regisztracio extends AppCompatActivity {
                 String email=EmailText.getText().toString();
                 String jelszo=JelszoText.getText().toString();
                 String jelszoism=JelszoIsmText.getText().toString();
+                //mit fogok felküldeni
+                registryUser.setFelhasznaloNev(FelhasznalonevText.getText().toString());
+                registryUser.setEmail(EmailText.getText().toString());
+                FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
+
+                //felküldi az értékeket
+                databaseReference.child(user.getUid()).setValue(registryUser);
+
+
+
 
                 if (TextUtils.isEmpty(jelszo) ){
                     Toast.makeText(Regisztracio.this,"A két jelszó nem egyezik meg!",Toast.LENGTH_LONG).show();
@@ -100,7 +118,10 @@ public class Regisztracio extends AppCompatActivity {
         JelszoText = findViewById(R.id.JelszoText);
         JelszoIsmText = findViewById(R.id.JelszoIsmText);
         RegKuldBut = findViewById(R.id.RegKuldBut);
-        //databaseReference=FirebaseDatabase.getInstance().getReference("RegistryUser");
+        databaseReference=FirebaseDatabase.getInstance().getReference("Felhasznalo");
         mAuth=FirebaseAuth.getInstance();
+        registryUser=new RegistryUser();
+
+
     }
 }

@@ -1,10 +1,13 @@
 package com.example.learninit;
 
+import com.google.firebase.database.Exclude;
+
 public class RegistryUser {
+    @Exclude
     public String  user_id;
     public String felhasznaloNev;
     public String email;
-    public  Boolean tanult;
+
 
 
 
@@ -32,13 +35,6 @@ public class RegistryUser {
         this.email = email;
     }
 
-    public Boolean getTanult() {
-        return tanult;
-    }
-
-    public void setTanult(Boolean tanult) {
-        this.tanult = tanult;
-    }
 
 
 

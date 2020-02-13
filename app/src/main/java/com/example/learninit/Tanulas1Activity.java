@@ -29,40 +29,52 @@ private TextView bekerendoSzoview;
 private EditText bekertszoedit;
 private  Button tanulas1Ellenorzesbut;
 private DatabaseReference databaseReference;
+    Random randomom = new Random();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tanulas1);
         init();
+        databaseReference= FirebaseDatabase.getInstance().getReference().child("szotar");
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()){
+                    szotar s;
+
+
+                    int randomSzam= randomom.nextInt((int) dataSnapshot.getChildrenCount());
+
+                    for (DataSnapshot item :dataSnapshot.getChildren()) {
+
+                        s=item.getValue(szotar.class);
+                        if (s.szo_id.equals(String.valueOf(randomSzam))){
+                            bekerendoSzoview.setText(s.angol);
+                            bekertszoedit.setText(s.magyar);
+                            Toast.makeText(Tanulas1Activity.this, "ize", Toast.LENGTH_SHORT).show();
+
+                        }
+
+
+                    }
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
         tanulas1vissza.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Tanulas1Activity.this,TanulasmenuActivity.class);
                 startActivity(intent);
                 finish();
-                databaseReference= FirebaseDatabase.getInstance().getReference().child("szotar");
-                databaseReference.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.exists()){
-                            szotar s;
-                            for (DataSnapshot item :dataSnapshot.getChildren()) {
 
-                                s=item.getValue(szotar.class);
-
-
-                            }
-
-                        }
-
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
 
 
             }

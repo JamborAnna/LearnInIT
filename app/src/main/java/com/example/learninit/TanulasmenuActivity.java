@@ -60,9 +60,6 @@ public class TanulasmenuActivity extends AppCompatActivity {
                 Calendar tanulasDatuma=Calendar.getInstance();
                tanulasDatuma.set(Calendar.HOUR,Calendar.MINUTE);
                SharedPreferences setora =getSharedPreferences("ora", Context.MODE_PRIVATE);
-               // SharedPreferences.Editor editor=setora.edit();
-               //editor.putInt("szam",tanulasDatuma.get(Calendar.HOUR));
-               // editor.apply();
                 oraSharedPreference(tanulasDatuma.get(Calendar.HOUR));
 
                 //kiolvasas
@@ -72,9 +69,9 @@ public class TanulasmenuActivity extends AppCompatActivity {
 
                 jelenlegiDatum.set(Calendar.YEAR, Calendar.MONTH, Calendar.DAY_OF_MONTH);
 
-                if (tanulasDatuma.get(Calendar.HOUR)==0){
+                /*if (tanulasDatuma.get(Calendar.HOUR)==0){
                     tanulhat=true;
-                }
+                }*/
                 if (tanulhat==false && szamlalo==15) {
 
 

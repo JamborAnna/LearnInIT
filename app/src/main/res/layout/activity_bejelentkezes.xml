@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".Bejelentkezes"
     android:orientation="vertical"
-    android:background="@drawable/hatter">
+    android:background="@drawable/hatter"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -75,15 +76,25 @@
 
         >
     </TextView>
-
-    <ProgressBar
+<com.airbnb.lottie.LottieAnimationView
+    android:id="@+id/lottieAnimation"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:lottie_autoPlay="true"
+    app:lottie_fileName="fold.json"
+    app:lottie_loop="true"
+    android:visibility="gone"
+    />
+   <!-- <ProgressBar
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"
         android:id="@+id/progressLogin"
 
+
+
         >
 
-    </ProgressBar>
+    </ProgressBar>  -->
 
 </RelativeLayout>

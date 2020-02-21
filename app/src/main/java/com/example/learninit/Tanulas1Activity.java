@@ -29,17 +29,21 @@ private TextView bekerendoSzoview;
 private EditText bekertszoedit;
 private  Button tanulas1Ellenorzesbut;
 private DatabaseReference databaseReference;
-    Random randomom = new Random();
+private Random randomom = new Random();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tanulas1);
         init();
-        databaseReference= FirebaseDatabase.getInstance().getReference().child("szotar");
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+
+/*
+        databaseReference= FirebaseDatabase.getInstance().getReference();
+        databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String data= dataSnapshot.child("szotar").getValue(String.class);
+                bekerendoSzoview.setText(data);
                 if (dataSnapshot.exists()){
                     szotar s;
 
@@ -67,7 +71,7 @@ private DatabaseReference databaseReference;
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });
+        });*/
         tanulas1vissza.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -107,52 +111,52 @@ private DatabaseReference databaseReference;
                 int number= randomom.nextInt(3)+1;
 
                 int szamlalo = Integer.parseInt(getSharedPreferences("szam", Context.MODE_PRIVATE).getString("szamlalo", ""));
+                    sharedPreference(szamlalo);
+                    szamlalo++;
 
-
-
-                if (szamlalo==15){
+                if (szamlalo>15){
                     Intent intent = new Intent(Tanulas1Activity.this, TanulasmenuActivity.class);
                     startActivity(intent);
                     finish();
 
                 }else {
-                    if (bekerendoSzoview == bekertszoedit) {
+                    if (bekerendoSzoview == bekertszoedit&& szamlalo<15) {
                         if (number == 1) {
+
                             Intent intent = new Intent(Tanulas1Activity.this, Tanulas1Activity.class);
                             startActivity(intent);
                             finish();
 
 
+
                         } else if (number == 2) {
+
                             Intent intent = new Intent(Tanulas1Activity.this, Tanulas2Activity.class);
                             startActivity(intent);
                             finish();
 
+
                         } else if (number == 3) {
+
                             Intent intent = new Intent(Tanulas1Activity.this, Tanulas3Activity.class);
                             startActivity(intent);
                             finish();
+
                         }
 
                     } else {
                         Toast.makeText(Tanulas1Activity.this, "Rossz válasz!", Toast.LENGTH_SHORT).show();
                         if (number == 1) {
-                            szamlalo++;
-                            sharedPreference(szamlalo);
                             Intent intent = new Intent(Tanulas1Activity.this, Tanulas1Activity.class);
                             startActivity(intent);
                             finish();
 
                         } else if (number == 2) {
-                            szamlalo++;
-                            sharedPreference(szamlalo);
                             Intent intent = new Intent(Tanulas1Activity.this, Tanulas2Activity.class);
                             startActivity(intent);
                             finish();
 
                         } else if (number == 3) {
-                            szamlalo++;
-                            sharedPreference(szamlalo);
                             Intent intent = new Intent(Tanulas1Activity.this, Tanulas3Activity.class);
                             startActivity(intent);
                             finish();
@@ -182,8 +186,4 @@ private DatabaseReference databaseReference;
         s.edit().putString("szamlalo", String.valueOf(szamlalo)).apply();
     }
 
-   /* private void oraSharedPreference(int ora) {
-        SharedPreferences s = getSharedPreferences("szam", Context.MODE_PRIVATE);
-        s.edit().putString("ora", String.valueOf(ora)).apply();
-    }*/
 }

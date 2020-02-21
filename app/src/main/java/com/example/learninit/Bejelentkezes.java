@@ -8,9 +8,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -25,6 +27,8 @@ public class Bejelentkezes extends AppCompatActivity {
     private ProgressBar progressLogin;
     private FirebaseAuth mAuth;
     private TextView forgott;
+    private LottieAnimationView lottiAnim;
+    private RelativeLayout Bejelentkezes;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,12 +47,15 @@ public class Bejelentkezes extends AppCompatActivity {
         BejelentkezesButBej.setOnClickListener((new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                progressLogin.setVisibility(View.VISIBLE);
+                lottiAnim.setVisibility(View.VISIBLE);
+                BejelentkezesButBej.setVisibility(View.GONE);
+                visszabejelentkezes.setVisibility(View.GONE);
+                forgott.setVisibility(View.GONE);
             mAuth.signInWithEmailAndPassword(FelasznalonevBej.getText().toString(),
                     JelszoBej.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
-                    progressLogin.setVisibility(View.GONE);
+                    lottiAnim.setVisibility(View.GONE);
                     if (task.isSuccessful()){
                         startActivity(new Intent(Bejelentkezes.this,fomenu.class));
                     }
@@ -75,7 +82,8 @@ public class Bejelentkezes extends AppCompatActivity {
         FelasznalonevBej=findViewById(R.id.FelasznalonevBej);
         JelszoBej=findViewById(R.id.JelszoBej);
         BejelentkezesButBej=findViewById(R.id.BejelentkezesButBej);
-        progressLogin=findViewById(R.id.progressLogin);
+       // Bejelentkezes=findViewById(R.id.Bejelentkezes);
         forgott=findViewById(R.id.forgott);
+        lottiAnim = findViewById(R.id.lottieAnimation);
     }
 }

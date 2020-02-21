@@ -45,7 +45,7 @@ public class Tanulas3Activity extends AppCompatActivity  {
                 int szamlalo = Integer.parseInt(getSharedPreferences("szam", Context.MODE_PRIVATE).getString("szamlalo", ""));
                 szamlalo++;
                 sharedPreference(szamlalo);
-                if (szamlalo ==15){
+                if (szamlalo >15){
                     Intent intent = new Intent(Tanulas3Activity.this,TanulasmenuActivity.class);
                     startActivity(intent);
                     finish();
@@ -65,7 +65,7 @@ public class Tanulas3Activity extends AppCompatActivity  {
                         startActivity(intent);
                         finish();
                     }
-                    //sharedPreference(szamlalo);
+
                 }
 
             }
@@ -75,12 +75,13 @@ public class Tanulas3Activity extends AppCompatActivity  {
             public void onClick(View view) {
                 Random randomom = new Random();
                 int number= randomom.nextInt(3)+1;
-                //TanulasmenuActivity.szamlalo++;
 
                 int szamlalo = Integer.parseInt(getSharedPreferences("szam", Context.MODE_PRIVATE).getString("szamlalo", ""));
                 szamlalo++;
                 sharedPreference(szamlalo);
-                if (szamlalo==15){
+
+                sharedPreference(szamlalo);
+                if (szamlalo>15){
                     Intent intent = new Intent(Tanulas3Activity.this,TanulasmenuActivity.class);
                     startActivity(intent);
                     finish();
@@ -101,7 +102,7 @@ public class Tanulas3Activity extends AppCompatActivity  {
                         startActivity(intent);
                         finish();
                     }
-                    //sharedPreference(szamlalo);
+
                 }
 
             }

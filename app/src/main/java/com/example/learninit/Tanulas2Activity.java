@@ -37,18 +37,22 @@ public class Tanulas2Activity extends AppCompatActivity {
         tanulas1Ellenorzesbut2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Random randomom = new Random();
                 int number= randomom.nextInt(3)+1;
-                //TanulasmenuActivity.szamlalo++;
+
+
+
                 int szamlalo = Integer.parseInt(getSharedPreferences("szam", Context.MODE_PRIVATE).getString("szamlalo", ""));
                 szamlalo++;
                 sharedPreference(szamlalo);
-                if (szamlalo==15){
+
+                if (szamlalo>15){
                     Intent intent = new Intent(Tanulas2Activity.this,TanulasmenuActivity.class);
                     startActivity(intent);
                     finish();
                 }else {
-                    if (bekerendoSzoview2 == bekertszoedit2) {
+                    if (bekerendoSzoview2 == bekertszoedit2 ) {
                         if (number == 1) {
                             Intent intent = new Intent(Tanulas2Activity.this, Tanulas1Activity.class);
                             startActivity(intent);

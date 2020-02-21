@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".Tanulas3Activity"
     android:orientation="horizontal"
-    android:background="@drawable/hatter">
+    android:background="@drawable/hatter"
+    >
 
 
     <LinearLayout
@@ -25,6 +26,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:layout_margin="20sp"
         android:layout_below="@+id/tanulas3linear"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -35,7 +37,8 @@
         android:layout_weight=".5"
         android:layout_width="match_parent"
         android:layout_height="305sp"
-        android:id="@+id/imageBut1">
+        android:id="@+id/imageBut1"
+        android:background="@drawable/harom">
     </ImageButton>
     <TextView
         android:layout_below="@+id/imageBut1"
@@ -53,10 +56,11 @@
     </TextView>
         <ImageButton
             android:layout_weight=".5"
+
             android:layout_width="match_parent"
             android:layout_height="305sp"
             android:id="@+id/imageBut2"
-            android:background="@drawable/egy"
+           android:background="@drawable/egy"
             >
         </ImageButton>
     </LinearLayout>

@@ -56,27 +56,51 @@ public class TanulasmenuActivity extends AppCompatActivity {
         napibut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (szamlalo==15){
+                    tanulhat=false;
+                }
                 sharedPreference( 0);
                 sharedPreference(szamlalo+1);
+
+
 
                 //szamlalo++;
                 // a napi egyszeri tanulás megengedésére szolgál
                 Calendar jelenlegiDatum = Calendar.getInstance();
                 Calendar tanulasDatuma=Calendar.getInstance();
-               tanulasDatuma.set(Calendar.HOUR,Calendar.MINUTE);
+              // tanulasDatuma.set(Calendar.HOUR,Calendar.MINUTE); //nem szabad oldani
+
+                if (tanulasDatuma.get(Calendar.DAY_OF_YEAR)>365){
+                    oraSharedPreference(0);
+                }
+
+
+
                SharedPreferences setora =getSharedPreferences("ora", Context.MODE_PRIVATE);
-                oraSharedPreference(tanulasDatuma.get(Calendar.HOUR));
+                oraSharedPreference(tanulasDatuma.get(Calendar.DAY_OF_YEAR));
 
                 //kiolvasas
                 SharedPreferences getora =getSharedPreferences("szam", Context.MODE_PRIVATE);
                 int oraido=getora.getInt("ora",0);
 
 
-                jelenlegiDatum.set(Calendar.YEAR, Calendar.MONTH, Calendar.DAY_OF_MONTH);
+               jelenlegiDatum.get(Calendar.DAY_OF_YEAR);
 
-                /*if (tanulasDatuma.get(Calendar.HOUR)==0){
+
+                //if (oraSharedPreference()
+                if (tanulasDatuma.get(Calendar.DAY_OF_YEAR)<tanulasDatuma.get(Calendar.DAY_OF_YEAR+1)){
+
                     tanulhat=true;
-                }*/
+                    Toast.makeText(TanulasmenuActivity.this, "beleptem a truba", Toast.LENGTH_LONG).show();
+
+                }
+                else {
+                    tanulhat=false;
+                    Toast.makeText(TanulasmenuActivity.this, "beleptem a falséba", Toast.LENGTH_LONG).show();
+                }
+
+
+
                 if (tanulhat==false != szamlalo>15) {
 
 
@@ -97,7 +121,7 @@ public class TanulasmenuActivity extends AppCompatActivity {
 
                    //Toast.makeText(TanulasmenuActivity.this, "Térj vissza holnap!", Toast.LENGTH_LONG).show();
                 }
-                else if (tanulhat==true && szamlalo<15){
+                else if (tanulhat==true  && szamlalo<15){
 
 
                     //Random Activity választó
@@ -171,5 +195,6 @@ public class TanulasmenuActivity extends AppCompatActivity {
     private void oraSharedPreference(int ora) {
         SharedPreferences s = getSharedPreferences("szam", Context.MODE_PRIVATE);
         s.edit().putInt("ora", ora).apply();
+
     }
 }

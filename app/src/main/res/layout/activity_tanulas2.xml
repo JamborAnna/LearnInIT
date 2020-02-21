@@ -32,11 +32,12 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="_ _ _ _ _ _ _ _"
+        android:hint="_ _ _ _ _ _ _ _"
         android:textSize="30sp"
         android:gravity="center"
         android:layout_below="@+id/bekerendoSzoview2"
-        android:id="@+id/bekertszoedit2">
+        android:id="@+id/bekertszoedit2"
+        android:outlineAmbientShadowColor="#ffffff">
     </EditText>
   <LinearLayout
       android:layout_width="match_parent"

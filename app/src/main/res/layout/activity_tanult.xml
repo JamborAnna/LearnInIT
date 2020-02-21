@@ -28,15 +28,18 @@
         android:layout_below="@+id/linearTanult"
         android:gravity="center"
         android:text="Tanult Szavak"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:background="@drawable/button_shape"
-        android:layout_margin="5dp">
+        android:layout_margin="5sp">
     </TextView>
     <ListView
         android:layout_below="@+id/tanault"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/tanultList">
+        android:id="@+id/tanultList"
+        android:scrollbars="vertical"
+        >
     </ListView>
+
 
 </RelativeLayout>

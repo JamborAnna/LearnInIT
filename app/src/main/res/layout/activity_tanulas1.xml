@@ -28,7 +28,7 @@
         android:layout_below="@+id/tanulas1linear"
         android:id="@+id/bekerendoSzoview"
         android:gravity="center"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:text="Magyar szó"
         >
     </TextView>
@@ -36,7 +36,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:hint="_ _ _ _ _ _ _ _"
-    android:textSize="30dp"
+    android:textSize="30sp"
     android:gravity="center"
     android:layout_below="@+id/bekerendoSzoview"
     android:id="@+id/bekertszoedit">
@@ -47,10 +47,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Ellenöriz"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:layout_below="@+id/bekertszoedit"
         android:background="@drawable/button_shape"
-        android:layout_margin="5dp">
+        android:layout_margin="5sp">
     </Button>
 
 </RelativeLayout>

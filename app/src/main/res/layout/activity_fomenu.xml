@@ -13,24 +13,25 @@
         android:orientation="horizontal"
         android:id="@+id/layout1">
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="0sp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:id="@+id/FelhasznaloNeveView"
-            android:textSize="20dp"
+            android:textSize="20sp"
+            android:maxLength="30"
             >
         </TextView>
         <Button
-            android:layout_width="0dp"
+            android:layout_width="0sp"
             android:layout_height="wrap_content"
             android:text="Kijelentkezés"
             android:layout_centerInParent="true"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:visibility="visible"
             android:layout_weight="1"
             android:id="@+id/kijelentkezesBut"
             android:background="@drawable/button_shape"
-            android:layout_margin="5dp">
+            android:layout_margin="5sp">
 
         </Button>
 
@@ -41,13 +42,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Statisztika"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:layout_centerInParent="true"
         android:layout_above="@+id/tanulni"
         android:visibility="visible"
         android:id="@+id/statisztika"
         android:background="@drawable/button_shape"
-        android:layout_margin="5dp"
+        android:layout_margin="5sp"
         >
 
     </Button>
@@ -60,10 +61,10 @@
         android:layout_above="@+id/RegisztracioBut"
         android:layout_centerInParent="true"
         android:text="Tanulni"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:visibility="visible"
         android:background="@drawable/button_shape"
-        android:layout_margin="5dp">
+        android:layout_margin="5sp">
 
     </Button>
 

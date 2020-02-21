@@ -170,6 +170,6 @@ public class TanulasmenuActivity extends AppCompatActivity {
     }
     private void oraSharedPreference(int ora) {
         SharedPreferences s = getSharedPreferences("szam", Context.MODE_PRIVATE);
-        s.edit().putFloat("ora", ora).apply();
+        s.edit().putInt("ora", ora).apply();
     }
 }

@@ -26,9 +26,9 @@
         android:layout_below="@+id/visszaopciokhoz"
         android:text="Heti jó:"
         android:id="@+id/hetiStatview"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:background="@drawable/button_shape"
-        android:layout_margin="5dp">
+        android:layout_margin="5sp">
     </TextView>
     <TextView
         android:layout_width="match_parent"
@@ -36,18 +36,18 @@
         android:layout_below="@+id/hetiStatview"
         android:text="Havi jó:"
         android:id="@+id/haviStatisztikaView"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:background="@drawable/button_shape"
-        android:layout_margin="5dp">
+        android:layout_margin="5sp">
     </TextView>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/haviStatisztikaView"
         android:text="Éves jó:"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:background="@drawable/button_shape"
-        android:layout_margin="5dp">
+        android:layout_margin="5sp">
     </TextView>
 
 </RelativeLayout>

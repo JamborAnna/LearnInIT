@@ -26,14 +26,14 @@
         android:layout_below="@+id/tanulas2linear"
         android:id="@+id/bekerendoSzoview2"
         android:gravity="center"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:text="Magyar szó">
     </TextView>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="_ _ _ _ _ _ _ _"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:gravity="center"
         android:layout_below="@+id/bekerendoSzoview2"
         android:id="@+id/bekertszoedit2">
@@ -44,7 +44,7 @@
       android:id="@+id/tanulas2linear2"
       android:layout_below="@+id/bekertszoedit2">
       <Button
-          android:layout_width="0dp"
+          android:layout_width="0sp"
           android:layout_height="match_parent"
           android:text="szó1"
           android:layout_weight="1"
@@ -52,28 +52,28 @@
           android:textSize="30dp">
       </Button>
       <Button
-          android:layout_width="0dp"
+          android:layout_width="0sp"
           android:layout_height="match_parent"
           android:text="szó1"
           android:layout_weight="1"
           android:id="@+id/szo2"
-          android:textSize="30dp">
+          android:textSize="30sp">
       </Button>
       <Button
-          android:layout_width="0dp"
+          android:layout_width="0sp"
           android:layout_height="match_parent"
           android:text="szó1"
           android:layout_weight="1"
           android:layout_below="@+id/szo3"
           android:id="@+id/szo3"
-          android:textSize="30dp">
+          android:textSize="30sp">
       </Button>
       <Button
           android:layout_width="wrap_content"
           android:layout_height="match_parent"
           android:text="szó1"
           android:id="@+id/szo4"
-          android:textSize="30dp"
+          android:textSize="30sp"
           android:layout_below="@+id/szo2"
           >
       </Button>
@@ -82,13 +82,13 @@
           android:layout_height="match_parent"
           android:text="szó1"
           android:id="@+id/szo5"
-          android:textSize="30dp">
+          android:textSize="30sp">
       </Button><Button
       android:layout_width="wrap_content"
       android:layout_height="match_parent"
       android:id="@+id/szo6"
       android:text="szó1"
-      android:textSize="30dp">
+      android:textSize="30sp">
   </Button>
   </LinearLayout>
     <Button
@@ -96,11 +96,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Ellenöriz"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:gravity="center"
         android:layout_below="@+id/tanulas2linear2"
         android:background="@drawable/button_shape"
-        android:layout_margin="5dp">
+        android:layout_margin="5sp">
     </Button>
 
 

@@ -25,12 +25,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/linear1"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:text="Napi Szavak"
         android:layout_centerInParent="true"
         android:id="@+id/napibut"
         android:background="@drawable/button_shape"
-        android:layout_margin="5dp">
+        android:layout_margin="5sp">
     </Button>
     <Button
         android:layout_width="wrap_content"
@@ -38,10 +38,10 @@
         android:layout_below="@+id/napibut"
         android:text="Tanult szavak"
         android:layout_centerInParent="true"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:id="@+id/tanultBut"
         android:background="@drawable/button_shape"
-        android:layout_margin="5dp">
+        android:layout_margin="5sp">
     </Button>
 
 </RelativeLayout>

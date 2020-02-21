@@ -47,6 +47,7 @@ public class Bejelentkezes extends AppCompatActivity {
         BejelentkezesButBej.setOnClickListener((new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 lottiAnim.setVisibility(View.VISIBLE);
                 BejelentkezesButBej.setVisibility(View.GONE);
                 visszabejelentkezes.setVisibility(View.GONE);
@@ -56,6 +57,9 @@ public class Bejelentkezes extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     lottiAnim.setVisibility(View.GONE);
+                    BejelentkezesButBej.setVisibility(View.VISIBLE);
+                    visszabejelentkezes.setVisibility(View.VISIBLE);
+                    forgott.setVisibility(View.VISIBLE);
                     if (task.isSuccessful()){
                         startActivity(new Intent(Bejelentkezes.this,fomenu.class));
                     }
@@ -82,7 +86,7 @@ public class Bejelentkezes extends AppCompatActivity {
         FelasznalonevBej=findViewById(R.id.FelasznalonevBej);
         JelszoBej=findViewById(R.id.JelszoBej);
         BejelentkezesButBej=findViewById(R.id.BejelentkezesButBej);
-       // Bejelentkezes=findViewById(R.id.Bejelentkezes);
+      // Bejelentkezes=findViewById(R.id.Bejelentkezes);
         forgott=findViewById(R.id.forgott);
         lottiAnim = findViewById(R.id.lottieAnimation);
     }

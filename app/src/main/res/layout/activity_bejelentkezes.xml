@@ -26,7 +26,7 @@
     </LinearLayout>
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="50sp"
         android:hint="Felasználónév"
         android:textSize="25sp"
         android:id="@+id/FelasznalonevBej"
@@ -35,11 +35,11 @@
         android:background="@drawable/button_shape"
         android:textAlignment="center"
         android:inputType="text"
-        android:layout_margin="5dp">
+        android:layout_margin="5sp">
     </EditText>
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="50sp"
         android:hint="Jelszó"
         android:textSize="25sp"
         android:layout_centerInParent="true"
@@ -48,12 +48,12 @@
         android:inputType="textPassword"
         android:textAlignment="center"
         android:background="@drawable/button_shape"
-        android:layout_margin="5dp"
+        android:layout_margin="5sp"
         >
     </EditText>
     <Button
-        android:layout_width="250dp"
-        android:layout_height="60dp"
+        android:layout_width="250sp"
+        android:layout_height="60sp"
 
         android:text="Bejelentkezés"
         android:textSize="25sp"
@@ -70,7 +70,7 @@
         android:layout_alignParentBottom= "true"
         android:id="@+id/forgott"
 
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:textColor="#00008B"
         android:textStyle="bold"
 

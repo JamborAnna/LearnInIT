@@ -20,7 +20,7 @@
         android:visibility="visible"
         android:id="@+id/BejelentkezesBut"
         android:background="@drawable/button_shape"
-        android:layout_margin="5dp">
+        android:layout_margin="5sp">
 
     </Button>
 
@@ -33,7 +33,7 @@
         android:textSize="25sp"
         android:visibility="visible"
         android:background="@drawable/button_shape"
-        android:layout_margin="5dp">
+        android:layout_margin="5sp">
 
     </Button>
     <ProgressBar

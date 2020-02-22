@@ -30,6 +30,7 @@ private EditText bekertszoedit;
 private  Button tanulas1Ellenorzesbut;
 private DatabaseReference databaseReference;
 private Random randomom = new Random();
+private szotar Szotar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +38,10 @@ private Random randomom = new Random();
         setContentView(R.layout.activity_tanulas1);
         init();
 
-/*
-        databaseReference= FirebaseDatabase.getInstance().getReference();
+
+
+
+
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -54,8 +57,8 @@ private Random randomom = new Random();
 
                         s=item.getValue(szotar.class);
                         if (s.szo_id.equals(String.valueOf(randomSzam))){
-                            bekerendoSzoview.setText(s.angol);
-                            bekertszoedit.setText(s.magyar);
+                            bekerendoSzoview.setText(s.magyar);
+                            bekertszoedit.setText(s.angol);
                             Toast.makeText(Tanulas1Activity.this, "ize", Toast.LENGTH_SHORT).show();
 
                         }
@@ -71,7 +74,7 @@ private Random randomom = new Random();
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });*/
+        });
         tanulas1vissza.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -83,7 +86,7 @@ private Random randomom = new Random();
 
             }
         });
-        bekertszoedit.addTextChangedListener(new TextWatcher() {
+      /*  bekertszoedit.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -102,7 +105,7 @@ private Random randomom = new Random();
 
                 }
             }
-        });
+        });*/
 
         tanulas1Ellenorzesbut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -178,7 +181,8 @@ private Random randomom = new Random();
         bekerendoSzoview=findViewById(R.id.bekerendoSzoview);
         bekertszoedit=findViewById(R.id.bekertszoedit);
         tanulas1Ellenorzesbut=findViewById(R.id.tanulas1Ellenorzesbut);
-
+        databaseReference= FirebaseDatabase.getInstance().getReference();
+        Szotar=new szotar();
 
     }
     private void sharedPreference(int szamlalo) {

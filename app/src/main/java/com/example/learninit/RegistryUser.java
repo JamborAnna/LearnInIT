@@ -4,12 +4,23 @@ import com.google.firebase.database.Exclude;
 
 public class RegistryUser {
     @Exclude
-    public String  user_id;
-    public String felhasznaloNev;
-    public String email;
+    private String  user_id;
+    private String felhasznaloNev;
+    private String email;
 
+    public RegistryUser() {
+    }
 
+    public RegistryUser(String user_id, String felhasznaloNev, String email) {
+        this.user_id = user_id;
+        this.felhasznaloNev = felhasznaloNev;
+        this.email = email;
+    }
 
+    public RegistryUser(String felhasznaloNev, String email) {
+        this.felhasznaloNev = felhasznaloNev;
+        this.email = email;
+    }
 
     public String getUser_id() {
         return user_id;

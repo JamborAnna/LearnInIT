@@ -84,14 +84,15 @@ public class TanulasmenuActivity extends AppCompatActivity {
                 int oraido=getora.getInt("ora",0);
 
 
-               jelenlegiDatum.get(Calendar.DAY_OF_YEAR);
+               jelenlegiDatum.get(Calendar.DAY_OF_YEAR+1);
 
 
                 //if (oraSharedPreference()
-                if (tanulasDatuma.get(Calendar.DAY_OF_YEAR)<tanulasDatuma.get(Calendar.DAY_OF_YEAR+1)){
+                if (tanulasDatuma.get(Calendar.DAY_OF_YEAR)<=jelenlegiDatum.get(Calendar.DAY_OF_YEAR)){
 
                     tanulhat=true;
                     Toast.makeText(TanulasmenuActivity.this, "beleptem a truba", Toast.LENGTH_LONG).show();
+                    tanulasDatuma.get(Calendar.DAY_OF_YEAR+1);
 
                 }
                 else {

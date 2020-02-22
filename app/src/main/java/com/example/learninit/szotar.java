@@ -7,6 +7,17 @@ public class szotar {
     public String kep_id;
     public boolean tanult;
 
+    public szotar() {
+    }
+
+    public szotar(String szo_id, String magyar, String angol, String kep_id, boolean tanult) {
+        this.szo_id = szo_id;
+        this.magyar = magyar;
+        this.angol = angol;
+        this.kep_id = kep_id;
+        this.tanult = tanult;
+    }
+
     public String getSzo_id() {
         return szo_id;
     }

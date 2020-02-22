@@ -33,17 +33,19 @@ public class Regisztracio extends AppCompatActivity {
     private Button RegKuldBut;
     private FirebaseAuth mAuth;
     private ProgressBar progressRegistry;
-    private DatabaseReference databaseReference;
+    private Task<Void> databaseReference;
     private RegistryUser registryUser;
-
-
+    private long id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_regisztracio);
         init();
-        mAuth = FirebaseAuth.getInstance();
+            mAuth=FirebaseAuth.getInstance();
+
+
+
         visszaregisztracios.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -54,26 +56,34 @@ public class Regisztracio extends AppCompatActivity {
             }
         });
 
-
         RegKuldBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String felhasznaloNev=FelhasznalonevText.getText().toString();
-                String email=EmailText.getText().toString();
+                /*FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
+                if (FelhasznalonevText.getText().toString().isEmpty() ||  JelszoText.getText().toString().isEmpty() || EmailText.getText().toString().isEmpty()|| JelszoIsmText.getText().toString().isEmpty()){
+                    Toast.makeText(Regisztracio.this,"Minden mezőt ki kell tölteni",Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                   /* databaseReference.setValue(FelhasznalonevText);
+                    databaseReference.setValue(EmailText);
+                    databaseReference.setValue(mAuth.getUid());
+                   registryUser.setFelhasznaloNev(FelhasznalonevText.getText().toString());
+                   registryUser.setEmail(EmailText.getText().toString());
+
+                    //felküldi az értékeket
+                    databaseReference.child(user.getUid()).setValue(registryUser);
+
+                }*/
+                final String felhasznaloNev=FelhasznalonevText.getText().toString();
+                final String email=EmailText.getText().toString();
                 String jelszo=JelszoText.getText().toString();
                 String jelszoism=JelszoIsmText.getText().toString();
                 //mit fogok felküldeni
-                registryUser.setFelhasznaloNev(FelhasznalonevText.getText().toString());
-                registryUser.setEmail(EmailText.getText().toString());
-                FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
-
-                //felküldi az értékeket
-                databaseReference.child(user.getUid()).setValue(registryUser);
 
 
 
-
-                if (TextUtils.isEmpty(jelszo) ){
+               /* if (TextUtils.isEmpty(jelszo) ){
                     Toast.makeText(Regisztracio.this,"A két jelszó nem egyezik meg!",Toast.LENGTH_LONG).show();
 
                 }
@@ -84,7 +94,7 @@ public class Regisztracio extends AppCompatActivity {
                 if (TextUtils.isEmpty(email)  ){
                     Toast.makeText(Regisztracio.this,"Az email üres!",Toast.LENGTH_LONG).show();
 
-                }
+                }*/
 
 
                 progressRegistry.setVisibility(View.VISIBLE);
@@ -94,14 +104,22 @@ public class Regisztracio extends AppCompatActivity {
                             @Override
                             public void onComplete(Task<AuthResult> task) {
                                 progressRegistry.setVisibility(View.GONE);
-                                if (task.isSuccessful() ) {
-                                    Toast.makeText(Regisztracio.this, "Sikeres Regisztráció!",
-                                            Toast.LENGTH_SHORT).show();
-                                }
-                                else {
-                                    Toast.makeText(Regisztracio.this, "Sikertelen Regisztráció!",
-                                            Toast.LENGTH_SHORT).show();
-                                }
+
+                                    RegistryUser registryUser=new RegistryUser(felhasznaloNev,email);
+                                    databaseReference=FirebaseDatabase.getInstance().getReference("Felhasznalo").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(registryUser).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful() ) {
+                                                Toast.makeText(Regisztracio.this, "Sikeres Regisztráció!",
+                                                        Toast.LENGTH_SHORT).show();
+                                            } else {
+                                                Toast.makeText(Regisztracio.this, "Sikertelen Regisztráció!",
+                                                        Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    });
+
+
 
                             }
                         });
@@ -118,10 +136,22 @@ public class Regisztracio extends AppCompatActivity {
         JelszoText = findViewById(R.id.JelszoText);
         JelszoIsmText = findViewById(R.id.JelszoIsmText);
         RegKuldBut = findViewById(R.id.RegKuldBut);
-        databaseReference=FirebaseDatabase.getInstance().getReference("Felhasznalo");
-        mAuth=FirebaseAuth.getInstance();
-        registryUser=new RegistryUser();
 
+
+        mAuth=FirebaseAuth.getInstance();
+
+       /* databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists())
+                    id= dataSnapshot.getChildrenCount();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });*/
 
     }
 }

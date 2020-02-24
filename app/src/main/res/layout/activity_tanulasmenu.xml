@@ -44,4 +44,22 @@
         android:layout_margin="5sp">
     </Button>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/jelenlegiDatumWIEV"
+        android:layout_below="@+id/tanultBut"
+
+        >
+
+    </TextView>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/tanulaDatumaWiev"
+        android:layout_below="@+id/jelenlegiDatumWIEV"
+
+        >
+
+    </TextView>
 </RelativeLayout>

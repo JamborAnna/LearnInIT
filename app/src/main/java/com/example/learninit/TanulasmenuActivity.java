@@ -11,6 +11,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
@@ -27,6 +28,7 @@ public class TanulasmenuActivity extends AppCompatActivity {
     private  AlertDialog alertDialog;
     private String jelenlegiDatum="";
     private  Calendar tanulasDatuma;
+    private TextView jelenlegiDatumWIEV,tanulaDatumaWiev;
     public static int szamlalo=0;
    private Boolean tanulhat=true;
 
@@ -84,11 +86,13 @@ public class TanulasmenuActivity extends AppCompatActivity {
                 int oraido=getora.getInt("ora",0);
 
 
-               jelenlegiDatum.get(Calendar.DAY_OF_YEAR+1);
+               //jelenlegiDatum.get(Calendar.DAY_OF_YEAR+1);
 
 
                 //if (oraSharedPreference()
-                if (tanulasDatuma.get(Calendar.DAY_OF_YEAR)<=jelenlegiDatum.get(Calendar.DAY_OF_YEAR)){
+                System.err.println(tanulasDatuma.get(Calendar.DAY_OF_YEAR));
+                System.err.println(jelenlegiDatum.get(Calendar.DAY_OF_YEAR));
+                if (tanulasDatuma.get(Calendar.DATE)<=jelenlegiDatum.get(Calendar.DAY_OF_YEAR)){
 
                     tanulhat=true;
                     Toast.makeText(TanulasmenuActivity.this, "beleptem a truba", Toast.LENGTH_LONG).show();
@@ -183,7 +187,8 @@ public class TanulasmenuActivity extends AppCompatActivity {
         visszatanulas=findViewById(R.id.visszatanulas);
         napibut=findViewById(R.id.napibut);
         tanultBut=findViewById(R.id.tanultBut);
-
+        tanulaDatumaWiev=findViewById(R.id.tanulaDatumaWiev);
+        jelenlegiDatumWIEV=findViewById(R.id.jelenlegiDatumWIEV);
 
 
 

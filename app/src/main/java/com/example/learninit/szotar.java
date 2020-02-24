@@ -10,6 +10,8 @@ public class szotar {
     public szotar() {
     }
 
+
+
     public szotar(String szo_id, String magyar, String angol, String kep_id, boolean tanult) {
         this.szo_id = szo_id;
         this.magyar = magyar;

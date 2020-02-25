@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -31,6 +32,7 @@ public class TanulasmenuActivity extends AppCompatActivity {
     private TextView jelenlegiDatumWIEV,tanulaDatumaWiev;
     public static int szamlalo=0;
    private Boolean tanulhat=true;
+
 
 
 
@@ -183,7 +185,6 @@ public class TanulasmenuActivity extends AppCompatActivity {
         tanultBut=findViewById(R.id.tanultBut);
         tanulaDatumaWiev=findViewById(R.id.tanulaDatumaWiev);
         jelenlegiDatumWIEV=findViewById(R.id.jelenlegiDatumWIEV);
-
 
 
     }

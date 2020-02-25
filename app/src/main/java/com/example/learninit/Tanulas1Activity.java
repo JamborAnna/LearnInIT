@@ -6,9 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,9 +29,9 @@ private TextView bekerendoSzoview;
 private EditText bekertszoedit;
 private  Button tanulas1Ellenorzesbut;
 private DatabaseReference databaseReference;
-private String angolSzo;
 private Random randomom = new Random();
 private szotar Szotar;
+private MediaPlayer helyesMP3, helytelenMP3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,10 +50,16 @@ private szotar Szotar;
                // bekerendoSzoview.setText(data);
                 if (dataSnapshot.exists()){
                     szotar s;
+                    //int szoid= (int) dataSnapshot.getChildrenCount();
+                    //int rand = new Random().nextInt(szoid);
+
+
+                   // String szo_id= dataSnapshot.child("szo_id").getValue().toString();
+
+
                     String magyar= dataSnapshot.child("magyar").getValue().toString();
                     final String angol= dataSnapshot.child("angol").getValue().toString();
                     bekerendoSzoview.setText(magyar);
-                   // angolSzo=angol;
 
 
                     tanulas1Ellenorzesbut.setOnClickListener(new View.OnClickListener() {
@@ -72,8 +78,11 @@ private szotar Szotar;
                                 finish();
 
                             }else {
-                                if (bekerendoSzoview.equals(angol)&& szamlalo<15) {
+                                //Log.w("",bekerendoSzoview.getText().toString());
+                                if (bekertszoedit.getText().toString().equals(angol) ) {
+                                    //&& szamlalo<15
                                     Toast.makeText(Tanulas1Activity.this, "Helyes válasz!", Toast.LENGTH_SHORT).show();
+                                    helyesMP3.start();
                                     if (number == 1) {
 
                                         Intent intent = new Intent(Tanulas1Activity.this, Tanulas1Activity.class);
@@ -99,6 +108,7 @@ private szotar Szotar;
 
                                 } else {
                                     Toast.makeText(Tanulas1Activity.this, "Rossz válasz!", Toast.LENGTH_SHORT).show();
+                                    helytelenMP3.start();
                                     if (number == 1) {
                                         Intent intent = new Intent(Tanulas1Activity.this, Tanulas1Activity.class);
                                         startActivity(intent);
@@ -123,9 +133,6 @@ private szotar Szotar;
                         }
                     });
 
-
-
-                   // bekertszoedit.setText(angol);
 
                   /*  int randomSzam= randomom.nextInt((int) dataSnapshot.getChildrenCount());
 
@@ -196,7 +203,8 @@ private szotar Szotar;
         tanulas1Ellenorzesbut=findViewById(R.id.tanulas1Ellenorzesbut);
         databaseReference= FirebaseDatabase.getInstance().getReference();
         Szotar=new szotar();
-
+        helyesMP3=MediaPlayer.create(this,R.raw.dicseret);
+        helytelenMP3=MediaPlayer.create(this,R.raw.helytelen);
     }
     private void sharedPreference(int szamlalo) {
         SharedPreferences s = getSharedPreferences("szam", Context.MODE_PRIVATE);

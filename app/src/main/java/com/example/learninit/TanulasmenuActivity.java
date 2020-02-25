@@ -64,19 +64,13 @@ public class TanulasmenuActivity extends AppCompatActivity {
                 sharedPreference( 0);
                 sharedPreference(szamlalo+1);
 
-
-
-                //szamlalo++;
                 // a napi egyszeri tanulás megengedésére szolgál
                 Calendar jelenlegiDatum = Calendar.getInstance();
                 Calendar tanulasDatuma=Calendar.getInstance();
-              // tanulasDatuma.set(Calendar.HOUR,Calendar.MINUTE); //nem szabad oldani
 
                 if (tanulasDatuma.get(Calendar.DAY_OF_YEAR)>365){
                     oraSharedPreference(0);
                 }
-
-
 
                SharedPreferences setora =getSharedPreferences("ora", Context.MODE_PRIVATE);
                 oraSharedPreference(tanulasDatuma.get(Calendar.DAY_OF_YEAR));

@@ -29,6 +29,7 @@ private TextView bekerendoSzoview;
 private EditText bekertszoedit;
 private  Button tanulas1Ellenorzesbut;
 private DatabaseReference databaseReference;
+private String angolSzo;
 private Random randomom = new Random();
 private szotar Szotar;
 
@@ -40,31 +41,106 @@ private szotar Szotar;
 
 
 
-
+        databaseReference=FirebaseDatabase.getInstance().getReference().child("szotar").child("1");
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String data= dataSnapshot.child("szotar").getValue(String.class);
-                bekerendoSzoview.setText(data);
+               // String data= dataSnapshot.child("szotar").getValue().toString();
+               // bekerendoSzoview.setText(data);
                 if (dataSnapshot.exists()){
                     szotar s;
+                    String magyar= dataSnapshot.child("magyar").getValue().toString();
+                    final String angol= dataSnapshot.child("angol").getValue().toString();
+                    bekerendoSzoview.setText(magyar);
+                   // angolSzo=angol;
 
 
-                    int randomSzam= randomom.nextInt((int) dataSnapshot.getChildrenCount());
+                    tanulas1Ellenorzesbut.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Random randomom = new Random();
+                            int number= randomom.nextInt(3)+1;
+
+                            int szamlalo = Integer.parseInt(getSharedPreferences("szam", Context.MODE_PRIVATE).getString("szamlalo", ""));
+                            sharedPreference(szamlalo);
+                            szamlalo++;
+
+                            if (szamlalo>15){
+                                Intent intent = new Intent(Tanulas1Activity.this, TanulasmenuActivity.class);
+                                startActivity(intent);
+                                finish();
+
+                            }else {
+                                if (bekerendoSzoview.equals(angol)&& szamlalo<15) {
+                                    Toast.makeText(Tanulas1Activity.this, "Helyes válasz!", Toast.LENGTH_SHORT).show();
+                                    if (number == 1) {
+
+                                        Intent intent = new Intent(Tanulas1Activity.this, Tanulas1Activity.class);
+                                        startActivity(intent);
+                                        finish();
+
+
+
+                                    } else if (number == 2) {
+
+                                        Intent intent = new Intent(Tanulas1Activity.this, Tanulas2Activity.class);
+                                        startActivity(intent);
+                                        finish();
+
+
+                                    } else if (number == 3) {
+
+                                        Intent intent = new Intent(Tanulas1Activity.this, Tanulas3Activity.class);
+                                        startActivity(intent);
+                                        finish();
+
+                                    }
+
+                                } else {
+                                    Toast.makeText(Tanulas1Activity.this, "Rossz válasz!", Toast.LENGTH_SHORT).show();
+                                    if (number == 1) {
+                                        Intent intent = new Intent(Tanulas1Activity.this, Tanulas1Activity.class);
+                                        startActivity(intent);
+                                        finish();
+
+                                    } else if (number == 2) {
+                                        Intent intent = new Intent(Tanulas1Activity.this, Tanulas2Activity.class);
+                                        startActivity(intent);
+                                        finish();
+
+                                    } else if (number == 3) {
+                                        Intent intent = new Intent(Tanulas1Activity.this, Tanulas3Activity.class);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+
+
+                                }
+
+
+                            }
+                        }
+                    });
+
+
+
+                   // bekertszoedit.setText(angol);
+
+                  /*  int randomSzam= randomom.nextInt((int) dataSnapshot.getChildrenCount());
 
                     for (DataSnapshot item :dataSnapshot.getChildren()) {
 
                         s=item.getValue(szotar.class);
                         if (s.szo_id.equals(String.valueOf(randomSzam))){
-                            bekerendoSzoview.setText(s.magyar);
-                            bekertszoedit.setText(s.angol);
+
                             Toast.makeText(Tanulas1Activity.this, "ize", Toast.LENGTH_SHORT).show();
 
                         }
 
 
-                    }
+                    }*/
+
 
                 }
 
@@ -75,6 +151,7 @@ private szotar Szotar;
 
             }
         });
+
         tanulas1vissza.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -107,71 +184,7 @@ private szotar Szotar;
             }
         });*/
 
-        tanulas1Ellenorzesbut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Random randomom = new Random();
-                int number= randomom.nextInt(3)+1;
 
-                int szamlalo = Integer.parseInt(getSharedPreferences("szam", Context.MODE_PRIVATE).getString("szamlalo", ""));
-                    sharedPreference(szamlalo);
-                    szamlalo++;
-
-                if (szamlalo>15){
-                    Intent intent = new Intent(Tanulas1Activity.this, TanulasmenuActivity.class);
-                    startActivity(intent);
-                    finish();
-
-                }else {
-                    if (bekerendoSzoview == bekertszoedit&& szamlalo<15) {
-                        if (number == 1) {
-
-                            Intent intent = new Intent(Tanulas1Activity.this, Tanulas1Activity.class);
-                            startActivity(intent);
-                            finish();
-
-
-
-                        } else if (number == 2) {
-
-                            Intent intent = new Intent(Tanulas1Activity.this, Tanulas2Activity.class);
-                            startActivity(intent);
-                            finish();
-
-
-                        } else if (number == 3) {
-
-                            Intent intent = new Intent(Tanulas1Activity.this, Tanulas3Activity.class);
-                            startActivity(intent);
-                            finish();
-
-                        }
-
-                    } else {
-                        Toast.makeText(Tanulas1Activity.this, "Rossz válasz!", Toast.LENGTH_SHORT).show();
-                        if (number == 1) {
-                            Intent intent = new Intent(Tanulas1Activity.this, Tanulas1Activity.class);
-                            startActivity(intent);
-                            finish();
-
-                        } else if (number == 2) {
-                            Intent intent = new Intent(Tanulas1Activity.this, Tanulas2Activity.class);
-                            startActivity(intent);
-                            finish();
-
-                        } else if (number == 3) {
-                            Intent intent = new Intent(Tanulas1Activity.this, Tanulas3Activity.class);
-                            startActivity(intent);
-                            finish();
-                        }
-
-
-                    }
-
-
-                }
-            }
-        });
     }
 
 

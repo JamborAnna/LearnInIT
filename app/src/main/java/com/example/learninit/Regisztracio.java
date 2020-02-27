@@ -89,19 +89,23 @@ public class Regisztracio extends AppCompatActivity {
                 if (TextUtils.isEmpty(jelszo)) {
                     Toast.makeText(Regisztracio.this, "A két jelszó nem egyezik meg!", Toast.LENGTH_LONG).show();
                     JelszoText.setBackground(getResources().getDrawable(R.drawable.button_color_red));
+                    progressRegistry.setVisibility(View.GONE);
 
                 }
-                if (TextUtils.isEmpty(felhasznaloNev)) {
+                else if (TextUtils.isEmpty(felhasznaloNev)) {
                     Toast.makeText(Regisztracio.this, "A felhasználó név üres!", Toast.LENGTH_LONG).show();
                     FelhasznalonevText.setBackground(getResources().getDrawable(R.drawable.button_color_red));
+                    progressRegistry.setVisibility(View.GONE);
                 }
-                if (TextUtils.isEmpty(email)) {
+                else if (TextUtils.isEmpty(email)) {
                     Toast.makeText(Regisztracio.this, "Az email üres!", Toast.LENGTH_LONG).show();
                     EmailText.setBackground(getResources().getDrawable(R.drawable.button_color_red));
+                    progressRegistry.setVisibility(View.GONE);
                 }
-                if (TextUtils.isEmpty(jelszoism) && (jelszo == jelszoism)) {
+                else if (TextUtils.isEmpty(jelszoism) || (jelszo == jelszoism)) {
                     Toast.makeText(Regisztracio.this, "A két jelszó nem egyezik meg!", Toast.LENGTH_LONG).show();
                     JelszoIsmText.setBackground(getResources().getDrawable(R.drawable.button_color_red));
+                    progressRegistry.setVisibility(View.GONE);
                 } else
 
                     mAuth.createUserWithEmailAndPassword(EmailText.getText().toString(),

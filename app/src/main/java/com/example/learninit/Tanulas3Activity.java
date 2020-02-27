@@ -41,7 +41,7 @@ public class Tanulas3Activity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tanulas3);
         init();
-        databaseReference= FirebaseDatabase.getInstance().getReference().child("szotar").child("2");
+        databaseReference= FirebaseDatabase.getInstance().getReference().child("szotar").child("0");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @RequiresApi(api = Build.VERSION_CODES.Q)
             @Override
@@ -55,7 +55,7 @@ public class Tanulas3Activity extends AppCompatActivity  {
                     // String szo_id= dataSnapshot.child("szo_id").getValue().toString();
 
 
-                    String magyar = dataSnapshot.child("magyar").getValue().toString();
+                     final String magyar = dataSnapshot.child("magyar").getValue().toString();
                      String kep_id = dataSnapshot.child("kep_id").getValue().toString();
                     if (kep_id!=null){
 
@@ -63,6 +63,66 @@ public class Tanulas3Activity extends AppCompatActivity  {
                        Random random= new Random();
                        int rndomN=random.nextInt(kepnev.length());
                        imageBut2.setBackgroundResource(kepnev.getSourceResourceId(rndomN,0));
+
+
+                        imageBut2.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Random randomom = new Random();
+                                int number= randomom.nextInt(3)+1;
+
+                                int szamlalo = Integer.parseInt(getSharedPreferences("szam", Context.MODE_PRIVATE).getString("szamlalo", ""));
+                                szamlalo++;
+                                sharedPreference(szamlalo);
+
+                                sharedPreference(szamlalo);
+                                if (szamlalo>15){
+                                    Intent intent = new Intent(Tanulas3Activity.this,TanulasmenuActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                }else {
+                                    if (magyar.equals(imageBut2)){
+                                        Toast.makeText(Tanulas3Activity.this, "Helyes válasz!", Toast.LENGTH_SHORT).show();
+                                        helyesMP3.start();
+                                        if (number == 1) {
+                                            Intent intent = new Intent(Tanulas3Activity.this, Tanulas1Activity.class);
+                                            startActivity(intent);
+                                            finish();
+
+                                        } else if (number == 2) {
+                                            Intent intent = new Intent(Tanulas3Activity.this, Tanulas2Activity.class);
+                                            startActivity(intent);
+                                            finish();
+
+                                        } else if (number == 3) {
+                                            Intent intent = new Intent(Tanulas3Activity.this, Tanulas3Activity.class);
+                                            startActivity(intent);
+                                            finish();
+                                        }
+                                    }else {
+                                        helytelenMP3.start();
+                                        Toast.makeText(Tanulas3Activity.this, "Rossz válasz!", Toast.LENGTH_SHORT).show();
+                                        if (number == 1) {
+                                            Intent intent = new Intent(Tanulas3Activity.this, Tanulas1Activity.class);
+                                            startActivity(intent);
+                                            finish();
+
+                                        } else if (number == 2) {
+                                            Intent intent = new Intent(Tanulas3Activity.this, Tanulas2Activity.class);
+                                            startActivity(intent);
+                                            finish();
+
+                                        } else if (number == 3) {
+                                            Intent intent = new Intent(Tanulas3Activity.this, Tanulas3Activity.class);
+                                            startActivity(intent);
+                                            finish();
+                                        }
+                                    }
+
+                                }
+
+                            }
+                        });
                     }
                 }
                    /* szo1.setText(angol);
@@ -125,44 +185,7 @@ public class Tanulas3Activity extends AppCompatActivity  {
 
             }
         });
-        imageBut2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Random randomom = new Random();
-                int number= randomom.nextInt(3)+1;
 
-                int szamlalo = Integer.parseInt(getSharedPreferences("szam", Context.MODE_PRIVATE).getString("szamlalo", ""));
-                szamlalo++;
-                sharedPreference(szamlalo);
-
-                sharedPreference(szamlalo);
-                if (szamlalo>15){
-                    Intent intent = new Intent(Tanulas3Activity.this,TanulasmenuActivity.class);
-                    startActivity(intent);
-                    finish();
-                }else {
-                    helytelenMP3.start();
-                    Toast.makeText(Tanulas3Activity.this, "Rossz válasz!", Toast.LENGTH_SHORT).show();
-                    if (number == 1) {
-                        Intent intent = new Intent(Tanulas3Activity.this, Tanulas1Activity.class);
-                        startActivity(intent);
-                        finish();
-
-                    } else if (number == 2) {
-                        Intent intent = new Intent(Tanulas3Activity.this, Tanulas2Activity.class);
-                        startActivity(intent);
-                        finish();
-
-                    } else if (number == 3) {
-                        Intent intent = new Intent(Tanulas3Activity.this, Tanulas3Activity.class);
-                        startActivity(intent);
-                        finish();
-                    }
-
-                }
-
-            }
-        });
     }
     private  void changeImage(){
 

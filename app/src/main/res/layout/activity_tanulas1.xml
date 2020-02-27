@@ -52,5 +52,22 @@
         android:background="@drawable/button_shape"
         android:layout_margin="5sp">
     </Button>
-
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/pipa"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="pipa.json"
+        app:lottie_loop="true"
+        android:visibility="gone"
+        />
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/cross"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="cross.json"
+        app:lottie_loop="true"
+        android:visibility="gone"
+        />
 </RelativeLayout>

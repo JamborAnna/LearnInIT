@@ -3,19 +3,15 @@ package com.example.learninit;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.ContentProvider;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.airbnb.lottie.LottieAnimationView;
 
 import java.util.Calendar;
 import java.util.Random;
@@ -47,7 +43,7 @@ public class TanulasmenuActivity extends AppCompatActivity {
         visszatanulas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(TanulasmenuActivity.this,fomenu.class);
+                Intent intent = new Intent(TanulasmenuActivity.this, Fomenu.class);
                 startActivity(intent);
                 finish();
             }
@@ -80,6 +76,8 @@ public class TanulasmenuActivity extends AppCompatActivity {
                 //kiolvasas
                 SharedPreferences getora =getSharedPreferences("szam", Context.MODE_PRIVATE);
                 int oraido=getora.getInt("ora",0);
+
+
 
 
                //jelenlegiDatum.get(Calendar.DAY_OF_YEAR+1);
@@ -155,7 +153,7 @@ public class TanulasmenuActivity extends AppCompatActivity {
 
                                 } else {
 
-                                        Intent intent = new Intent(TanulasmenuActivity.this, fomenu.class);
+                                        Intent intent = new Intent(TanulasmenuActivity.this, Fomenu.class);
                                         startActivity(intent);
                                         finish();
 
@@ -198,4 +196,5 @@ public class TanulasmenuActivity extends AppCompatActivity {
         s.edit().putInt("ora", ora).apply();
 
     }
+
 }

@@ -47,7 +47,8 @@
         android:text="Éves jó:"
         android:textSize="30sp"
         android:background="@drawable/button_shape"
-        android:layout_margin="5sp">
+        android:layout_margin="5sp"
+        android:id="@+id/evStatisztikaView">
     </TextView>
 
 </RelativeLayout>

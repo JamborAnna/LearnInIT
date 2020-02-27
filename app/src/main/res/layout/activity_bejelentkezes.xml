@@ -23,6 +23,27 @@
             >
 
         </Button>
+
+        <TextView
+            android:layout_width="200sp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10sp"
+            android:text="Felhasználónév megjegyzése:"
+            android:textAlignment="center"
+
+            android:textColorLink="@color/colorPrimary"
+            android:textSize="20sp"
+            >
+
+        </TextView>
+
+        <Switch
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/switchFelh"
+            >
+
+        </Switch>
     </LinearLayout>
     <EditText
         android:layout_width="match_parent"

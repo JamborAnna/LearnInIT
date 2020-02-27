@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class fomenu extends AppCompatActivity {
+public class Fomenu extends AppCompatActivity {
     private TextView FelhasznaloNeveView;
     private Button kijelentkezesBut;
     private  Button statisztika;
@@ -29,7 +29,7 @@ public class fomenu extends AppCompatActivity {
         kijelentkezesBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(fomenu.this,KijelentkezesActivity.class);
+                Intent intent = new Intent(Fomenu.this,KijelentkezesActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -37,7 +37,7 @@ public class fomenu extends AppCompatActivity {
         statisztika.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(fomenu.this,StatisztikaActivity.class);
+                Intent intent = new Intent(Fomenu.this,StatisztikaActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -46,7 +46,7 @@ public class fomenu extends AppCompatActivity {
         tanulni.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(fomenu.this,TanulasmenuActivity.class);
+                Intent intent = new Intent(Fomenu.this,TanulasmenuActivity.class);
                 startActivity(intent);
                 finish();
             }

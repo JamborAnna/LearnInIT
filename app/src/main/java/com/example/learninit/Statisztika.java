@@ -1,6 +1,6 @@
 package com.example.learninit;
 
-public class statisztika {
+public class Statisztika {
     public String user_id;
     public String helyes;
     public String tanultakSzama;

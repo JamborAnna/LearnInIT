@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,7 +29,7 @@ private EditText bekertszoedit;
 private  Button tanulas1Ellenorzesbut;
 private DatabaseReference databaseReference;
 private Random randomom = new Random();
-private szotar Szotar;
+private Szotar szotar;
 private MediaPlayer helyesMP3, helytelenMP3;
 
     @Override
@@ -38,8 +37,9 @@ private MediaPlayer helyesMP3, helytelenMP3;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tanulas1);
         init();
-
-
+        int osszes = Integer.parseInt(getSharedPreferences("szam", Context.MODE_PRIVATE).getString("osszes", "0"));
+        osszes++;
+        osszesSharedPreference(osszes);
 
         databaseReference=FirebaseDatabase.getInstance().getReference().child("szotar").child("1");
 
@@ -49,7 +49,7 @@ private MediaPlayer helyesMP3, helytelenMP3;
                // String data= dataSnapshot.child("szotar").getValue().toString();
                // bekerendoSzoview.setText(data);
                 if (dataSnapshot.exists()){
-                    szotar s;
+                    com.example.learninit.Szotar s;
                     //int szoid= (int) dataSnapshot.getChildrenCount();
                     //int rand = new Random().nextInt(szoid);
 
@@ -83,6 +83,16 @@ private MediaPlayer helyesMP3, helytelenMP3;
                                     //&& szamlalo<15
                                     Toast.makeText(Tanulas1Activity.this, "Helyes válasz!", Toast.LENGTH_SHORT).show();
                                     helyesMP3.start();
+                                    int het = Integer.parseInt(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getInt("het", 0)));
+                                    het++;
+                                    hetSharedPreference(het);
+                                    int honap = Integer.parseInt(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getInt("honap", 0)));
+                                    honap++;
+                                    haviSharedPreference(honap);
+                                    int ev = Integer.parseInt(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getInt("ev", 0)));
+                                    ev++;
+                                    evSharedPreference(ev);
+
                                     if (number == 1) {
 
                                         Intent intent = new Intent(Tanulas1Activity.this, Tanulas1Activity.class);
@@ -138,7 +148,7 @@ private MediaPlayer helyesMP3, helytelenMP3;
 
                     for (DataSnapshot item :dataSnapshot.getChildren()) {
 
-                        s=item.getValue(szotar.class);
+                        s=item.getValue(Szotar.class);
                         if (s.szo_id.equals(String.valueOf(randomSzam))){
 
                             Toast.makeText(Tanulas1Activity.this, "ize", Toast.LENGTH_SHORT).show();
@@ -202,7 +212,7 @@ private MediaPlayer helyesMP3, helytelenMP3;
         bekertszoedit=findViewById(R.id.bekertszoedit);
         tanulas1Ellenorzesbut=findViewById(R.id.tanulas1Ellenorzesbut);
         databaseReference= FirebaseDatabase.getInstance().getReference();
-        Szotar=new szotar();
+        szotar=new Szotar();
         helyesMP3=MediaPlayer.create(this,R.raw.dicseret);
         helytelenMP3=MediaPlayer.create(this,R.raw.helytelen);
     }
@@ -210,5 +220,26 @@ private MediaPlayer helyesMP3, helytelenMP3;
         SharedPreferences s = getSharedPreferences("szam", Context.MODE_PRIVATE);
         s.edit().putString("szamlalo", String.valueOf(szamlalo)).apply();
     }
+    private void hetSharedPreference(int het) {
+        SharedPreferences s = getSharedPreferences("szam", Context.MODE_PRIVATE);
+        s.edit().putInt("het", het).apply();
 
+    }
+    private void haviSharedPreference(int honap) {
+        SharedPreferences s = getSharedPreferences("szam", Context.MODE_PRIVATE);
+        s.edit().putInt("honap", honap).apply();
+
+    }
+    private void evSharedPreference(int ev) {
+        SharedPreferences s = getSharedPreferences("szam", Context.MODE_PRIVATE);
+        s.edit().putInt("ev", ev).apply();
+
+    }
+    private void osszesSharedPreference(int osszes) {
+        SharedPreferences s = getSharedPreferences("szam", Context.MODE_PRIVATE);
+        s.edit().putInt("osszes", osszes).apply();
+
+    }
 }
+
+

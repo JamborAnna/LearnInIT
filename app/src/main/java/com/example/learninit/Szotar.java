@@ -1,18 +1,18 @@
 package com.example.learninit;
 
-public class szotar {
+public class Szotar {
     public String szo_id;
     public String magyar;
     public String angol;
     public String kep_id;
     public boolean tanult;
 
-    public szotar() {
+    public Szotar() {
     }
 
 
 
-    public szotar(String szo_id, String magyar, String angol, String kep_id, boolean tanult) {
+    public Szotar(String szo_id, String magyar, String angol, String kep_id, boolean tanult) {
         this.szo_id = szo_id;
         this.magyar = magyar;
         this.angol = angol;

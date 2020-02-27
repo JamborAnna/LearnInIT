@@ -37,12 +37,19 @@ public class Tanulas2Activity extends AppCompatActivity {
         setContentView(R.layout.activity_tanulas2);
         init();
 
+       int osszes = Integer.parseInt(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getInt("osszes", 0)));
+        osszes++;
+        osszesSharedPreference(osszes);
+
+
+
+
         databaseReference= FirebaseDatabase.getInstance().getReference().child("szotar").child("0");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
-                    szotar s;
+                    Szotar s;
                     //int szoid= (int) dataSnapshot.getChildrenCount();
                     //int rand = new Random().nextInt(szoid);
 
@@ -84,6 +91,16 @@ public class Tanulas2Activity extends AppCompatActivity {
                                 if (bekertszoedit2.getText().toString().equals(angol) ) {
                                     helyesMP3.start();
                                     Toast.makeText(Tanulas2Activity.this, "Helyes válasz!", Toast.LENGTH_SHORT).show();
+                                    int het = Integer.parseInt(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getInt("het", 0)));
+                                    het++;
+                                    hetSharedPreference(het);
+                                    int honap = Integer.parseInt(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getInt("honap", 0)));
+                                    honap++;
+                                    haviSharedPreference(honap);
+                                    int ev = Integer.parseInt(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getInt("ev", 0)));
+                                    ev++;
+                                    evSharedPreference(ev);
+
                                     if (number == 1) {
                                         Intent intent = new Intent(Tanulas2Activity.this, Tanulas1Activity.class);
                                         startActivity(intent);
@@ -166,4 +183,25 @@ public class Tanulas2Activity extends AppCompatActivity {
         SharedPreferences s = getSharedPreferences("szam", Context.MODE_PRIVATE);
         s.edit().putString("szamlalo", String.valueOf(szamlalo)).apply();
     }
+    private void hetSharedPreference(int het) {
+        SharedPreferences s = getSharedPreferences("szam", Context.MODE_PRIVATE);
+        s.edit().putInt("het", het).apply();
+
+    }
+    private void haviSharedPreference(int honap) {
+        SharedPreferences s = getSharedPreferences("szam", Context.MODE_PRIVATE);
+        s.edit().putInt("honap", honap).apply();
+
+    }
+    private void evSharedPreference(int ev) {
+        SharedPreferences s = getSharedPreferences("szam", Context.MODE_PRIVATE);
+        s.edit().putInt("ev", ev).apply();
+
+    }
+    private void osszesSharedPreference(int osszes) {
+        SharedPreferences s = getSharedPreferences("szam", Context.MODE_PRIVATE);
+        s.edit().putInt("osszes", osszes).apply();
+
+    }
 }
+

@@ -27,7 +27,7 @@ public class Tanulas2Activity extends AppCompatActivity {
     private TextView bekerendoSzoview2;
     private EditText bekertszoedit2;
     private  Button tanulas1Ellenorzesbut2;
-    private  Button szo1;
+    private  Button szo1,szo2,szo3,szo4;
     private DatabaseReference databaseReference;
     private MediaPlayer helyesMP3, helytelenMP3;
 
@@ -37,36 +37,112 @@ public class Tanulas2Activity extends AppCompatActivity {
         setContentView(R.layout.activity_tanulas2);
         init();
 
-       int osszes = Integer.parseInt(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getInt("osszes", 0)));
+        float osszes = Float.parseFloat(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getFloat("osszes", 0)));
         osszes++;
         osszesSharedPreference(osszes);
 
 
+        final Random randomom = new Random();
+        int rndomN=randomom.nextInt(182);
 
 
-        databaseReference= FirebaseDatabase.getInstance().getReference().child("szotar").child("0");
+        databaseReference= FirebaseDatabase.getInstance().getReference().child("szotar").child(String.valueOf(rndomN));
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                Random rnd= new Random();
+                int rndomN=rnd.nextInt(182);
+
+                DatabaseReference data = FirebaseDatabase.getInstance().getReference().child("szotar").child(String.valueOf(rndomN));
+                data.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        String kovSzo = dataSnapshot.child("angol").getValue().toString();
+                        szo2.setText(kovSzo);
+                        Random rnd= new Random();
+                        int rndomN=rnd.nextInt(182);
+
+                        DatabaseReference data1 = FirebaseDatabase.getInstance().getReference().child("szotar").child(String.valueOf(rndomN));
+                        data1.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                String kovSzo1 = dataSnapshot.child("angol").getValue().toString();
+                                szo3.setText(kovSzo1);
+                                Random rnd= new Random();
+                                int rndomN=rnd.nextInt(182);
+
+                                DatabaseReference data1 = FirebaseDatabase.getInstance().getReference().child("szotar").child(String.valueOf(rndomN));
+                                data1.addValueEventListener(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                        String kovSzo1 = dataSnapshot.child("angol").getValue().toString();
+
+                                        szo4.setText(kovSzo1);
+
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                    }
+                                });
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+
                 if (dataSnapshot.exists()) {
-                    Szotar s;
+                   // Szotar s;
                     //int szoid= (int) dataSnapshot.getChildrenCount();
                     //int rand = new Random().nextInt(szoid);
 
 
-                    // String szo_id= dataSnapshot.child("szo_id").getValue().toString();
-
-
                     String magyar = dataSnapshot.child("magyar").getValue().toString();
                     final String angol = dataSnapshot.child("angol").getValue().toString();
+
                     bekerendoSzoview2.setText(magyar);
-                    szo1.setText(angol);
+
+                        szo1.setText(angol);
+
                     szo1.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             bekertszoedit2.setText(angol);
                         }
                     });
+                    szo2.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            bekertszoedit2.setText(angol);
+                        }
+                    });
+                    szo3.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            bekertszoedit2.setText(angol);
+                        }
+                    });
+                    szo4.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            bekertszoedit2.setText(angol);
+                        }
+                    });
+
+
                     angol.split("");
 
 
@@ -76,6 +152,7 @@ public class Tanulas2Activity extends AppCompatActivity {
 
                             Random randomom = new Random();
                             int number= randomom.nextInt(3)+1;
+
 
 
 
@@ -91,15 +168,18 @@ public class Tanulas2Activity extends AppCompatActivity {
                                 if (bekertszoedit2.getText().toString().equals(angol) ) {
                                     helyesMP3.start();
                                     Toast.makeText(Tanulas2Activity.this, "Helyes válasz!", Toast.LENGTH_SHORT).show();
-                                    int het = Integer.parseInt(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getInt("het", 0)));
+                                    float het =Float.parseFloat(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getFloat("het", 0)));
                                     het++;
                                     hetSharedPreference(het);
-                                    int honap = Integer.parseInt(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getInt("honap", 0)));
+
+                                    float honap = Float.parseFloat(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getFloat("honap", 0)));
                                     honap++;
                                     haviSharedPreference(honap);
-                                    int ev = Integer.parseInt(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getInt("ev", 0)));
+
+                                    float ev = Float.parseFloat(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getFloat("ev", 0)));
                                     ev++;
                                     evSharedPreference(ev);
+
 
                                     if (number == 1) {
                                         Intent intent = new Intent(Tanulas2Activity.this, Tanulas1Activity.class);
@@ -175,6 +255,9 @@ public class Tanulas2Activity extends AppCompatActivity {
         bekertszoedit2=findViewById(R.id.bekertszoedit2);
         tanulas1Ellenorzesbut2=findViewById(R.id.tanulas1Ellenorzesbut2);
         szo1=findViewById(R.id.szo1);
+        szo2=findViewById(R.id.szo2);
+        szo3=findViewById(R.id.szo3);
+        szo4=findViewById(R.id.szo4);
         helyesMP3=MediaPlayer.create(this,R.raw.dicseret);
         helytelenMP3=MediaPlayer.create(this,R.raw.helytelen);
 
@@ -183,24 +266,24 @@ public class Tanulas2Activity extends AppCompatActivity {
         SharedPreferences s = getSharedPreferences("szam", Context.MODE_PRIVATE);
         s.edit().putString("szamlalo", String.valueOf(szamlalo)).apply();
     }
-    private void hetSharedPreference(int het) {
+    private void hetSharedPreference(double het) {
         SharedPreferences s = getSharedPreferences("szam", Context.MODE_PRIVATE);
-        s.edit().putInt("het", het).apply();
+        s.edit().putFloat("het", (float) het).apply();
 
     }
-    private void haviSharedPreference(int honap) {
+    private void haviSharedPreference(double honap) {
         SharedPreferences s = getSharedPreferences("szam", Context.MODE_PRIVATE);
-        s.edit().putInt("honap", honap).apply();
+        s.edit().putFloat("honap", (float) honap).apply();
 
     }
-    private void evSharedPreference(int ev) {
+    private void evSharedPreference(double ev) {
         SharedPreferences s = getSharedPreferences("szam", Context.MODE_PRIVATE);
-        s.edit().putInt("ev", ev).apply();
+        s.edit().putFloat("ev", (float) ev).apply();
 
     }
-    private void osszesSharedPreference(int osszes) {
+    private void osszesSharedPreference(double osszes) {
         SharedPreferences s = getSharedPreferences("szam", Context.MODE_PRIVATE);
-        s.edit().putInt("osszes", osszes).apply();
+        s.edit().putFloat("osszes", (float) osszes).apply();
 
     }
 }

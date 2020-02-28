@@ -21,18 +21,15 @@ private TextView hetiStatview,haviStatisztikaView,evStatisztikaView;
         setContentView(R.layout.activity_statisztika);
         init();
 
-        int het = Integer.parseInt(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getInt("het", 0)));
+        float het =Float.parseFloat(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getFloat("het", 0)));
         hetSharedPreference(het);
-        int honap = Integer.parseInt(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getInt("honap", 0)));
+        float honap = Float.parseFloat(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getFloat("honap", 0)));
         haviSharedPreference(honap);
-        int ev = Integer.parseInt(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getInt("ev", 0)));
+        float ev = Float.parseFloat(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getFloat("ev", 0)));
         evSharedPreference(ev);
-        int osszes = Integer.parseInt(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getInt("osszes", 0)));
+        float osszes = Float.parseFloat(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getFloat("osszes", 0)));
         osszesSharedPreference(osszes);
-        int osszes1 = Integer.parseInt(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getInt("osszes", 0)));
-        osszesSharedPreference(osszes1);
-        int osszes2 = Integer.parseInt(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getInt("osszes", 0)));
-        osszesSharedPreference(osszes2);
+
 
 
         visszatanulnimenube.setOnClickListener(new View.OnClickListener() {
@@ -43,34 +40,16 @@ private TextView hetiStatview,haviStatisztikaView,evStatisztikaView;
                 finish();
             }
         });
+        double eredmenyhet= (het/osszes*1.0)*100;
+        double eredmenyhonap=(honap/osszes*1.0)*100;
+        double eredmenyev=(ev/osszes*1.0)*100;
 
-       int eredmenyhet= (int) (osszes/het)*100;
-        if (osszes<106){
-            if (osszes<105){
-                hetiStatview.setText(het+" "+"/"+" "+osszes+"= "+Math.floor(eredmenyhet)+"%");
-            }else {
-                osszes=0;
-                hetiStatview.setText(osszes+" "+"/"+" "+het+"= "+(Math.round(osszes/het))+"%");
-            }
+                hetiStatview.setText(Math.round(het)+" "+"/"+" "+Math.round(osszes)+"= "+Math.round(eredmenyhet)+"%");
+                haviStatisztikaView.setText(Math.round(honap)+" "+"/"+" "+Math.round(osszes)+"= "+Math.round(eredmenyhonap)+"%");
+                evStatisztikaView.setText(Math.round(ev)+" "+"/"+" "+Math.round(osszes)+"= "+Math.round(eredmenyev)+"%");
 
-        }
-        else if (osszes1<=451){
-            if (osszes1<450)
-                haviStatisztikaView.setText(osszes1+" "+"/"+honap+"="+(Math.round(osszes1/honap)*100)+"%");
-            else {
-                osszes1=0;
-                haviStatisztikaView.setText(osszes1+" "+"/"+honap+"="+(Math.round(osszes1/honap)*100)+"%");
-            }
-        }
-        else if(osszes2<=5476){
-            if (osszes2<5475){
-                evStatisztikaView.setText(osszes2+" "+"/"+ev+"="+(Math.round(osszes2/ev)*100)+"%");
-            }else{
-                osszes2=0;
-                evStatisztikaView.setText(osszes2+" "+"/"+ev+"="+(Math.round(osszes2/ev)*100)+"%");
-            }
 
-        }
+
 
 
     }
@@ -85,24 +64,24 @@ private TextView hetiStatview,haviStatisztikaView,evStatisztikaView;
 
 
     }
-    private void hetSharedPreference(int het) {
+    private void hetSharedPreference(float het) {
         SharedPreferences s = getSharedPreferences("szam", Context.MODE_PRIVATE);
-        s.edit().putInt("het", het).apply();
+        s.edit().putFloat("het",  het).apply();
 
     }
-    private void haviSharedPreference(int honap) {
+    private void haviSharedPreference(float honap) {
         SharedPreferences s = getSharedPreferences("szam", Context.MODE_PRIVATE);
-        s.edit().putInt("honap", honap).apply();
+        s.edit().putFloat("honap",  honap).apply();
 
     }
-    private void evSharedPreference(int ev) {
+    private void evSharedPreference(float ev) {
         SharedPreferences s = getSharedPreferences("szam", Context.MODE_PRIVATE);
-        s.edit().putInt("ev", ev).apply();
+        s.edit().putFloat("ev", ev).apply();
 
     }
-    private void osszesSharedPreference(int osszes) {
+    private void osszesSharedPreference(double osszes) {
         SharedPreferences s = getSharedPreferences("szam", Context.MODE_PRIVATE);
-        s.edit().putInt("osszes", osszes).apply();
+        s.edit().putFloat("osszes", (float) osszes).apply();
 
     }
 }

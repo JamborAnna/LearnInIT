@@ -57,9 +57,9 @@
           android:text="szó1"
           android:layout_weight="1"
           android:id="@+id/szo1"
-          android:textSize="20dp"
+          android:textSize="15sp"
           android:background="@drawable/button_shape"
-          android:layout_margin="3sp">
+          android:layout_margin="1sp">
       </Button>
       <Button
           android:layout_width="0sp"
@@ -67,9 +67,9 @@
           android:text="szó1"
           android:layout_weight="1"
           android:id="@+id/szo2"
-          android:textSize="20dp"
+          android:textSize="15sp"
           android:background="@drawable/button_shape"
-          android:layout_margin="3sp">
+          android:layout_margin="1sp">
       </Button>
      </LinearLayout>
       <LinearLayout
@@ -78,7 +78,7 @@
           android:orientation="horizontal"
           android:layout_below="@+id/tanulas2linear2"
           android:id="@+id/tanulas2linear3"
-          android:layout_margin="7sp"
+          android:layout_margin="5sp"
          >
       <Button
           android:layout_width="0sp"
@@ -87,9 +87,9 @@
           android:layout_weight="1"
           android:layout_below="@+id/szo3"
           android:id="@+id/szo3"
-          android:textSize="20dp"
+          android:textSize="15sp"
           android:background="@drawable/button_shape"
-          android:layout_margin="3sp"
+          android:layout_margin="1sp"
           >
       </Button>
       <Button
@@ -98,10 +98,10 @@
           android:text="szó1"
           android:layout_weight="1"
           android:id="@+id/szo4"
-          android:textSize="20dp"
+          android:textSize="15sp"
           android:layout_below="@+id/szo2"
           android:background="@drawable/button_shape"
-          android:layout_margin="3sp"
+          android:layout_margin="1sp"
           >
       </Button>
         </LinearLayout>

@@ -11,14 +11,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:id="@+id/layout1">
+        android:id="@+id/layout1"
+        android:padding="5dp"
+        >
         <TextView
             android:layout_width="0sp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:id="@+id/FelhasznaloNeveView"
-            android:textSize="20sp"
+            android:textSize="30sp"
             android:maxLength="30"
+            android:textStyle="bold"
+            android:textAlignment="center"
+
+           android:textColor="@color/colorAccent"
+
             >
         </TextView>
         <Button

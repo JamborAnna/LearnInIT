@@ -1,5 +1,6 @@
 package com.example.learninit;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -10,6 +11,11 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class Fomenu extends AppCompatActivity {
     private TextView FelhasznaloNeveView;
@@ -24,8 +30,19 @@ public class Fomenu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fomenu);
         init();
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Felhasznalo").child(String.valueOf(mAuth.getUid())).child("felhasznaloNev");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                FelhasznaloNeveView.setText(dataSnapshot.getValue().toString());
+            }
 
-        FelhasznaloNeveView.setText(userFire.getEmail());
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
         kijelentkezesBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -37,24 +37,21 @@ private MediaPlayer helyesMP3, helytelenMP3;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tanulas1);
         init();
-        int osszes = Integer.parseInt(getSharedPreferences("szam", Context.MODE_PRIVATE).getString("osszes", "0"));
+        float osszes = Float.parseFloat(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getFloat("osszes", 0)));
         osszes++;
         osszesSharedPreference(osszes);
+        final Random rnd = new Random();
+        final int random= rnd.nextInt(182);
 
-        databaseReference=FirebaseDatabase.getInstance().getReference().child("szotar").child("1");
+        databaseReference= FirebaseDatabase.getInstance().getReference().child("szotar").child(String.valueOf(random));
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-               // String data= dataSnapshot.child("szotar").getValue().toString();
-               // bekerendoSzoview.setText(data);
+
                 if (dataSnapshot.exists()){
                     com.example.learninit.Szotar s;
-                    //int szoid= (int) dataSnapshot.getChildrenCount();
-                    //int rand = new Random().nextInt(szoid);
 
-
-                   // String szo_id= dataSnapshot.child("szo_id").getValue().toString();
 
 
                     String magyar= dataSnapshot.child("magyar").getValue().toString();
@@ -83,15 +80,18 @@ private MediaPlayer helyesMP3, helytelenMP3;
                                     //&& szamlalo<15
                                     Toast.makeText(Tanulas1Activity.this, "Helyes válasz!", Toast.LENGTH_SHORT).show();
                                     helyesMP3.start();
-                                    int het = Integer.parseInt(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getInt("het", 0)));
+                                    float het =Float.parseFloat(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getFloat("het", 0)));
                                     het++;
                                     hetSharedPreference(het);
-                                    int honap = Integer.parseInt(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getInt("honap", 0)));
+
+                                    float honap = Float.parseFloat(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getFloat("honap", 0)));
                                     honap++;
                                     haviSharedPreference(honap);
-                                    int ev = Integer.parseInt(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getInt("ev", 0)));
+
+                                    float ev = Float.parseFloat(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getFloat("ev", 0)));
                                     ev++;
                                     evSharedPreference(ev);
+
 
                                     if (number == 1) {
 
@@ -220,24 +220,24 @@ private MediaPlayer helyesMP3, helytelenMP3;
         SharedPreferences s = getSharedPreferences("szam", Context.MODE_PRIVATE);
         s.edit().putString("szamlalo", String.valueOf(szamlalo)).apply();
     }
-    private void hetSharedPreference(int het) {
+    private void hetSharedPreference(double het) {
         SharedPreferences s = getSharedPreferences("szam", Context.MODE_PRIVATE);
-        s.edit().putInt("het", het).apply();
+        s.edit().putFloat("het", (float) het).apply();
 
     }
-    private void haviSharedPreference(int honap) {
+    private void haviSharedPreference(double honap) {
         SharedPreferences s = getSharedPreferences("szam", Context.MODE_PRIVATE);
-        s.edit().putInt("honap", honap).apply();
+        s.edit().putFloat("honap", (float) honap).apply();
 
     }
-    private void evSharedPreference(int ev) {
+    private void evSharedPreference(double ev) {
         SharedPreferences s = getSharedPreferences("szam", Context.MODE_PRIVATE);
-        s.edit().putInt("ev", ev).apply();
+        s.edit().putFloat("ev", (float) ev).apply();
 
     }
-    private void osszesSharedPreference(int osszes) {
+    private void osszesSharedPreference(float osszes) {
         SharedPreferences s = getSharedPreferences("szam", Context.MODE_PRIVATE);
-        s.edit().putInt("osszes", osszes).apply();
+        s.edit().putFloat("osszes", osszes).apply();
 
     }
 }

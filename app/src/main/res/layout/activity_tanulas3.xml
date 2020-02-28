@@ -23,6 +23,7 @@
             >
 
         </Button>
+
     </LinearLayout>
 
     <LinearLayout
@@ -38,7 +39,7 @@
         android:layout_width="match_parent"
         android:layout_height="305sp"
         android:id="@+id/imageBut1"
-        android:background="@drawable/harom">
+        >
     </ImageButton>
     <TextView
         android:layout_below="@+id/imageBut1"
@@ -60,7 +61,7 @@
             android:layout_width="match_parent"
             android:layout_height="305sp"
             android:id="@+id/imageBut2"
-           android:background="@drawable/egy"
+
             >
         </ImageButton>
         <com.airbnb.lottie.LottieAnimationView

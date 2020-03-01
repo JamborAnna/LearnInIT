@@ -16,12 +16,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 public class Regisztracio extends AppCompatActivity {
 
@@ -33,8 +28,6 @@ public class Regisztracio extends AppCompatActivity {
     private Button RegKuldBut;
     private FirebaseAuth mAuth;
     private ProgressBar progressRegistry;
-    //private DatabaseReference db;
-   // private long id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +35,6 @@ public class Regisztracio extends AppCompatActivity {
         setContentView(R.layout.activity_regisztracio);
         init();
             mAuth=FirebaseAuth.getInstance();
-
-
 
         visszaregisztracios.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,26 +57,17 @@ public class Regisztracio extends AppCompatActivity {
                 String jelszoism = JelszoIsmText.getText().toString();
                 //mit fogok felküldeni
 
+                JelszoText.setBackground(getResources().getDrawable(R.drawable.button_shape));
+                FelhasznalonevText.setBackground(getResources().getDrawable(R.drawable.button_shape));
+                EmailText.setBackground(getResources().getDrawable(R.drawable.button_shape));
+                JelszoIsmText.setBackground(getResources().getDrawable(R.drawable.button_shape));
 
                 progressRegistry.setVisibility(View.VISIBLE);
 
                 RegistryUser registryUser = new RegistryUser();
                 registryUser.setEmail(email);
                 registryUser.setFelhasznaloNev(felhasznaloNev);
-                //registryUser.setUser_id(id);
 
-
-                 /*FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
-                if (FelhasznalonevText.getText().toString().isEmpty() ||  JelszoText.getText().toString().isEmpty() || EmailText.getText().toString().isEmpty()|| JelszoIsmText.getText().toString().isEmpty()){
-                    Toast.makeText(Regisztracio.this,"Minden mezőt ki kell tölteni",Toast.LENGTH_SHORT).show();
-                }
-                else
-                {
-                   /* databaseReference.setValue(FelhasznalonevText);
-                    databaseReference.setValue(EmailText);
-                    databaseReference.setValue(mAuth.getUid());
-                   registryUser.setFelhasznaloNev(FelhasznalonevText.getText().toString());
-                   registryUser.setEmail(EmailText.getText().toString());*/
                 if (TextUtils.isEmpty(jelszo)) {
                     Toast.makeText(Regisztracio.this, "A két jelszó nem egyezik meg!", Toast.LENGTH_LONG).show();
                     JelszoText.setBackground(getResources().getDrawable(R.drawable.button_color_red));

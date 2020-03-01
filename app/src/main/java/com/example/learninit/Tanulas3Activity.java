@@ -7,11 +7,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.TypedArray;
+
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.storage.StorageManager;
+
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -36,7 +36,7 @@ public class Tanulas3Activity extends AppCompatActivity  {
     private  ImageButton imageBut2;
     private MediaPlayer helyesMP3, helytelenMP3;
     private DatabaseReference databaseReference;
-    private TypedArray kepnev;
+
     private LottieAnimationView pipa;
     private LottieAnimationView cross;
 
@@ -51,6 +51,9 @@ public class Tanulas3Activity extends AppCompatActivity  {
         float osszes = Float.parseFloat(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getFloat("osszes", 0)));
         osszes++;
         osszesSharedPreference(osszes);
+
+
+
 
 
         final int randomBut= rnd.nextInt(3);
@@ -120,7 +123,7 @@ public class Tanulas3Activity extends AppCompatActivity  {
                                     startActivity(intent);
                                     finish();
                                 }else {
-                                    if (kep_id.equals(imageBut2)){
+                                    if (kep_id.equals(imageBut2.toString())){
                                         pipa.setVisibility(View.VISIBLE);
                                         Toast.makeText(Tanulas3Activity.this, "Helyes válasz!", Toast.LENGTH_SHORT).show();
                                         float het =Float.parseFloat(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getFloat("het", 0)));
@@ -195,7 +198,7 @@ public class Tanulas3Activity extends AppCompatActivity  {
                                     startActivity(intent);
                                     finish();
                                 } else {
-                                    if (szotarID.equals(imageBut1)) {
+                                    if (kep_id.equals(imageBut1.toString())) {
                                         pipa.setVisibility(View.VISIBLE);
                                         helyesMP3.start();
                                         pipa.setVisibility(View.GONE);
@@ -264,13 +267,7 @@ public class Tanulas3Activity extends AppCompatActivity  {
 
                     }
                 }
-                   /* szo1.setText(angol);
-                    szo1.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            bekertszoedit2.setText(angol);
-                        }
-                    });*/
+
             }
 
             @Override
@@ -290,9 +287,7 @@ public class Tanulas3Activity extends AppCompatActivity  {
 
 
     }
-    private  void changeImage(){
 
-    }
 
     private void init() {
         tanulas3vissza=findViewById(R.id.tanulas3vissza);
@@ -301,7 +296,6 @@ public class Tanulas3Activity extends AppCompatActivity  {
         imageBut2=findViewById(R.id.imageBut2);
         helyesMP3=MediaPlayer.create(this,R.raw.dicseret);
         helytelenMP3=MediaPlayer.create(this,R.raw.helytelen);
-        kepnev=getResources().obtainTypedArray(R.array.kepnev);
         pipa=findViewById(R.id.pipa);
         cross=findViewById(R.id.cross);
 

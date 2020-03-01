@@ -9,6 +9,9 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class TanultActivity extends AppCompatActivity {
     private Button visszaTanult;
     private TextView tanault;
@@ -29,6 +32,13 @@ public class TanultActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("szotar").child(String.valueOf("0"));
+
+
+
+
+
 
     }
 

@@ -14,6 +14,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.learninit.ui.TanultSzavak;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,8 +32,8 @@ private TextView bekerendoSzoview;
 private EditText bekertszoedit;
 private  Button tanulas1Ellenorzesbut;
 private DatabaseReference databaseReference;
-private Random randomom = new Random();
-private Szotar szotar;
+//private Random randomom = new Random();
+
 private MediaPlayer helyesMP3, helytelenMP3;
 
     @Override
@@ -37,6 +41,8 @@ private MediaPlayer helyesMP3, helytelenMP3;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tanulas1);
         init();
+
+
         float osszes = Float.parseFloat(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getFloat("osszes", 0)));
         osszes++;
         osszesSharedPreference(osszes);
@@ -49,14 +55,40 @@ private MediaPlayer helyesMP3, helytelenMP3;
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
+
+
                 if (dataSnapshot.exists()){
-                    com.example.learninit.Szotar s;
 
 
 
                     String magyar= dataSnapshot.child("magyar").getValue().toString();
                     final String angol= dataSnapshot.child("angol").getValue().toString();
                     bekerendoSzoview.setText(magyar);
+
+
+                    TanultSzavak tanultSzavak = new TanultSzavak();
+
+                    final String angolTanult =dataSnapshot.child("angol").getValue().toString();
+                    final String magyarTanult = bekerendoSzoview.getText().toString();
+                    tanultSzavak.setTanultAngol(angolTanult);
+                    tanultSzavak.setTanultMagyar(magyarTanult);
+
+                    tanultSzavak = new TanultSzavak(magyarTanult, angolTanult);
+                    FirebaseDatabase.getInstance().getReference("TanultSzavak").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(tanultSzavak).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(Task<Void> task) {
+                            if (bekerendoSzoview.getText().toString().isEmpty()){
+                                Toast.makeText(Tanulas1Activity.this, "Sikertelen Regisztráció!",
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                            else {
+
+                                Toast.makeText(Tanulas1Activity.this, "Sikeres Regisztráció!",
+                                        Toast.LENGTH_SHORT).show();
+
+                            }
+                        }
+                    });
 
 
                     tanulas1Ellenorzesbut.setOnClickListener(new View.OnClickListener() {
@@ -76,8 +108,8 @@ private MediaPlayer helyesMP3, helytelenMP3;
 
                             }else {
                                 //Log.w("",bekerendoSzoview.getText().toString());
-                                if (bekertszoedit.getText().toString().equals(angol) ) {
-                                    //&& szamlalo<15
+                                if (bekertszoedit.getText().toString().equals(angol) || szamlalo<15 ) {
+
                                     Toast.makeText(Tanulas1Activity.this, "Helyes válasz!", Toast.LENGTH_SHORT).show();
                                     helyesMP3.start();
                                     float het =Float.parseFloat(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getFloat("het", 0)));
@@ -144,19 +176,7 @@ private MediaPlayer helyesMP3, helytelenMP3;
                     });
 
 
-                  /*  int randomSzam= randomom.nextInt((int) dataSnapshot.getChildrenCount());
 
-                    for (DataSnapshot item :dataSnapshot.getChildren()) {
-
-                        s=item.getValue(Szotar.class);
-                        if (s.szo_id.equals(String.valueOf(randomSzam))){
-
-                            Toast.makeText(Tanulas1Activity.this, "ize", Toast.LENGTH_SHORT).show();
-
-                        }
-
-
-                    }*/
 
 
                 }
@@ -212,7 +232,7 @@ private MediaPlayer helyesMP3, helytelenMP3;
         bekertszoedit=findViewById(R.id.bekertszoedit);
         tanulas1Ellenorzesbut=findViewById(R.id.tanulas1Ellenorzesbut);
         databaseReference= FirebaseDatabase.getInstance().getReference();
-        szotar=new Szotar();
+
         helyesMP3=MediaPlayer.create(this,R.raw.dicseret);
         helytelenMP3=MediaPlayer.create(this,R.raw.helytelen);
     }

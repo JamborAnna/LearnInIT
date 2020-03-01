@@ -44,16 +44,21 @@ public class Tanulas2Activity extends AppCompatActivity {
 
         final Random randomom = new Random();
         int rndomN=randomom.nextInt(182);
+        int randomHelyValaszto= randomom.nextInt(4);
+        if (randomHelyValaszto==1){
 
+        }
 
         databaseReference= FirebaseDatabase.getInstance().getReference().child("szotar").child(String.valueOf(rndomN));
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
+                String magyar = dataSnapshot.child("magyar").getValue().toString();
+                final String angol = dataSnapshot.child("angol").getValue().toString();
                 Random rnd= new Random();
                 int rndomN=rnd.nextInt(182);
-
+                szo1.setText(angol);
                 DatabaseReference data = FirebaseDatabase.getInstance().getReference().child("szotar").child(String.valueOf(rndomN));
                 data.addValueEventListener(new ValueEventListener() {
                     @Override
@@ -105,17 +110,8 @@ public class Tanulas2Activity extends AppCompatActivity {
 
 
                 if (dataSnapshot.exists()) {
-                   // Szotar s;
-                    //int szoid= (int) dataSnapshot.getChildrenCount();
-                    //int rand = new Random().nextInt(szoid);
-
-
-                    String magyar = dataSnapshot.child("magyar").getValue().toString();
-                    final String angol = dataSnapshot.child("angol").getValue().toString();
 
                     bekerendoSzoview2.setText(magyar);
-
-                        szo1.setText(angol);
 
                     szo1.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -142,19 +138,12 @@ public class Tanulas2Activity extends AppCompatActivity {
                         }
                     });
 
-
-                    angol.split("");
-
-
                     tanulas1Ellenorzesbut2.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
 
                             Random randomom = new Random();
                             int number= randomom.nextInt(3)+1;
-
-
-
 
                             int szamlalo = Integer.parseInt(getSharedPreferences("szam", Context.MODE_PRIVATE).getString("szamlalo", ""));
                             szamlalo++;

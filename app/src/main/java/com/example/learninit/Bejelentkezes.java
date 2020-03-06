@@ -3,17 +3,13 @@ package com.example.learninit;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,28 +30,14 @@ public class Bejelentkezes extends AppCompatActivity {
     private TextView forgott;
     private LottieAnimationView lottiAnim;
     private RelativeLayout Bejelentkezes;
-    private Switch switchFelh;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bejelentkezes);
         init();
 
-        switchFelh.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked==true){
-                    Toast.makeText(Bejelentkezes.this, "Felhasználó megjegyezve!", Toast.LENGTH_SHORT).show();
 
-                    int felhasznalo = Integer.parseInt(getSharedPreferences("szam", Context.MODE_PRIVATE).getString("felhasznalo", ""));
-
-                    felhsharedPreference(String.valueOf(felhasznalo));
-                }
-                else{
-
-                }
-            }
-        });
         visszabejelentkezes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -111,14 +93,9 @@ public class Bejelentkezes extends AppCompatActivity {
         FelasznalonevBej=findViewById(R.id.FelasznalonevBej);
         JelszoBej=findViewById(R.id.JelszoBej);
         BejelentkezesButBej=findViewById(R.id.BejelentkezesButBej);
-      // Bejelentkezes=findViewById(R.id.Bejelentkezes);
         forgott=findViewById(R.id.forgott);
         lottiAnim = findViewById(R.id.lottieAnimation);
-        switchFelh= findViewById(R.id.switchFelh);
-    }
-    private void felhsharedPreference(String felhasznalo) {
-        SharedPreferences s = getSharedPreferences("szam", Context.MODE_PRIVATE);
-        s.edit().putString("felhasznalo", String.valueOf(felhasznalo)).apply();
 
     }
+
 }

@@ -1,6 +1,6 @@
 package com.example.learninit;
 
-import androidx.annotation.NonNull;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -104,6 +104,7 @@ public class Regisztracio extends AppCompatActivity {
                                             if (FelhasznalonevText.getText().toString().isEmpty() || EmailText.getText().toString().isEmpty() || JelszoIsmText.getText().toString().isEmpty() || JelszoText.getText().toString().isEmpty()) {
                                                 Toast.makeText(Regisztracio.this, "Sikertelen Regisztráció!",
                                                         Toast.LENGTH_SHORT).show();
+
                                             } else {
 
                                                 Toast.makeText(Regisztracio.this, "Sikeres Regisztráció!",
@@ -112,6 +113,10 @@ public class Regisztracio extends AppCompatActivity {
                                                 EmailText.setText("");
                                                 JelszoText.setText("");
                                                 JelszoIsmText.setText("");
+
+                                                Intent intent = new Intent(Regisztracio.this, Bejelentkezes.class);
+                                                startActivity(intent);
+                                                finish();
 
                                             }
                                         }

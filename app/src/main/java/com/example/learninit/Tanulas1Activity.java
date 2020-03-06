@@ -43,12 +43,30 @@ private MediaPlayer helyesMP3, helytelenMP3;
         init();
 
 
-        float osszes = Float.parseFloat(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getFloat("osszes", 0)));
-        osszes++;
-        osszesSharedPreference(osszes);
+        float hetosszes = Float.parseFloat(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getFloat("hetosszes", 0)));
+        hetosszes++;
+        hetosszesSharedPreference(hetosszes);
+        float evosszes = Float.parseFloat(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getFloat("evosszes", 0)));
+        evosszes++;
+        evosszesSharedPreference(evosszes);
+        float honaposszes = Float.parseFloat(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getFloat("honaposszes", 0)));
+        honaposszes++;
+        honaposszesSharedPreference(honaposszes);
         final Random rnd = new Random();
         final int random= rnd.nextInt(182);
 
+        if (hetosszes>=70){
+            hetosszesSharedPreference(0);
+            hetSharedPreference(0);
+        }
+        else if(honaposszes>=300){
+            honaposszesSharedPreference(0);
+            haviSharedPreference(0);
+        }
+        else  if(evosszes>=3650){
+            evosszesSharedPreference(0);
+            evosszesSharedPreference(0);
+        }
         databaseReference= FirebaseDatabase.getInstance().getReference().child("szotar").child(String.valueOf(random));
 
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -80,6 +98,7 @@ private MediaPlayer helyesMP3, helytelenMP3;
                             if (bekerendoSzoview.getText().toString().isEmpty()){
                                 Toast.makeText(Tanulas1Activity.this, "Sikertelen Regisztráció!",
                                         Toast.LENGTH_SHORT).show();
+
                             }
                             else {
 
@@ -108,7 +127,7 @@ private MediaPlayer helyesMP3, helytelenMP3;
 
                             }else {
                                 //Log.w("",bekerendoSzoview.getText().toString());
-                                if (bekertszoedit.getText().toString().equals(angol) || szamlalo<15 ) {
+                                if (bekertszoedit.getText().toString().equals(angol) && szamlalo<10 ) {
 
                                     Toast.makeText(Tanulas1Activity.this, "Helyes válasz!", Toast.LENGTH_SHORT).show();
                                     helyesMP3.start();
@@ -200,26 +219,6 @@ private MediaPlayer helyesMP3, helytelenMP3;
 
             }
         });
-      /*  bekertszoedit.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (bekertszoedit.getText().toString().isEmpty()) {
-                    Toast.makeText(Tanulas1Activity.this, "Nem írtál be semmit!", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                if (bekertszoedit==bekerendoSzoview){
-
-                }
-            }
-        });*/
 
 
     }
@@ -255,9 +254,20 @@ private MediaPlayer helyesMP3, helytelenMP3;
         s.edit().putFloat("ev", (float) ev).apply();
 
     }
-    private void osszesSharedPreference(float osszes) {
+
+    private void hetosszesSharedPreference(double hetosszes) {
         SharedPreferences s = getSharedPreferences("szam", Context.MODE_PRIVATE);
-        s.edit().putFloat("osszes", osszes).apply();
+        s.edit().putFloat("hetosszes", (float) hetosszes).apply();
+
+    }
+    private void honaposszesSharedPreference(double honaposszes) {
+        SharedPreferences s = getSharedPreferences("szam", Context.MODE_PRIVATE);
+        s.edit().putFloat("honaposszes", (float) honaposszes).apply();
+
+    }
+    private void evosszesSharedPreference(double evosszes) {
+        SharedPreferences s = getSharedPreferences("szam", Context.MODE_PRIVATE);
+        s.edit().putFloat("evosszes", (float) evosszes).apply();
 
     }
 }

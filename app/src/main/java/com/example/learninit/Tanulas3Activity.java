@@ -48,10 +48,32 @@ public class Tanulas3Activity extends AppCompatActivity  {
         init();
         final Random rnd = new Random();
 
-        float osszes = Float.parseFloat(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getFloat("osszes", 0)));
-        osszes++;
-        osszesSharedPreference(osszes);
 
+
+        float hetosszes = Float.parseFloat(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getFloat("hetosszes", 0)));
+        hetosszes++;
+        hetosszesSharedPreference(hetosszes);
+        float evosszes = Float.parseFloat(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getFloat("evosszes", 0)));
+        evosszes++;
+        evosszesSharedPreference(evosszes);
+        float honaposszes = Float.parseFloat(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getFloat("honaposszes", 0)));
+        honaposszes++;
+        honaposszesSharedPreference(honaposszes);
+        if (hetosszes>=70){
+            hetosszesSharedPreference(0);
+            hetSharedPreference(0);
+        }
+        else if(honaposszes>=300){
+            honaposszesSharedPreference(0);
+            haviSharedPreference(0);
+        }
+        else  if(evosszes>=3650){
+            evosszesSharedPreference(0);
+            evosszesSharedPreference(0);
+        }
+
+
+        final int[] a = {0};
 
 
 
@@ -77,9 +99,11 @@ public class Tanulas3Activity extends AppCompatActivity  {
                             Log.w("",idKov);
                             if (randomBut == 1){
                                 Glide.with(Tanulas3Activity.this).load( getDrawable(getResources().getIdentifier(idKov,"drawable",getPackageName()))).centerCrop().into(imageBut1);
+                                a[0] =1;
                             }
                             else {
                                 Glide.with(Tanulas3Activity.this).load( getDrawable(getResources().getIdentifier(idKov,"drawable",getPackageName()))).centerCrop().into(imageBut2);
+                                a[0] =0;
                             }
 
                         }
@@ -92,21 +116,25 @@ public class Tanulas3Activity extends AppCompatActivity  {
 
                      final String magyar = dataSnapshot.child("magyar").getValue().toString();
                      final String kep_id = dataSnapshot.child("kep_id").getValue().toString();
+
                      final String szotarID=dataSnapshot.child("szo_id").getValue().toString();
+
                      BekerdezendoSzoViev.setText(magyar);
                     if (kep_id!=null){
                         Log.w("",kep_id);
                         if (randomBut==1)
                         {
                             Glide.with(Tanulas3Activity.this).load( getDrawable(getResources().getIdentifier(kep_id,"drawable",getPackageName()))).centerCrop().into(imageBut2);
+                            a[0] =1;
 
                         }else {
                             Glide.with(Tanulas3Activity.this).load( getDrawable(getResources().getIdentifier(kep_id,"drawable",getPackageName()))).centerCrop().into(imageBut1);
+                            a[0] =0;
 
                         }
 
 
-
+                        final int finalA = a[0];
                         imageBut2.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
@@ -118,12 +146,12 @@ public class Tanulas3Activity extends AppCompatActivity  {
                                 sharedPreference(szamlalo);
 
                                 sharedPreference(szamlalo);
-                                if (szamlalo>15){
+                                if (szamlalo>10){
                                     Intent intent = new Intent(Tanulas3Activity.this,TanulasmenuActivity.class);
                                     startActivity(intent);
                                     finish();
                                 }else {
-                                    if (kep_id.equals(imageBut2.toString())){
+                                    if (finalA ==1){
                                         pipa.setVisibility(View.VISIBLE);
                                         Toast.makeText(Tanulas3Activity.this, "Helyes válasz!", Toast.LENGTH_SHORT).show();
                                         float het =Float.parseFloat(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getFloat("het", 0)));
@@ -193,12 +221,12 @@ public class Tanulas3Activity extends AppCompatActivity  {
                                 szamlalo++;
                                 sharedPreference(szamlalo);
 
-                                if (szamlalo > 15) {
+                                if (szamlalo > 10) {
                                     Intent intent = new Intent(Tanulas3Activity.this, TanulasmenuActivity.class);
                                     startActivity(intent);
                                     finish();
                                 } else {
-                                    if (kep_id.equals(imageBut1.toString())) {
+                                    if (finalA==0) {
                                         pipa.setVisibility(View.VISIBLE);
                                         helyesMP3.start();
                                         pipa.setVisibility(View.GONE);
@@ -321,9 +349,20 @@ public class Tanulas3Activity extends AppCompatActivity  {
         s.edit().putFloat("ev", (float) ev).apply();
 
     }
-    private void osszesSharedPreference(double osszes) {
+
+    private void hetosszesSharedPreference(double hetosszes) {
         SharedPreferences s = getSharedPreferences("szam", Context.MODE_PRIVATE);
-        s.edit().putFloat("osszes", (float) osszes).apply();
+        s.edit().putFloat("hetosszes", (float) hetosszes).apply();
+
+    }
+    private void honaposszesSharedPreference(double honaposszes) {
+        SharedPreferences s = getSharedPreferences("szam", Context.MODE_PRIVATE);
+        s.edit().putFloat("honaposszes", (float) honaposszes).apply();
+
+    }
+    private void evosszesSharedPreference(double evosszes) {
+        SharedPreferences s = getSharedPreferences("szam", Context.MODE_PRIVATE);
+        s.edit().putFloat("evosszes", (float) evosszes).apply();
 
     }
 }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TanultActivity"
+    tools:context=".TanuloSzotarActivity"
     android:orientation="vertical"
     android:background="@drawable/hatter">
     <LinearLayout
@@ -13,7 +13,7 @@
         android:id="@+id/linearTanult"
        >
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:background="@drawable/back"
             android:id="@+id/visszaTanult">
@@ -27,17 +27,21 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/linearTanult"
         android:gravity="center"
-        android:text="Tanult Szavak"
+        android:text="Szótár"
         android:textSize="30sp"
         android:background="@drawable/button_shape"
-        android:layout_margin="5sp">
+        android:layout_margin="10sp"
+        >
     </TextView>
     <ListView
+        android:layout_margin="10sp"
         android:layout_below="@+id/tanault"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/tanultList"
         android:scrollbars="vertical"
+
+
         >
     </ListView>
 

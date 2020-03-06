@@ -12,7 +12,7 @@
         android:id="@+id/tanulas2linear">
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:background="@drawable/back"
             android:id="@+id/tanulas2vissza"

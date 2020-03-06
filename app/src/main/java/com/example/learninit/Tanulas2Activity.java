@@ -37,18 +37,41 @@ public class Tanulas2Activity extends AppCompatActivity {
         setContentView(R.layout.activity_tanulas2);
         init();
 
-        float osszes = Float.parseFloat(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getFloat("osszes", 0)));
-        osszes++;
-        osszesSharedPreference(osszes);
+        float hetosszes = Float.parseFloat(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getFloat("hetosszes", 0)));
+        hetosszes++;
+        hetosszesSharedPreference(hetosszes);
+        float evosszes = Float.parseFloat(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getFloat("evosszes", 0)));
+        evosszes++;
+        evosszesSharedPreference(evosszes);
+        float honaposszes = Float.parseFloat(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getFloat("honaposszes", 0)));
+        honaposszes++;
+        honaposszesSharedPreference(honaposszes);
+
 
 
         final Random randomom = new Random();
         int rndomN=randomom.nextInt(182);
-        int randomHelyValaszto= randomom.nextInt(4);
-        if (randomHelyValaszto==1){
 
-        }
 
+        Method(rndomN);
+
+
+        tanulas2vissza.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Tanulas2Activity.this,TanulasmenuActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+
+
+    }
+
+    private void Method(int rndomN) {
+        final Random randomom= new Random();
+        final int randomHelyValaszto= randomom.nextInt(4);
         databaseReference= FirebaseDatabase.getInstance().getReference().child("szotar").child(String.valueOf(rndomN));
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -58,85 +81,140 @@ public class Tanulas2Activity extends AppCompatActivity {
                 final String angol = dataSnapshot.child("angol").getValue().toString();
                 Random rnd= new Random();
                 int rndomN=rnd.nextInt(182);
-                szo1.setText(angol);
-                DatabaseReference data = FirebaseDatabase.getInstance().getReference().child("szotar").child(String.valueOf(rndomN));
-                data.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        String kovSzo = dataSnapshot.child("angol").getValue().toString();
-                        szo2.setText(kovSzo);
-                        Random rnd= new Random();
-                        int rndomN=rnd.nextInt(182);
 
-                        DatabaseReference data1 = FirebaseDatabase.getInstance().getReference().child("szotar").child(String.valueOf(rndomN));
-                        data1.addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                String kovSzo1 = dataSnapshot.child("angol").getValue().toString();
-                                szo3.setText(kovSzo1);
-                                Random rnd= new Random();
-                                int rndomN=rnd.nextInt(182);
+                final int joHelyvalaszto=randomHelyValaszto;
+                if (randomHelyValaszto==1){
+                 szo1.setText(angol);
+                }
+                else {
+                   DatabaseReference data=FirebaseDatabase.getInstance().getReference().child("szotar").child(String.valueOf(rndomN));
+                   data.addValueEventListener(new ValueEventListener() {
+                       @Override
+                       public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                           final String kovSzo0 = dataSnapshot.child("angol").getValue().toString();
+                           szo1.setText(kovSzo0);
+                           Random rnd= new Random();
+                           int rndomN=rnd.nextInt(182);
+                           DatabaseReference data = FirebaseDatabase.getInstance().getReference().child("szotar").child(String.valueOf(rndomN));
+                           data.addValueEventListener(new ValueEventListener() {
+                               @Override
+                               public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                   final String kovSzo = dataSnapshot.child("angol").getValue().toString();
+                                   if (randomHelyValaszto==2){
+                                       szo2.setText(angol);
+                                   }else{
+                                       szo2.setText(kovSzo);
+                                   }
 
-                                DatabaseReference data1 = FirebaseDatabase.getInstance().getReference().child("szotar").child(String.valueOf(rndomN));
-                                data1.addValueEventListener(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                        String kovSzo1 = dataSnapshot.child("angol").getValue().toString();
+                                   Random rnd= new Random();
+                                   int rndomN=rnd.nextInt(182);
 
-                                        szo4.setText(kovSzo1);
+                                   DatabaseReference data1 = FirebaseDatabase.getInstance().getReference().child("szotar").child(String.valueOf(rndomN));
+                                   data1.addValueEventListener(new ValueEventListener() {
+                                       @Override
+                                       public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                           final String kovSzo1 = dataSnapshot.child("angol").getValue().toString();
+                                           if (randomHelyValaszto==3){
+                                               szo3.setText(angol);
+                                           }else { szo3.setText(kovSzo1);}
 
-                                    }
 
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                                           Random rnd= new Random();
+                                           int rndomN=rnd.nextInt(182);
 
-                                    }
-                                });
+                                           DatabaseReference data1 = FirebaseDatabase.getInstance().getReference().child("szotar").child(String.valueOf(rndomN));
+                                           data1.addValueEventListener(new ValueEventListener() {
+                                               @Override
+                                               public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                   final String kovSzo2 = dataSnapshot.child("angol").getValue().toString();
+                                                   if (randomHelyValaszto==4){
+                                                       szo4.setText(angol);
 
-                            }
+                                                   }else {
+                                                       szo4.setText(kovSzo2);
+                                                   }
 
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
+                                                   szo1.setOnClickListener(new View.OnClickListener() {
+                                                       @Override
+                                                       public void onClick(View v) {
+                                                           if (randomHelyValaszto==1)
+                                                               bekertszoedit2.setText(angol);
+                                                           else
+                                                               bekertszoedit2.setText(kovSzo0);
+                                                       }
+                                                   });
+                                                   szo2.setOnClickListener(new View.OnClickListener() {
+                                                       @Override
+                                                       public void onClick(View v) {
+                                                           if (randomHelyValaszto==2)
+                                                               bekertszoedit2.setText(angol);
+                                                           else
+                                                               bekertszoedit2.setText(kovSzo);
 
-                            }
-                        });
-                    }
+                                                       }
+                                                   });
+                                                   szo3.setOnClickListener(new View.OnClickListener() {
+                                                       @Override
+                                                       public void onClick(View v) {
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                                                           if (randomHelyValaszto==3){
+                                                               bekertszoedit2.setText(angol);
+                                                           }else { bekertszoedit2.setText(kovSzo1);}
 
-                    }
-                });
+                                                       }
+                                                   });
+                                                   szo4.setOnClickListener(new View.OnClickListener() {
+                                                       @Override
+                                                       public void onClick(View v) {
+                                                           if (randomHelyValaszto==4){
+                                                               bekertszoedit2.setText(angol);
+                                                           }else {
+                                                               bekertszoedit2.setText(kovSzo2);
+                                                           }
+
+
+                                                       }
+                                                   });
+                                               }
+
+                                               @Override
+                                               public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                               }
+                                           });
+
+                                       }
+
+                                       @Override
+                                       public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                       }
+                                   });
+                               }
+
+                               @Override
+                               public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                               }
+                           });
+
+                       }
+
+                       @Override
+                       public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                       }
+                   });
+
+                }
+
 
 
                 if (dataSnapshot.exists()) {
 
                     bekerendoSzoview2.setText(magyar);
 
-                    szo1.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            bekertszoedit2.setText(angol);
-                        }
-                    });
-                    szo2.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            bekertszoedit2.setText(angol);
-                        }
-                    });
-                    szo3.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            bekertszoedit2.setText(angol);
-                        }
-                    });
-                    szo4.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            bekertszoedit2.setText(angol);
-                        }
-                    });
+
 
                     tanulas1Ellenorzesbut2.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -149,8 +227,8 @@ public class Tanulas2Activity extends AppCompatActivity {
                             szamlalo++;
                             sharedPreference(szamlalo);
 
-                            if (szamlalo>15){
-                                Intent intent = new Intent(Tanulas2Activity.this,TanulasmenuActivity.class);
+                            if (szamlalo>10){
+                                Intent intent = new Intent(Tanulas2Activity.this, TanulasmenuActivity.class);
                                 startActivity(intent);
                                 finish();
                             }else {
@@ -221,21 +299,6 @@ public class Tanulas2Activity extends AppCompatActivity {
 
             }
         });
-
-
-
-
-        tanulas2vissza.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Tanulas2Activity.this,TanulasmenuActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
-
-
     }
 
     private void init() {
@@ -270,10 +333,26 @@ public class Tanulas2Activity extends AppCompatActivity {
         s.edit().putFloat("ev", (float) ev).apply();
 
     }
-    private void osszesSharedPreference(double osszes) {
+    private void hetosszesSharedPreference(double hetosszes) {
         SharedPreferences s = getSharedPreferences("szam", Context.MODE_PRIVATE);
-        s.edit().putFloat("osszes", (float) osszes).apply();
+        s.edit().putFloat("hetosszes", (float) hetosszes).apply();
 
     }
+    private void honaposszesSharedPreference(double honaposszes) {
+        SharedPreferences s = getSharedPreferences("szam", Context.MODE_PRIVATE);
+        s.edit().putFloat("honaposszes", (float) honaposszes).apply();
+
+    }
+    private void evosszesSharedPreference(double evosszes) {
+        SharedPreferences s = getSharedPreferences("szam", Context.MODE_PRIVATE);
+        s.edit().putFloat("evosszes", (float) evosszes).apply();
+
+    }
+
+
+
+
+
+
 }
 

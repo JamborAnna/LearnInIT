@@ -13,7 +13,7 @@
         android:id="@+id/visszaopciokhoz"
         >
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:background="@drawable/back"
             android:id="@+id/visszatanulnimenube">
@@ -28,7 +28,9 @@
         android:id="@+id/hetiStatview"
         android:textSize="30sp"
         android:background="@drawable/button_shape"
-        android:layout_margin="5sp">
+        android:layout_margin="5sp"
+        android:textAlignment="center"
+        >
     </TextView>
     <TextView
         android:layout_width="match_parent"
@@ -38,7 +40,9 @@
         android:id="@+id/haviStatisztikaView"
         android:textSize="30sp"
         android:background="@drawable/button_shape"
-        android:layout_margin="5sp">
+        android:layout_margin="5sp"
+        android:textAlignment="center"
+        >
     </TextView>
     <TextView
         android:layout_width="match_parent"
@@ -48,7 +52,9 @@
         android:textSize="30sp"
         android:background="@drawable/button_shape"
         android:layout_margin="5sp"
-        android:id="@+id/evStatisztikaView">
+        android:id="@+id/evStatisztikaView"
+        android:textAlignment="center"
+        >
     </TextView>
 
 </RelativeLayout>

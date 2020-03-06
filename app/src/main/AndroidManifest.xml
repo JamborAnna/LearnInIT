@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.learninit">
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/> <!-- fileba írás -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/><!-- filebol írás -->
 
     <application
         android:allowBackup="true"
@@ -9,17 +11,18 @@
         android:roundIcon="@drawable/web_hi_res_512"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Fomenu"></activity>
-        <activity android:name=".StatisztikaActivity" />
-        <activity android:name=".KijelentkezesActivity" />
-        <activity android:name=".Tanulas3Activity" />
-        <activity android:name=".Tanulas2Activity" />
-        <activity android:name=".Tanulas1Activity" />
-        <activity android:name=".TanultActivity" />
-        <activity android:name=".TanulasmenuActivity" />
-        <activity android:name=".Bejelentkezes" />
-        <activity android:name=".Regisztracio" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".Fomenu" android:screenOrientation = "portrait"></activity>
+        <activity android:name=".StatisztikaActivity"  android:screenOrientation = "portrait"/>
+        <activity android:name=".KijelentkezesActivity"  android:screenOrientation = "portrait"/>
+        <activity android:name=".Tanulas3Activity"  android:screenOrientation = "portrait"/>
+        <activity android:name=".Tanulas2Activity"  android:screenOrientation = "portrait"/>
+        <activity android:name=".Tanulas1Activity"  android:screenOrientation = "portrait"/>
+        <activity android:name=".TanuloSzotarActivity"  android:screenOrientation = "portrait"/>
+        <activity android:name=".TanulasmenuActivity"  android:screenOrientation = "portrait"/>
+        <activity android:name=".Bejelentkezes"  android:screenOrientation = "portrait"/>
+        <activity android:name=".Regisztracio"  android:screenOrientation = "portrait" />
+        <activity android:name=".MainActivity"  android:screenOrientation = "portrait">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

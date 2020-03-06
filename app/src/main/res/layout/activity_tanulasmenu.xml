@@ -13,7 +13,7 @@
         android:id="@+id/linear1">
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:background="@drawable/back"
             android:id="@+id/visszatanulas"
@@ -36,7 +36,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/napibut"
-        android:text="Tanult szavak"
+        android:text="Szótár"
         android:layout_centerInParent="true"
         android:textSize="30sp"
         android:id="@+id/tanultBut"
@@ -44,20 +44,12 @@
         android:layout_margin="5sp">
     </Button>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/jelenlegiDatumWIEV"
-        android:layout_below="@+id/tanultBut"
 
-        >
-
-    </TextView>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/tanulaDatumaWiev"
-        android:layout_below="@+id/jelenlegiDatumWIEV"
+        android:layout_below="@+id/tanultBut"
 
         >
 

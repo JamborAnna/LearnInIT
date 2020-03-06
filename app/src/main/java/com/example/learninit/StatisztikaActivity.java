@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import static com.example.learninit.TanulasmenuActivity.szamlalo;
 
 public class StatisztikaActivity extends AppCompatActivity {
 private Button visszatanulnimenube;
@@ -27,9 +26,24 @@ private TextView hetiStatview,haviStatisztikaView,evStatisztikaView;
         haviSharedPreference(honap);
         float ev = Float.parseFloat(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getFloat("ev", 0)));
         evSharedPreference(ev);
-        float osszes = Float.parseFloat(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getFloat("osszes", 0)));
-        osszesSharedPreference(osszes);
-
+        float hetosszes = Float.parseFloat(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getFloat("hetosszes", 0)));
+        hetosszesSharedPreference(hetosszes);
+        float evosszes = Float.parseFloat(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getFloat("evosszes", 0)));
+        evosszesSharedPreference(evosszes);
+        float honaposszes = Float.parseFloat(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getFloat("honaposszes", 0)));
+        honaposszesSharedPreference(honaposszes);
+        if (hetosszes>=70){
+            hetosszesSharedPreference(0);
+            hetSharedPreference(0);
+        }
+        else if(honaposszes>=300){
+            honaposszesSharedPreference(0);
+            haviSharedPreference(0);
+        }
+        else  if(evosszes>=3650){
+            evosszesSharedPreference(0);
+            evosszesSharedPreference(0);
+        }
 
 
         visszatanulnimenube.setOnClickListener(new View.OnClickListener() {
@@ -40,13 +54,13 @@ private TextView hetiStatview,haviStatisztikaView,evStatisztikaView;
                 finish();
             }
         });
-        double eredmenyhet= (het/osszes*1.0)*100;
-        double eredmenyhonap=(honap/osszes*1.0)*100;
-        double eredmenyev=(ev/osszes*1.0)*100;
+        double eredmenyhet= (het/hetosszes*1.0)*100;
+        double eredmenyhonap=(honap/honaposszes*1.0)*100;
+        double eredmenyev=(ev/evosszes*1.0)*100;
 
-                hetiStatview.setText(Math.round(het)+" "+"/"+" "+Math.round(osszes)+"= "+Math.round(eredmenyhet)+"%");
-                haviStatisztikaView.setText(Math.round(honap)+" "+"/"+" "+Math.round(osszes)+"= "+Math.round(eredmenyhonap)+"%");
-                evStatisztikaView.setText(Math.round(ev)+" "+"/"+" "+Math.round(osszes)+"= "+Math.round(eredmenyev)+"%");
+                hetiStatview.setText(Math.round(het)+" "+"/"+" "+Math.round(hetosszes)+"= "+Math.round(eredmenyhet)+"%");
+                haviStatisztikaView.setText(Math.round(honap)+" "+"/"+" "+Math.round(honaposszes)+"= "+Math.round(eredmenyhonap)+"%");
+                evStatisztikaView.setText(Math.round(ev)+" "+"/"+" "+Math.round(evosszes)+"= "+Math.round(eredmenyev)+"%");
 
 
 
@@ -79,9 +93,19 @@ private TextView hetiStatview,haviStatisztikaView,evStatisztikaView;
         s.edit().putFloat("ev", ev).apply();
 
     }
-    private void osszesSharedPreference(double osszes) {
+    private void hetosszesSharedPreference(double hetosszes) {
         SharedPreferences s = getSharedPreferences("szam", Context.MODE_PRIVATE);
-        s.edit().putFloat("osszes", (float) osszes).apply();
+        s.edit().putFloat("hetosszes", (float) hetosszes).apply();
+
+    }
+    private void honaposszesSharedPreference(double honaposszes) {
+        SharedPreferences s = getSharedPreferences("szam", Context.MODE_PRIVATE);
+        s.edit().putFloat("honaposszes", (float) honaposszes).apply();
+
+    }
+    private void evosszesSharedPreference(double evosszes) {
+        SharedPreferences s = getSharedPreferences("szam", Context.MODE_PRIVATE);
+        s.edit().putFloat("evosszes", (float) evosszes).apply();
 
     }
 }

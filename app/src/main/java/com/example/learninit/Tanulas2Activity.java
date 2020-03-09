@@ -69,7 +69,7 @@ public class Tanulas2Activity extends AppCompatActivity {
 
     }
 
-    private void Method(int rndomN) {
+    private void Method(final int rndomN) {
         final Random randomom= new Random();
         final int randomHelyValaszto= randomom.nextInt(4);
         databaseReference= FirebaseDatabase.getInstance().getReference().child("szotar").child(String.valueOf(rndomN));
@@ -80,54 +80,82 @@ public class Tanulas2Activity extends AppCompatActivity {
                 String magyar = dataSnapshot.child("magyar").getValue().toString();
                 final String angol = dataSnapshot.child("angol").getValue().toString();
                 Random rnd= new Random();
-                int rndomN=rnd.nextInt(182);
 
-                final int joHelyvalaszto=randomHelyValaszto;
-                if (randomHelyValaszto==1){
+                int rndomNum=rnd.nextInt(182);
+                while (rndomNum==rndomN){
+                     rndomNum=rnd.nextInt(182);
+                }
+
+
+                if (randomHelyValaszto==0){
                  szo1.setText(angol);
                 }
-                else {
+
                    DatabaseReference data=FirebaseDatabase.getInstance().getReference().child("szotar").child(String.valueOf(rndomN));
-                   data.addValueEventListener(new ValueEventListener() {
+                final int finalRndomNum = rndomNum;
+                data.addValueEventListener(new ValueEventListener() {
                        @Override
                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                            final String kovSzo0 = dataSnapshot.child("angol").getValue().toString();
-                           szo1.setText(kovSzo0);
+
+                           if (randomHelyValaszto==0){
+                               szo1.setText(angol);
+                           }
+                           else {
+                               szo1.setText(kovSzo0);
+                           }
                            Random rnd= new Random();
-                           int rndomN=rnd.nextInt(182);
+                           int rndomN1=rnd.nextInt(182);
+                           while (rndomN1==rndomN || rndomN1== finalRndomNum){
+                               rndomN1=rnd.nextInt(182);
+
+                           }
+
                            DatabaseReference data = FirebaseDatabase.getInstance().getReference().child("szotar").child(String.valueOf(rndomN));
+                           final int finalRndomN = rndomN1;
+                           final int finalRndomN1 = rndomN1;
+                           final int finalRndomN2 = rndomN1;
                            data.addValueEventListener(new ValueEventListener() {
                                @Override
                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                    final String kovSzo = dataSnapshot.child("angol").getValue().toString();
-                                   if (randomHelyValaszto==2){
+                                   if (randomHelyValaszto==1){
                                        szo2.setText(angol);
                                    }else{
                                        szo2.setText(kovSzo);
                                    }
 
                                    Random rnd= new Random();
-                                   int rndomN=rnd.nextInt(182);
+                                   int rndomN2=rnd.nextInt(182);
+                                   while (rndomN2==rndomN || rndomN2== finalRndomNum || rndomN2== finalRndomN1){
+                                       rndomN2=rnd.nextInt(182);
+
+                                   }
 
                                    DatabaseReference data1 = FirebaseDatabase.getInstance().getReference().child("szotar").child(String.valueOf(rndomN));
+                                   final int finalRndomN2 = rndomN2;
                                    data1.addValueEventListener(new ValueEventListener() {
                                        @Override
                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                            final String kovSzo1 = dataSnapshot.child("angol").getValue().toString();
-                                           if (randomHelyValaszto==3){
+                                           if (randomHelyValaszto==2){
                                                szo3.setText(angol);
                                            }else { szo3.setText(kovSzo1);}
 
 
                                            Random rnd= new Random();
-                                           int rndomN=rnd.nextInt(182);
+                                           int rndomN3=rnd.nextInt(182);
+                                           while (rndomN3==rndomN || rndomN3==finalRndomNum || rndomN3== finalRndomN1 || rndomN3==finalRndomN2){
+                                               rndomN3=rnd.nextInt(182);
+
+                                           }
 
                                            DatabaseReference data1 = FirebaseDatabase.getInstance().getReference().child("szotar").child(String.valueOf(rndomN));
                                            data1.addValueEventListener(new ValueEventListener() {
                                                @Override
                                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                                    final String kovSzo2 = dataSnapshot.child("angol").getValue().toString();
-                                                   if (randomHelyValaszto==4){
+                                                   if (randomHelyValaszto==3){
                                                        szo4.setText(angol);
 
                                                    }else {
@@ -137,7 +165,7 @@ public class Tanulas2Activity extends AppCompatActivity {
                                                    szo1.setOnClickListener(new View.OnClickListener() {
                                                        @Override
                                                        public void onClick(View v) {
-                                                           if (randomHelyValaszto==1)
+                                                           if (randomHelyValaszto==0)
                                                                bekertszoedit2.setText(angol);
                                                            else
                                                                bekertszoedit2.setText(kovSzo0);
@@ -146,7 +174,7 @@ public class Tanulas2Activity extends AppCompatActivity {
                                                    szo2.setOnClickListener(new View.OnClickListener() {
                                                        @Override
                                                        public void onClick(View v) {
-                                                           if (randomHelyValaszto==2)
+                                                           if (randomHelyValaszto==1)
                                                                bekertszoedit2.setText(angol);
                                                            else
                                                                bekertszoedit2.setText(kovSzo);
@@ -157,7 +185,7 @@ public class Tanulas2Activity extends AppCompatActivity {
                                                        @Override
                                                        public void onClick(View v) {
 
-                                                           if (randomHelyValaszto==3){
+                                                           if (randomHelyValaszto==2){
                                                                bekertszoedit2.setText(angol);
                                                            }else { bekertszoedit2.setText(kovSzo1);}
 
@@ -166,7 +194,7 @@ public class Tanulas2Activity extends AppCompatActivity {
                                                    szo4.setOnClickListener(new View.OnClickListener() {
                                                        @Override
                                                        public void onClick(View v) {
-                                                           if (randomHelyValaszto==4){
+                                                           if (randomHelyValaszto==3){
                                                                bekertszoedit2.setText(angol);
                                                            }else {
                                                                bekertszoedit2.setText(kovSzo2);
@@ -206,7 +234,7 @@ public class Tanulas2Activity extends AppCompatActivity {
                        }
                    });
 
-                }
+
 
 
 

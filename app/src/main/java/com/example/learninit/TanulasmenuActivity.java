@@ -155,7 +155,7 @@ public class TanulasmenuActivity extends AppCompatActivity {
 
                 }
                 else {
-                    tanulhat=false;
+                    tanulhat=true;
                     Toast.makeText(TanulasmenuActivity.this, "beleptem a falséba", Toast.LENGTH_LONG).show();
                 }
 

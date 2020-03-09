@@ -1,8 +1,6 @@
 package com.example.learninit;
 
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -11,6 +9,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -35,6 +36,7 @@ public class Regisztracio extends AppCompatActivity {
         setContentView(R.layout.activity_regisztracio);
         init();
             mAuth=FirebaseAuth.getInstance();
+
 
         visszaregisztracios.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,11 +70,19 @@ public class Regisztracio extends AppCompatActivity {
                 registryUser.setEmail(email);
                 registryUser.setFelhasznaloNev(felhasznaloNev);
 
+
+
                 if (TextUtils.isEmpty(jelszo)) {
                     Toast.makeText(Regisztracio.this, "A két jelszó nem egyezik meg!", Toast.LENGTH_LONG).show();
                     JelszoText.setBackground(getResources().getDrawable(R.drawable.button_color_red));
                     progressRegistry.setVisibility(View.GONE);
 
+                }
+                else if(jelszo.length()<=6) {
+
+                    Toast.makeText(Regisztracio.this, "A jelszónak hosszabnak kell lennie 6 karakternél!", Toast.LENGTH_LONG).show();
+                    JelszoText.setBackground(getResources().getDrawable(R.drawable.button_color_red));
+                    progressRegistry.setVisibility(View.GONE);
                 }
                 else if (TextUtils.isEmpty(felhasznaloNev)) {
                     Toast.makeText(Regisztracio.this, "A felhasználó név üres!", Toast.LENGTH_LONG).show();
@@ -90,23 +100,18 @@ public class Regisztracio extends AppCompatActivity {
                     progressRegistry.setVisibility(View.GONE);
                 } else
 
-                    mAuth.createUserWithEmailAndPassword(EmailText.getText().toString(),
-                            JelszoText.getText().toString())
-                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+
+                  mAuth.createUserWithEmailAndPassword(email, jelszo)
+                            .addOnCompleteListener(Regisztracio.this,new OnCompleteListener<AuthResult>() {
                                 @Override
-                                public void onComplete(Task<AuthResult> task) {
+                                public void onComplete(@NonNull Task<AuthResult> task) {
                                     progressRegistry.setVisibility(View.GONE);
 
                                     RegistryUser registryUser = new RegistryUser(felhasznaloNev, email);
                                     FirebaseDatabase.getInstance().getReference("Felhasznalo").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(registryUser).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(Task<Void> task) {
-                                            if (FelhasznalonevText.getText().toString().isEmpty() || EmailText.getText().toString().isEmpty() || JelszoIsmText.getText().toString().isEmpty() || JelszoText.getText().toString().isEmpty()) {
-                                                Toast.makeText(Regisztracio.this, "Sikertelen Regisztráció!",
-                                                        Toast.LENGTH_SHORT).show();
-
-                                            } else {
-
+                                            if ( task.isSuccessful()) {
                                                 Toast.makeText(Regisztracio.this, "Sikeres Regisztráció!",
                                                         Toast.LENGTH_SHORT).show();
                                                 FelhasznalonevText.setText("");
@@ -117,6 +122,13 @@ public class Regisztracio extends AppCompatActivity {
                                                 Intent intent = new Intent(Regisztracio.this, Bejelentkezes.class);
                                                 startActivity(intent);
                                                 finish();
+
+                                            } else {
+
+                                                Toast.makeText(Regisztracio.this, "Sikertelen Regisztráció!",
+                                                        Toast.LENGTH_SHORT).show();
+
+
 
                                             }
                                         }

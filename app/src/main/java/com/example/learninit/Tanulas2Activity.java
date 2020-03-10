@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -91,7 +92,7 @@ public class Tanulas2Activity extends AppCompatActivity {
                  szo1.setText(angol);
                 }
 
-                   DatabaseReference data=FirebaseDatabase.getInstance().getReference().child("szotar").child(String.valueOf(rndomN));
+                   DatabaseReference data=FirebaseDatabase.getInstance().getReference().child("szotar").child(String.valueOf(rndomNum));
                 final int finalRndomNum = rndomNum;
                 data.addValueEventListener(new ValueEventListener() {
                        @Override
@@ -110,11 +111,12 @@ public class Tanulas2Activity extends AppCompatActivity {
                                rndomN1=rnd.nextInt(182);
 
                            }
+                           Log.w("",String.valueOf(rndomN1));
 
-                           DatabaseReference data = FirebaseDatabase.getInstance().getReference().child("szotar").child(String.valueOf(rndomN));
-                           final int finalRndomN = rndomN1;
+                           DatabaseReference data = FirebaseDatabase.getInstance().getReference().child("szotar").child(String.valueOf(rndomN1));
+
                            final int finalRndomN1 = rndomN1;
-                           final int finalRndomN2 = rndomN1;
+
                            data.addValueEventListener(new ValueEventListener() {
                                @Override
                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -131,8 +133,9 @@ public class Tanulas2Activity extends AppCompatActivity {
                                        rndomN2=rnd.nextInt(182);
 
                                    }
+                                   Log.w("",String.valueOf(rndomN2));
 
-                                   DatabaseReference data1 = FirebaseDatabase.getInstance().getReference().child("szotar").child(String.valueOf(rndomN));
+                                   DatabaseReference data1 = FirebaseDatabase.getInstance().getReference().child("szotar").child(String.valueOf(rndomN2));
                                    final int finalRndomN2 = rndomN2;
                                    data1.addValueEventListener(new ValueEventListener() {
                                        @Override
@@ -149,8 +152,9 @@ public class Tanulas2Activity extends AppCompatActivity {
                                                rndomN3=rnd.nextInt(182);
 
                                            }
+                                           Log.w("",String.valueOf(rndomN3));
 
-                                           DatabaseReference data1 = FirebaseDatabase.getInstance().getReference().child("szotar").child(String.valueOf(rndomN));
+                                           DatabaseReference data1 = FirebaseDatabase.getInstance().getReference().child("szotar").child(String.valueOf(rndomN3));
                                            data1.addValueEventListener(new ValueEventListener() {
                                                @Override
                                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

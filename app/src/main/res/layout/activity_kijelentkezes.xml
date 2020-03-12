@@ -7,6 +7,16 @@
     tools:context=".KijelentkezesActivity"
     android:background="@drawable/hatter">
 
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottieAnimation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="szomoru.json"
+        app:lottie_loop="true"
+        android:visibility="visible"
+        />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -15,6 +25,7 @@
         android:id="@+id/bucsuview"
         android:layout_centerInParent="true"
         android:inputType="text"
+        android:textColor="@color/colorAccent"
         >
     </TextView>
     <Button

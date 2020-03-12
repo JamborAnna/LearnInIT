@@ -29,7 +29,7 @@ public class Bejelentkezes extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private TextView forgott;
     private LottieAnimationView lottiAnim;
-    private RelativeLayout Bejelentkezes;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

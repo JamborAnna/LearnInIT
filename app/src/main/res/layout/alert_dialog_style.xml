@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimaryDark"
+    android:layout_margin="20sp"
+
+    >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/KilepesView"
+        android:text="Kilépés"
+        android:textSize="30sp"
+        android:textAlignment="center"
+        android:fontFamily="sans-serif-black"
+        android:textColor="@color/colorAccent"
+        android:layout_margin="3sp"
+
+        >
+
+    </TextView>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorAccent"
+        >
+
+    </View>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100sp"
+        android:textAlignment="center"
+        android:text="Vissza akarsz menni a Bejelentkezéshez?"
+        android:textSize="25sp"
+        android:fontFamily="sans-serif-black"
+        android:textColor="@color/colorAccent"
+        android:layout_margin="3sp"
+        >
+    </TextView>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorAccent"
+        >
+
+    </View>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="3sp"
+        >
+        <Button
+            android:id="@+id/igenBut"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Igen"
+            android:background="@drawable/button_shape"
+            android:layout_margin="10sp"
+            >
+        </Button>
+        <Button
+            android:id="@+id/nemBut"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Nem"
+            android:background="@drawable/button_shape"
+            android:layout_margin="10sp">
+        </Button>
+
+    </LinearLayout>
+
+</LinearLayout>

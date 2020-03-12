@@ -1,6 +1,7 @@
 package com.example.learninit;
 
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -11,6 +12,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -140,6 +142,33 @@ public class Regisztracio extends AppCompatActivity {
                 }
 
         });
+    }
+    public void onBackPressed(){
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(Regisztracio.this);
+        View alertViev= getLayoutInflater().inflate(R.layout.alert_dialog_style,null);
+        Button igenBut=(Button)alertViev.findViewById(R.id.igenBut);
+        Button nemBut=(Button)alertViev.findViewById(R.id.nemBut);
+
+        alertDialogBuilder.setView(alertViev);
+        final AlertDialog alert = alertDialogBuilder.create();
+        alert.show();
+
+        igenBut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Regisztracio.this, Bejelentkezes.class);
+                startActivity(intent);
+                finish();
+            }
+
+        });
+        nemBut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alert.dismiss();
+            }
+        });
+
     }
 
 

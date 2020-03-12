@@ -1,8 +1,10 @@
 package com.example.learninit;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.TextKeyListener;
@@ -118,6 +120,33 @@ public class TanuloSzotarActivity extends AppCompatActivity {
             angolSzo.setText(upperStringAngol);
             return convertView;
         }
+
+    }
+    public void onBackPressed(){
+         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(TanuloSzotarActivity.this);
+         View alertViev= getLayoutInflater().inflate(R.layout.alert_dialog_style,null);
+        Button igenBut=(Button)alertViev.findViewById(R.id.igenBut);
+        Button nemBut=(Button)alertViev.findViewById(R.id.nemBut);
+
+        alertDialogBuilder.setView(alertViev);
+        final AlertDialog alert = alertDialogBuilder.create();
+        alert.show();
+
+        igenBut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TanuloSzotarActivity.this, Bejelentkezes.class);
+                startActivity(intent);
+                finish();
+            }
+
+        });
+        nemBut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alert.dismiss();
+            }
+        });
 
     }
     private void init() {

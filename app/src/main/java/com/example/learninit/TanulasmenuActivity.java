@@ -237,6 +237,33 @@ public class TanulasmenuActivity extends AppCompatActivity {
 
         }
     }
+    public void onBackPressed(){
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(TanulasmenuActivity.this);
+        View alertViev= getLayoutInflater().inflate(R.layout.alert_dialog_style,null);
+        Button igenBut=(Button)alertViev.findViewById(R.id.igenBut);
+        Button nemBut=(Button)alertViev.findViewById(R.id.nemBut);
+
+        alertDialogBuilder.setView(alertViev);
+        final AlertDialog alert = alertDialogBuilder.create();
+        alert.show();
+
+        igenBut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TanulasmenuActivity.this, Bejelentkezes.class);
+                startActivity(intent);
+                finish();
+            }
+
+        });
+        nemBut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alert.dismiss();
+            }
+        });
+
+    }
 
     private void init() {
         visszatanulas=findViewById(R.id.visszatanulas);

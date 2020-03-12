@@ -1,9 +1,11 @@
 package com.example.learninit;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
@@ -222,8 +224,33 @@ private MediaPlayer helyesMP3, helytelenMP3;
 
 
     }
+    public void onBackPressed(){
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(Tanulas1Activity.this);
+        View alertViev= getLayoutInflater().inflate(R.layout.alert_dialog_style,null);
+        Button igenBut=(Button)alertViev.findViewById(R.id.igenBut);
+        Button nemBut=(Button)alertViev.findViewById(R.id.nemBut);
 
+        alertDialogBuilder.setView(alertViev);
+        final AlertDialog alert = alertDialogBuilder.create();
+        alert.show();
 
+        igenBut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Tanulas1Activity.this, Bejelentkezes.class);
+                startActivity(intent);
+                finish();
+            }
+
+        });
+        nemBut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alert.dismiss();
+            }
+        });
+
+    }
 
     private void init() {
         tanulas1vissza=findViewById(R.id.tanulas1vissza);

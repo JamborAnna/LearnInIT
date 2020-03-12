@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimaryDark"
+    android:layout_margin="20sp"
+    >
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/KilepesView"
+        android:text="A helyes válasz:"
+        android:textSize="30sp"
+        android:textAlignment="center"
+        android:fontFamily="sans-serif-black"
+        android:textColor="@color/colorAccent"
+        android:layout_margin="3sp"
+
+        >
+
+    </TextView>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorAccent"
+        >
+
+    </View>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100sp"
+        android:textAlignment="center"
+        android:text=""
+        android:textSize="25sp"
+        android:fontFamily="sans-serif-black"
+        android:textColor="@color/colorAccent"
+        android:layout_margin="3sp"
+        android:id="@+id/valasz"
+        >
+    </TextView>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorAccent"
+        >
+
+    </View>
+
+        <Button
+            android:id="@+id/okBut"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ok"
+            android:background="@drawable/button_shape"
+            android:layout_margin="10sp"
+            >
+        </Button>
+
+    <Chronometer
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:id="@+id/chronometer"
+    >
+    </Chronometer>
+</LinearLayout>

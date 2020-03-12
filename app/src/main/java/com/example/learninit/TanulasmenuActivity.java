@@ -133,7 +133,6 @@ public class TanulasmenuActivity extends AppCompatActivity {
                     String text =  formatedDate+ "\r\n";
                     BufferedWriter bufferedWriter=new BufferedWriter(new FileWriter(file,true),1024);
                     bufferedWriter.write(String.valueOf(text));
-                    Toast.makeText(TanulasmenuActivity.this, "Kiírtatás sikeres volt!", Toast.LENGTH_SHORT).show();
                     bufferedWriter.close();
                 }catch (IOException e){
                     tanulasKezdete();
@@ -150,13 +149,13 @@ public class TanulasmenuActivity extends AppCompatActivity {
                 if (TanultDatum.equals(jelenlegiDatum)){
 
                     tanulhat=true;
-                    Toast.makeText(TanulasmenuActivity.this, "beleptem a truba", Toast.LENGTH_LONG).show();
+                   // Toast.makeText(TanulasmenuActivity.this, "beleptem a truba", Toast.LENGTH_LONG).show();
                     tanulasDatuma.get(Calendar.DAY_OF_YEAR+1);
 
                 }
                 else {
                     tanulhat=true;
-                    Toast.makeText(TanulasmenuActivity.this, "beleptem a falséba", Toast.LENGTH_LONG).show();
+                   // Toast.makeText(TanulasmenuActivity.this, "beleptem a falséba", Toast.LENGTH_LONG).show();
                 }
 
 

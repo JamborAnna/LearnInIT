@@ -65,6 +65,7 @@
             android:id="@+id/imageBut2"
             android:scaleType="fitCenter"
 
+
             >
         </ImageButton>
         <com.airbnb.lottie.LottieAnimationView

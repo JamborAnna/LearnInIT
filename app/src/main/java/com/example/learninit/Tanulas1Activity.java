@@ -12,14 +12,12 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.learninit.ui.TanultSzavak;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -34,7 +32,6 @@ private TextView bekerendoSzoview;
 private EditText bekertszoedit;
 private  Button tanulas1Ellenorzesbut;
 private DatabaseReference databaseReference;
-//private Random randomom = new Random();
 
 private MediaPlayer helyesMP3, helytelenMP3;
 
@@ -85,48 +82,21 @@ private MediaPlayer helyesMP3, helytelenMP3;
                     final String angol= dataSnapshot.child("angol").getValue().toString();
                     bekerendoSzoview.setText(magyar);
 
-
-                    TanultSzavak tanultSzavak = new TanultSzavak();
-
-                    final String angolTanult =dataSnapshot.child("angol").getValue().toString();
-                    final String magyarTanult = bekerendoSzoview.getText().toString();
-                    tanultSzavak.setTanultAngol(angolTanult);
-                    tanultSzavak.setTanultMagyar(magyarTanult);
-
-                    tanultSzavak = new TanultSzavak(magyarTanult, angolTanult);
-                    FirebaseDatabase.getInstance().getReference("TanultSzavak").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(tanultSzavak).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(Task<Void> task) {
-                            if (bekerendoSzoview.getText().toString().isEmpty()){
-                                Toast.makeText(Tanulas1Activity.this, "Sikertelen Regisztráció!",
-                                        Toast.LENGTH_SHORT).show();
-
-                            }
-                            else {
-
-                                Toast.makeText(Tanulas1Activity.this, "Sikeres Regisztráció!",
-                                        Toast.LENGTH_SHORT).show();
-
-                            }
-                        }
-                    });
-
-
                     tanulas1Ellenorzesbut.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
+
                             Random randomom = new Random();
-                            int number= randomom.nextInt(3)+1;
+                            final int number= randomom.nextInt(3)+1;
 
                             int szamlalo = Integer.parseInt(getSharedPreferences("szam", Context.MODE_PRIVATE).getString("szamlalo", ""));
                             sharedPreference(szamlalo);
                             szamlalo++;
 
-                            if (szamlalo>15){
+                            if (szamlalo>10){
                                 Intent intent = new Intent(Tanulas1Activity.this, TanulasmenuActivity.class);
                                 startActivity(intent);
                                 finish();
-
                             }else {
                                 //Log.w("",bekerendoSzoview.getText().toString());
                                 if (bekertszoedit.getText().toString().equals(angol) && szamlalo<10 ) {
@@ -170,23 +140,39 @@ private MediaPlayer helyesMP3, helytelenMP3;
                                     }
 
                                 } else {
-                                    Toast.makeText(Tanulas1Activity.this, "Rossz válasz!", Toast.LENGTH_SHORT).show();
+
+                                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(Tanulas1Activity.this);
+                                    View alertViev= getLayoutInflater().inflate(R.layout.valasz_alert,null);
+                                    Button okBut=(Button)alertViev.findViewById(R.id.okBut);
+                                    TextView valasz= alertViev.findViewById(R.id.valasz);
                                     helytelenMP3.start();
-                                    if (number == 1) {
-                                        Intent intent = new Intent(Tanulas1Activity.this, Tanulas1Activity.class);
-                                        startActivity(intent);
-                                        finish();
+                                    valasz.setText(angol);
+                                    alertDialogBuilder.setView(alertViev);
+                                    final AlertDialog alert = alertDialogBuilder.create();
+                                    alert.show();
+                                    okBut.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            alert.dismiss();
 
-                                    } else if (number == 2) {
-                                        Intent intent = new Intent(Tanulas1Activity.this, Tanulas2Activity.class);
-                                        startActivity(intent);
-                                        finish();
+                                            if (number == 1) {
+                                                Intent intent = new Intent(Tanulas1Activity.this, Tanulas1Activity.class);
+                                                startActivity(intent);
+                                                finish();
 
-                                    } else if (number == 3) {
-                                        Intent intent = new Intent(Tanulas1Activity.this, Tanulas3Activity.class);
-                                        startActivity(intent);
-                                        finish();
-                                    }
+                                            } else if (number == 2) {
+                                                Intent intent = new Intent(Tanulas1Activity.this, Tanulas2Activity.class);
+                                                startActivity(intent);
+                                                finish();
+
+                                            } else if (number == 3) {
+                                                Intent intent = new Intent(Tanulas1Activity.this, Tanulas3Activity.class);
+                                                startActivity(intent);
+                                                finish();
+                                            }
+                                        }
+                                    });
+
 
 
                                 }

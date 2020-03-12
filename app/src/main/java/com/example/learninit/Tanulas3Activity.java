@@ -118,7 +118,7 @@ public class Tanulas3Activity extends AppCompatActivity  {
 
                      final String magyar = dataSnapshot.child("magyar").getValue().toString();
                      final String kep_id = dataSnapshot.child("kep_id").getValue().toString();
-
+                    final String angol = dataSnapshot.child("angol").getValue().toString();
                      final String szotarID=dataSnapshot.child("szo_id").getValue().toString();
 
                      BekerdezendoSzoViev.setText(magyar);
@@ -218,7 +218,7 @@ public class Tanulas3Activity extends AppCompatActivity  {
                             @Override
                             public void onClick(View view) {
                                 Random randomom = new Random();
-                                int number = randomom.nextInt(3) + 1;
+                                final int number = randomom.nextInt(3) + 1;
                                 int szamlalo = Integer.parseInt(getSharedPreferences("szam", Context.MODE_PRIVATE).getString("szamlalo", "0"));
                                 szamlalo++;
                                 sharedPreference(szamlalo);
@@ -263,26 +263,44 @@ public class Tanulas3Activity extends AppCompatActivity  {
 
                                     }else{
 
-                                            cross.setVisibility(View.VISIBLE);
-                                            helytelenMP3.start();
-                                            Toast.makeText(Tanulas3Activity.this, "Rossz válasz!", Toast.LENGTH_SHORT).show();
-                                            cross.setVisibility(View.GONE);
 
-                                            if (number == 1) {
-                                                Intent intent = new Intent(Tanulas3Activity.this, Tanulas1Activity.class);
-                                                startActivity(intent);
-                                                finish();
 
-                                            } else if (number == 2) {
-                                                Intent intent = new Intent(Tanulas3Activity.this, Tanulas2Activity.class);
-                                                startActivity(intent);
-                                                finish();
+                                        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(Tanulas3Activity.this);
+                                        View alertViev= getLayoutInflater().inflate(R.layout.valasz_alert,null);
+                                        Button okBut=(Button)alertViev.findViewById(R.id.okBut);
+                                        TextView valasz= alertViev.findViewById(R.id.valasz);
+                                        helytelenMP3.start();
+                                        valasz.setText(angol);
+                                        alertDialogBuilder.setView(alertViev);
+                                        final AlertDialog alert = alertDialogBuilder.create();
+                                        alert.show();
+                                        okBut.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
 
-                                            } else if (number == 3) {
-                                                Intent intent = new Intent(Tanulas3Activity.this, Tanulas3Activity.class);
-                                                startActivity(intent);
-                                                finish();
+                                                alert.dismiss();
+
+                                                if (number == 1) {
+                                                    Intent intent = new Intent(Tanulas3Activity.this, Tanulas1Activity.class);
+                                                    startActivity(intent);
+                                                    finish();
+
+                                                } else if (number == 2) {
+                                                    Intent intent = new Intent(Tanulas3Activity.this, Tanulas2Activity.class);
+                                                    startActivity(intent);
+                                                    finish();
+
+                                                } else if (number == 3) {
+                                                    Intent intent = new Intent(Tanulas3Activity.this, Tanulas3Activity.class);
+                                                    startActivity(intent);
+                                                    finish();
+                                                }
                                             }
+                                        });
+
+
+
+
                                         }
 
 

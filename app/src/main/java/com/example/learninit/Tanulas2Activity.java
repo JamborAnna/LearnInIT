@@ -282,7 +282,7 @@ public class Tanulas2Activity extends AppCompatActivity {
                         public void onClick(View view) {
 
                             Random randomom = new Random();
-                            int number= randomom.nextInt(3)+1;
+                            final int number= randomom.nextInt(3)+1;
 
                             int szamlalo = Integer.parseInt(getSharedPreferences("szam", Context.MODE_PRIVATE).getString("szamlalo", ""));
                             szamlalo++;
@@ -326,23 +326,46 @@ public class Tanulas2Activity extends AppCompatActivity {
                                     }
 
                                 } else {
+
+
+                                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(Tanulas2Activity.this);
+                                    View alertViev= getLayoutInflater().inflate(R.layout.valasz_alert,null);
+                                    Button okBut=(Button)alertViev.findViewById(R.id.okBut);
+                                    TextView valasz= alertViev.findViewById(R.id.valasz);
                                     helytelenMP3.start();
-                                    Toast.makeText(Tanulas2Activity.this, "Rossz válasz!", Toast.LENGTH_SHORT).show();
-                                    if (number == 1) {
-                                        Intent intent = new Intent(Tanulas2Activity.this, Tanulas1Activity.class);
-                                        startActivity(intent);
-                                        finish();
+                                    valasz.setText(angol);
+                                    alertDialogBuilder.setView(alertViev);
+                                    final AlertDialog alert = alertDialogBuilder.create();
+                                    alert.show();
 
-                                    } else if (number == 2) {
-                                        Intent intent = new Intent(Tanulas2Activity.this, Tanulas2Activity.class);
-                                        startActivity(intent);
-                                        finish();
+                                    okBut.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            alert.dismiss();
 
-                                    } else if (number == 3) {
-                                        Intent intent = new Intent(Tanulas2Activity.this, Tanulas3Activity.class);
-                                        startActivity(intent);
-                                        finish();
-                                    }
+
+                                            if (number == 1) {
+                                                Intent intent = new Intent(Tanulas2Activity.this, Tanulas1Activity.class);
+                                                startActivity(intent);
+                                                finish();
+
+                                            } else if (number == 2) {
+                                                Intent intent = new Intent(Tanulas2Activity.this, Tanulas2Activity.class);
+                                                startActivity(intent);
+                                                finish();
+
+                                            } else if (number == 3) {
+                                                Intent intent = new Intent(Tanulas2Activity.this, Tanulas3Activity.class);
+                                                startActivity(intent);
+                                                finish();
+                                            }
+
+                                        }
+                                    });
+
+
+
+
 
                                 }
                             }

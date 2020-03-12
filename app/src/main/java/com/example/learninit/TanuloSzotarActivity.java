@@ -45,10 +45,8 @@ public class TanuloSzotarActivity extends AppCompatActivity {
         setContentView(R.layout.activity_tanuloszotar);
         init();
 
-        //firebaseDatabase=firebaseDatabase.getReference();
-       databaseReference=FirebaseDatabase.getInstance().getReference("szotar");
-       //lista.setAdapter(arrayAdapter);
 
+       databaseReference=FirebaseDatabase.getInstance().getReference("szotar");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange( DataSnapshot dataSnapshot) {
@@ -57,7 +55,7 @@ public class TanuloSzotarActivity extends AppCompatActivity {
 
                     szotarLista =ds.getValue(SzotarList.class);
                    szavak.add(szotarLista);
-                    //arrayList.add(szotarLista.getMagyar()+"/"+ szotarLista.getAngol());
+
                 }
                 custonAdapter= new CustonAdapter(szavak);
                 lista.setAdapter(custonAdapter);
@@ -70,10 +68,6 @@ public class TanuloSzotarActivity extends AppCompatActivity {
         });
 
 
-
-
-
-
         visszaTanult.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,8 +76,6 @@ public class TanuloSzotarActivity extends AppCompatActivity {
                 finish();
             }
         });
-
-
     }
     class  CustonAdapter extends BaseAdapter{
         List<SzotarList> lista;
@@ -154,10 +146,7 @@ public class TanuloSzotarActivity extends AppCompatActivity {
         tanuloSZotar =findViewById(R.id.tanault);
         lista =findViewById(R.id.tanultList);
         szavak= new ArrayList<>();
-
-
         arrayList=new ArrayList<>();
-
         szotarLista =new SzotarList();
         custonAdapter= new CustonAdapter(szavak);
     }

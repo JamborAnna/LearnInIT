@@ -173,7 +173,7 @@ public class Regisztracio extends AppCompatActivity {
 
 
     private void init() {
-        progressRegistry= findViewById(R.id.progressRegistry);
+
         visszaregisztracios = findViewById(R.id.visszaregisztracios);
         FelhasznalonevText = findViewById(R.id.FelhasznalonevText);
         EmailText = findViewById(R.id.EmailText);

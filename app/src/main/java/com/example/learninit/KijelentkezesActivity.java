@@ -18,7 +18,7 @@ private Button Bejelentkezeshez;
     private LottieAnimationView lottiAnim;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        lottiAnim.setVisibility(View.VISIBLE);
+       // lottiAnim.setVisibility(View.VISIBLE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kijelentkezes);
         init();
@@ -64,6 +64,7 @@ private Button Bejelentkezeshez;
     private void init() {
         bucsuview=findViewById(R.id.bucsuview);
         Bejelentkezeshez=findViewById(R.id.Bejelentkezeshez);
+        lottiAnim = findViewById(R.id.lottieAnimation);
 
     }
 }

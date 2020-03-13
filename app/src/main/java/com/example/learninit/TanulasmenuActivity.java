@@ -86,14 +86,21 @@ public class TanulasmenuActivity extends AppCompatActivity {
             evosszesSharedPreference(0);
         }
 
+
+
+
+
         Date date = Calendar.getInstance().getTime();
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss ");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd ");
           jelenlegiDatum = dateFormat.format(date);
 
         try {
             file= new File(Environment.getExternalStorageDirectory().getPath(),"belepesDatum.csv");
+            if (!file.exists()){
 
+
+            }
             BufferedReader bufferedReader=new BufferedReader(new FileReader(file),1024);
             String sor;
           while ((sor=bufferedReader.readLine())!=null)
@@ -101,7 +108,7 @@ public class TanulasmenuActivity extends AppCompatActivity {
               TanultDatum=sor;
           }
 
-            Toast.makeText(TanulasmenuActivity.this, "Kiolvasas sikeres volt!", Toast.LENGTH_SHORT).show();
+
             bufferedReader.close();
 
         } catch (IOException e) {
@@ -116,69 +123,66 @@ public class TanulasmenuActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (szamlalo==10){
                     tanulhat=false;
-                }
-                sharedPreference( 0);
-                sharedPreference(szamlalo+1);
-
-
-
-
-                file=new File(Environment.getExternalStorageDirectory(),("belepesDatum.csv"));
-                try{
-
-                    Date date = Calendar.getInstance().getTime();
-
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss ");
-                    String formatedDate = dateFormat.format(date);
-                    String text =  formatedDate+ "\r\n";
-                    BufferedWriter bufferedWriter=new BufferedWriter(new FileWriter(file,true),1024);
-                    bufferedWriter.write(String.valueOf(text));
-                    bufferedWriter.close();
-                }catch (IOException e){
-                    tanulasKezdete();
-                    return;
-
+                }else {
+                    sharedPreference( 0);
+                    sharedPreference(szamlalo+1);
 
                 }
 
 
 
-
-                //if (oraSharedPreference()
-
-                if (TanultDatum.equals(jelenlegiDatum)){
+                if (!TanultDatum.equals(jelenlegiDatum)){
 
                     tanulhat=true;
-                   // Toast.makeText(TanulasmenuActivity.this, "beleptem a truba", Toast.LENGTH_LONG).show();
-                    tanulasDatuma.get(Calendar.DAY_OF_YEAR+1);
+
+                    file=new File(Environment.getExternalStorageDirectory(),("belepesDatum.csv"));
+                    try{
+
+                        Date date = Calendar.getInstance().getTime();
+
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd ");
+                        String formatedDate = dateFormat.format(date);
+                        String text =  formatedDate+ "\r\n";
+                        BufferedWriter bufferedWriter=new BufferedWriter(new FileWriter(file,true),1024);
+                        bufferedWriter.write(String.valueOf(text));
+                        bufferedWriter.close();
+                    }catch (IOException e){
+                        tanulasKezdete();
+                        return;
+                    }
 
                 }
                 else {
-                    tanulhat=true;
-                   // Toast.makeText(TanulasmenuActivity.this, "beleptem a falséba", Toast.LENGTH_LONG).show();
+                    tanulhat=false;
+
                 }
-
-
 
                 if (tanulhat==false != szamlalo>10) {
 
 
-                    //sharedPreference(0);
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(TanulasmenuActivity.this);
+                    View alertViev= getLayoutInflater().inflate(R.layout.valasz_alert,null);
+                    Button okBut=(Button)alertViev.findViewById(R.id.okBut);
+                     TextView valasz= alertViev.findViewById(R.id.valasz);
+                     TextView KilepesView= alertViev.findViewById(R.id.KilepesView);
+                    KilepesView.setText("Ma már tanultál!");
+                    valasz.setText("Térj vissza holnap!");
 
-                   AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(TanulasmenuActivity.this);
+                    alertDialogBuilder.setView(alertViev);
+                    final AlertDialog alert = alertDialogBuilder.create();
+                    alert.show();
+                     okBut.setOnClickListener(new View.OnClickListener() {
+                         @Override
+                         public void onClick(View v) {
+                            alert.dismiss();
+                         }
+                     });
 
-                    alertDialogBuilder.setTitle("Ma már tanultál")
-                                .setMessage("Ma már tanultál, térj vissza holnap!")
-                                .setNegativeButton("Oké", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
 
-                        }
-                    });
-                        AlertDialog alert = alertDialogBuilder.create();
-                        alert.show();
 
-                   //Toast.makeText(TanulasmenuActivity.this, "Térj vissza holnap!", Toast.LENGTH_LONG).show();
+
+
+
                 }
                 else if (tanulhat==true  && szamlalo<10) {
                     tanulasKezdete();

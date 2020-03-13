@@ -7,20 +7,28 @@
     tools:context=".KijelentkezesActivity"
     android:background="@drawable/hatter">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bucsuview"
+        android:layout_margin="80sp"
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/lottieAnimation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:lottie_autoPlay="true"
-        app:lottie_fileName="szomoru.json"
-        app:lottie_loop="true"
-        android:visibility="visible"
-        />
+        >
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottieAnimation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="szomoru.json"
+            app:lottie_loop="true"
+            android:visibility="visible"
+            />
+    </LinearLayout>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Remélem ismét látjuk! :) "
+        android:text="Remélem ismét látunk!  "
         android:textSize="30sp"
         android:id="@+id/bucsuview"
         android:layout_centerInParent="true"

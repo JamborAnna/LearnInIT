@@ -6,7 +6,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
-import android.content.DialogInterface;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 
@@ -21,7 +21,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.airbnb.lottie.LottieAnimationView;
 import com.bumptech.glide.Glide;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -39,8 +38,7 @@ public class Tanulas3Activity extends AppCompatActivity  {
     private MediaPlayer helyesMP3, helytelenMP3;
     private DatabaseReference databaseReference;
 
-    private LottieAnimationView pipa;
-    private LottieAnimationView cross;
+
 
 
     @Override
@@ -141,7 +139,7 @@ public class Tanulas3Activity extends AppCompatActivity  {
                             @Override
                             public void onClick(View view) {
                                 Random randomom = new Random();
-                                int number= randomom.nextInt(3)+1;
+                                final int number= randomom.nextInt(3)+1;
 
                                 int szamlalo = Integer.parseInt(getSharedPreferences("szam", Context.MODE_PRIVATE).getString("szamlalo", ""));
                                 szamlalo++;
@@ -154,7 +152,7 @@ public class Tanulas3Activity extends AppCompatActivity  {
                                     finish();
                                 }else {
                                     if (finalA ==1){
-                                        pipa.setVisibility(View.VISIBLE);
+
                                         Toast.makeText(Tanulas3Activity.this, "Helyes válasz!", Toast.LENGTH_SHORT).show();
                                         float het =Float.parseFloat(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getFloat("het", 0)));
                                         het++;
@@ -170,7 +168,7 @@ public class Tanulas3Activity extends AppCompatActivity  {
 
 
                                         helyesMP3.start();
-                                        pipa.setVisibility(View.GONE);
+
                                         if (number == 1) {
                                             Intent intent = new Intent(Tanulas3Activity.this, Tanulas1Activity.class);
                                             startActivity(intent);
@@ -187,25 +185,47 @@ public class Tanulas3Activity extends AppCompatActivity  {
                                             finish();
                                         }
                                     }else {
-                                        cross.setVisibility(View.VISIBLE);
+
                                         helytelenMP3.start();
-                                        Toast.makeText(Tanulas3Activity.this, "Rossz válasz!", Toast.LENGTH_SHORT).show();
-                                        cross.setVisibility(View.GONE);
-                                        if (number == 1) {
-                                            Intent intent = new Intent(Tanulas3Activity.this, Tanulas1Activity.class);
-                                            startActivity(intent);
-                                            finish();
 
-                                        } else if (number == 2) {
-                                            Intent intent = new Intent(Tanulas3Activity.this, Tanulas2Activity.class);
-                                            startActivity(intent);
-                                            finish();
 
-                                        } else if (number == 3) {
-                                            Intent intent = new Intent(Tanulas3Activity.this, Tanulas3Activity.class);
-                                            startActivity(intent);
-                                            finish();
-                                        }
+                                        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(Tanulas3Activity.this);
+                                        View alertViev= getLayoutInflater().inflate(R.layout.valasz_alert,null);
+                                        Button okBut=(Button)alertViev.findViewById(R.id.okBut);
+                                        TextView valasz= alertViev.findViewById(R.id.valasz);
+                                        helytelenMP3.start();
+                                        valasz.setText(angol);
+                                        alertDialogBuilder.setView(alertViev);
+                                        final AlertDialog alert = alertDialogBuilder.create();
+                                        alert.show();
+                                        okBut.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+
+                                                alert.dismiss();
+
+                                                if (number == 1) {
+                                                    Intent intent = new Intent(Tanulas3Activity.this, Tanulas1Activity.class);
+                                                    startActivity(intent);
+                                                    finish();
+
+                                                } else if (number == 2) {
+                                                    Intent intent = new Intent(Tanulas3Activity.this, Tanulas2Activity.class);
+                                                    startActivity(intent);
+                                                    finish();
+
+                                                } else if (number == 3) {
+                                                    Intent intent = new Intent(Tanulas3Activity.this, Tanulas3Activity.class);
+                                                    startActivity(intent);
+                                                    finish();
+                                                }
+                                            }
+                                        });
+
+
+
+
+
                                     }
 
                                 }
@@ -229,9 +249,9 @@ public class Tanulas3Activity extends AppCompatActivity  {
                                     finish();
                                 } else {
                                     if (finalA==0) {
-                                        pipa.setVisibility(View.VISIBLE);
+
                                         helyesMP3.start();
-                                        pipa.setVisibility(View.GONE);
+
                                         Toast.makeText(Tanulas3Activity.this, "Helyes válasz!", Toast.LENGTH_SHORT).show();
                                         float het = Float.parseFloat(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getFloat("het", 0)));
                                         het++;
@@ -344,8 +364,7 @@ public class Tanulas3Activity extends AppCompatActivity  {
         imageBut2=findViewById(R.id.imageBut2);
         helyesMP3=MediaPlayer.create(this,R.raw.dicseret);
         helytelenMP3=MediaPlayer.create(this,R.raw.helytelen);
-        pipa=findViewById(R.id.pipa);
-        cross=findViewById(R.id.cross);
+
 
 
 

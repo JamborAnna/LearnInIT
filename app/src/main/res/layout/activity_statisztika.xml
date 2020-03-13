@@ -11,6 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/visszaopciokhoz"
+
+
         >
         <Button
             android:layout_width="50dp"
@@ -19,11 +21,39 @@
             android:id="@+id/visszatanulnimenube">
 
         </Button>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Statisztika"
+            android:textSize="30sp"
+            android:fontFamily="sans-serif-black"
+            android:textColor="@color/colorAccent"
+            android:id="@+id/fejlecStat"
+            android:layout_below="@+id/visszaopciokhoz"
+            android:layout_marginEnd="80sp"
+            android:textAlignment="center"
+
+            >
+        </TextView>
     </LinearLayout>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="Heti statisztika:"
+        android:textColor="@color/colorAccent"
+        android:id="@+id/textHeti"
         android:layout_below="@+id/visszaopciokhoz"
+        android:textSize="20sp"
+        android:textAlignment="center"
+        android:layout_margin="2sp"
+        >
+    </TextView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textHeti"
         android:text="Heti jó:"
         android:id="@+id/hetiStatview"
         android:textSize="30sp"
@@ -35,7 +65,19 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="Havi statisztika:"
+        android:textColor="@color/colorAccent"
+        android:id="@+id/textHavi"
         android:layout_below="@+id/hetiStatview"
+        android:textSize="20sp"
+        android:textAlignment="center"
+        android:layout_margin="2sp"
+        >
+    </TextView>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textHavi"
         android:text="Havi jó:"
         android:id="@+id/haviStatisztikaView"
         android:textSize="30sp"
@@ -47,13 +89,26 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="Éves statisztika:"
+        android:textColor="@color/colorAccent"
+        android:id="@+id/textEves"
         android:layout_below="@+id/haviStatisztikaView"
+        android:textSize="20sp"
+        android:textAlignment="center"
+        android:layout_margin="2sp"
+        >
+    </TextView>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textEves"
         android:text="Éves jó:"
         android:textSize="30sp"
         android:background="@drawable/button_shape"
         android:layout_margin="5sp"
         android:id="@+id/evStatisztikaView"
         android:textAlignment="center"
+
         >
     </TextView>
 

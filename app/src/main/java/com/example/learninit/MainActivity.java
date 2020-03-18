@@ -2,14 +2,20 @@ package com.example.learninit;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.p2p.WifiP2pManager;
+import android.nfc.Tag;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -18,12 +24,17 @@ public class MainActivity extends AppCompatActivity {
     private Button RegisztracioBut;
     private Button BejelentkezesBut;
     private ProgressBar progressMain;
+    private static final int kerelemKod = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         init();
+
+
+        engedelyek();
+
 
         if (!vanWifi()){
 
@@ -95,6 +106,29 @@ public class MainActivity extends AppCompatActivity {
         RegisztracioBut=findViewById(R.id.RegisztracioBut);
         BejelentkezesBut=findViewById(R.id.BejelentkezesBut);
         progressMain=findViewById(R.id.progressMain);
+
+    }
+    private void engedelyek(){
+            Log.d(String.valueOf(MainActivity.this), "Engedély kérése");
+            String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE};
+
+           if(ContextCompat.checkSelfPermission(this.getApplicationContext(),
+                    permissions[0]) == PackageManager.PERMISSION_GRANTED
+                    && ContextCompat.checkSelfPermission(this.getApplicationContext(),
+                    permissions[1]) == PackageManager.PERMISSION_GRANTED){
+
+
+
+
+            }else{
+                ActivityCompat.requestPermissions(MainActivity.this,
+                        permissions,
+                        kerelemKod);
+
+            }
+
+
 
     }
 }

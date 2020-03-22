@@ -1,20 +1,18 @@
 package com.example.learninit;
 
-
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -30,7 +28,8 @@ public class Regisztracio extends AppCompatActivity {
     private EditText JelszoIsmText;
     private Button RegKuldBut;
     private FirebaseAuth mAuth;
-    private ProgressBar progressRegistry;
+    private LottieAnimationView lottiAnim;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,8 +52,15 @@ public class Regisztracio extends AppCompatActivity {
         RegKuldBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                FelhasznalonevText.setVisibility(View.GONE);
+                EmailText.setVisibility(View.GONE);
+                JelszoText.setVisibility(View.GONE);
+                JelszoIsmText.setVisibility(View.GONE);
+                RegKuldBut.setVisibility(View.GONE);
 
 
+
+                lottiAnim.setVisibility(View.VISIBLE);
                 final String felhasznaloNev = FelhasznalonevText.getText().toString();
                 final String email = EmailText.getText().toString();
                 String jelszo = JelszoText.getText().toString();
@@ -66,7 +72,7 @@ public class Regisztracio extends AppCompatActivity {
                 EmailText.setBackground(getResources().getDrawable(R.drawable.button_shape));
                 JelszoIsmText.setBackground(getResources().getDrawable(R.drawable.button_shape));
 
-                progressRegistry.setVisibility(View.VISIBLE);
+
 
                 RegistryUser registryUser = new RegistryUser();
                 registryUser.setEmail(email);
@@ -77,29 +83,54 @@ public class Regisztracio extends AppCompatActivity {
                 if (TextUtils.isEmpty(jelszo)) {
                     Toast.makeText(Regisztracio.this, "A két jelszó nem egyezik meg!", Toast.LENGTH_LONG).show();
                     JelszoText.setBackground(getResources().getDrawable(R.drawable.button_color_red));
-                    progressRegistry.setVisibility(View.GONE);
+                    lottiAnim.setVisibility(View.GONE);
+                    FelhasznalonevText.setVisibility(View.VISIBLE);
+                    EmailText.setVisibility(View.VISIBLE);
+                    JelszoText.setVisibility(View.VISIBLE);
+                    JelszoIsmText.setVisibility(View.VISIBLE);
+                    RegKuldBut.setVisibility(View.VISIBLE);
 
                 }
                 else if(jelszo.length()<=6) {
 
                     Toast.makeText(Regisztracio.this, "A jelszónak hosszabnak kell lennie 6 karakternél!", Toast.LENGTH_LONG).show();
                     JelszoText.setBackground(getResources().getDrawable(R.drawable.button_color_red));
-                    progressRegistry.setVisibility(View.GONE);
+                    lottiAnim.setVisibility(View.GONE);
+                    FelhasznalonevText.setVisibility(View.VISIBLE);
+                    EmailText.setVisibility(View.VISIBLE);
+                    JelszoText.setVisibility(View.VISIBLE);
+                    JelszoIsmText.setVisibility(View.VISIBLE);
+                    RegKuldBut.setVisibility(View.VISIBLE);
                 }
                 else if (TextUtils.isEmpty(felhasznaloNev)) {
                     Toast.makeText(Regisztracio.this, "A felhasználó név üres!", Toast.LENGTH_LONG).show();
                     FelhasznalonevText.setBackground(getResources().getDrawable(R.drawable.button_color_red));
-                    progressRegistry.setVisibility(View.GONE);
+                    lottiAnim.setVisibility(View.GONE);
+                    FelhasznalonevText.setVisibility(View.VISIBLE);
+                    EmailText.setVisibility(View.VISIBLE);
+                    JelszoText.setVisibility(View.VISIBLE);
+                    JelszoIsmText.setVisibility(View.VISIBLE);
+                    RegKuldBut.setVisibility(View.VISIBLE);
                 }
                 else if (TextUtils.isEmpty(email)) {
                     Toast.makeText(Regisztracio.this, "Az email üres!", Toast.LENGTH_LONG).show();
                     EmailText.setBackground(getResources().getDrawable(R.drawable.button_color_red));
-                    progressRegistry.setVisibility(View.GONE);
+                    lottiAnim.setVisibility(View.GONE);
+                    FelhasznalonevText.setVisibility(View.VISIBLE);
+                    EmailText.setVisibility(View.VISIBLE);
+                    JelszoText.setVisibility(View.VISIBLE);
+                    JelszoIsmText.setVisibility(View.VISIBLE);
+                    RegKuldBut.setVisibility(View.VISIBLE);
                 }
-                else if (TextUtils.isEmpty(jelszoism) || (jelszo == jelszoism)) {
+                else if (TextUtils.isEmpty(jelszoism) || (jelszo.equals(jelszoism) )) {
                     Toast.makeText(Regisztracio.this, "A két jelszó nem egyezik meg!", Toast.LENGTH_LONG).show();
                     JelszoIsmText.setBackground(getResources().getDrawable(R.drawable.button_color_red));
-                    progressRegistry.setVisibility(View.GONE);
+                    lottiAnim.setVisibility(View.GONE);
+                    FelhasznalonevText.setVisibility(View.VISIBLE);
+                    EmailText.setVisibility(View.VISIBLE);
+                    JelszoText.setVisibility(View.VISIBLE);
+                    JelszoIsmText.setVisibility(View.VISIBLE);
+                    RegKuldBut.setVisibility(View.VISIBLE);
                 } else
 
 
@@ -107,7 +138,7 @@ public class Regisztracio extends AppCompatActivity {
                             .addOnCompleteListener(Regisztracio.this,new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
-                                    progressRegistry.setVisibility(View.GONE);
+
 
                                     RegistryUser registryUser = new RegistryUser(felhasznaloNev, email);
                                     FirebaseDatabase.getInstance().getReference("Felhasznalo").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(registryUser).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -120,7 +151,7 @@ public class Regisztracio extends AppCompatActivity {
                                                 EmailText.setText("");
                                                 JelszoText.setText("");
                                                 JelszoIsmText.setText("");
-
+                                                lottiAnim.setVisibility(View.GONE);
                                                 Intent intent = new Intent(Regisztracio.this, Bejelentkezes.class);
                                                 startActivity(intent);
                                                 finish();
@@ -129,7 +160,11 @@ public class Regisztracio extends AppCompatActivity {
 
                                                 Toast.makeText(Regisztracio.this, "Sikertelen Regisztráció!",
                                                         Toast.LENGTH_SHORT).show();
-
+                                                        FelhasznalonevText.setVisibility(View.VISIBLE);
+                                                        EmailText.setVisibility(View.VISIBLE);
+                                                        JelszoText.setVisibility(View.VISIBLE);
+                                                        JelszoIsmText.setVisibility(View.VISIBLE);
+                                                        RegKuldBut.setVisibility(View.VISIBLE);
 
 
                                             }
@@ -181,6 +216,7 @@ public class Regisztracio extends AppCompatActivity {
         JelszoIsmText = findViewById(R.id.JelszoIsmText);
         RegKuldBut = findViewById(R.id.RegKuldBut);
         mAuth=FirebaseAuth.getInstance();
+        lottiAnim = findViewById(R.id.lottieAnimation);
 
     }
 }

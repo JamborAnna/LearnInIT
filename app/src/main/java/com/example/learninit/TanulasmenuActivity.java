@@ -140,6 +140,7 @@ public class TanulasmenuActivity extends AppCompatActivity {
 
                         Date date = Calendar.getInstance().getTime();
 
+
                         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd ");
                         String formatedDate = dateFormat.format(date);
                         String text =  formatedDate+ "\r\n";

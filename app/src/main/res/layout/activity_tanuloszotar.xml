@@ -40,8 +40,6 @@
         android:layout_height="match_parent"
         android:id="@+id/tanultList"
         android:scrollbars="vertical"
-
-
         >
     </ListView>
 

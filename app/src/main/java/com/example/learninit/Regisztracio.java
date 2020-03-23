@@ -181,8 +181,8 @@ public class Regisztracio extends AppCompatActivity {
     public void onBackPressed(){
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(Regisztracio.this);
         View alertViev= getLayoutInflater().inflate(R.layout.alert_dialog_style,null);
-        Button igenBut=(Button)alertViev.findViewById(R.id.igenBut);
-        Button nemBut=(Button)alertViev.findViewById(R.id.nemBut);
+        Button igenBut=alertViev.findViewById(R.id.igenBut);
+        Button nemBut=alertViev.findViewById(R.id.nemBut);
 
         alertDialogBuilder.setView(alertViev);
         final AlertDialog alert = alertDialogBuilder.create();

@@ -293,7 +293,8 @@ public class Tanulas2Activity extends AppCompatActivity {
                                 startActivity(intent);
                                 finish();
                             }else {
-                                if (bekertszoedit2.getText().toString().equals(angol) ) {
+                                String helyesValasz=bekertszoedit2.getText().toString().toLowerCase();
+                                if (helyesValasz.equals(angol) ) {
                                     helyesMP3.start();
                                     Toast.makeText(Tanulas2Activity.this, "Helyes válasz!", Toast.LENGTH_SHORT).show();
                                     float het =Float.parseFloat(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getFloat("het", 0)));

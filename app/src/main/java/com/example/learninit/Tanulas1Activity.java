@@ -96,8 +96,9 @@ private MediaPlayer helyesMP3, helytelenMP3;
                                 startActivity(intent);
                                 finish();
                             }else {
+                                String helyesValasz=bekertszoedit.getText().toString().toLowerCase();
                                 //Log.w("",bekerendoSzoview.getText().toString());
-                                if (bekertszoedit.getText().toString().equals(angol) && szamlalo<10 ) {
+                                if (helyesValasz.equals(angol) && szamlalo<10 ) {
 
                                     Toast.makeText(Tanulas1Activity.this, "Helyes válasz!", Toast.LENGTH_SHORT).show();
                                     helyesMP3.start();

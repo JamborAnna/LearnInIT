@@ -4,7 +4,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -12,7 +11,6 @@ import android.os.Environment;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -34,7 +32,6 @@ public class TanulasmenuActivity extends AppCompatActivity {
     private  AlertDialog alertDialog;
     private String jelenlegiDatum="";
     private  Calendar tanulasDatuma;
-    private TextView jelenlegiDatumWIEV,tanulaDatumaWiev;
     public static int szamlalo=0;
     private Boolean tanulhat=true;
     private File file;
@@ -201,7 +198,6 @@ public class TanulasmenuActivity extends AppCompatActivity {
             }
         });
     }
-
     private void tanulasKezdete() {
         //Random Activity választó
         Random randomom = new Random();
@@ -268,26 +264,19 @@ public class TanulasmenuActivity extends AppCompatActivity {
         });
 
     }
-
     private void init() {
         visszatanulas=findViewById(R.id.visszatanulas);
         napibut=findViewById(R.id.napibut);
         tanultBut=findViewById(R.id.tanultBut);
-        tanulaDatumaWiev=findViewById(R.id.tanulaDatumaWiev);
+
 
 
 
 
     }
-
     private void sharedPreference(int szamlalo) {
         SharedPreferences s = getSharedPreferences("szam", Context.MODE_PRIVATE);
         s.edit().putString("szamlalo", String.valueOf(szamlalo)).apply();
-    }
-    private void oraSharedPreference(int ora) {
-        SharedPreferences s = getSharedPreferences("szam", Context.MODE_PRIVATE);
-        s.edit().putInt("ora", ora).apply();
-
     }
     private void hetosszesSharedPreference(double hetosszes) {
         SharedPreferences s = getSharedPreferences("szam", Context.MODE_PRIVATE);

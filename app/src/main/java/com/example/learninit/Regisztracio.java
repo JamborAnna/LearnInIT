@@ -122,7 +122,7 @@ public class Regisztracio extends AppCompatActivity {
                     JelszoIsmText.setVisibility(View.VISIBLE);
                     RegKuldBut.setVisibility(View.VISIBLE);
                 }
-                else if (TextUtils.isEmpty(jelszoism) || (jelszo.equals(jelszoism) )) {
+                else if (TextUtils.isEmpty(jelszoism) || (jelszo==jelszoism )) {
                     Toast.makeText(Regisztracio.this, "A két jelszó nem egyezik meg!", Toast.LENGTH_LONG).show();
                     JelszoIsmText.setBackground(getResources().getDrawable(R.drawable.button_color_red));
                     lottiAnim.setVisibility(View.GONE);
@@ -205,8 +205,6 @@ public class Regisztracio extends AppCompatActivity {
         });
 
     }
-
-
     private void init() {
 
         visszaregisztracios = findViewById(R.id.visszaregisztracios);

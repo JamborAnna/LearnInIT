@@ -8,8 +8,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,7 +23,6 @@ public class Bejelentkezes extends AppCompatActivity {
     private EditText FelasznalonevBej;
     private  EditText JelszoBej;
     private  Button BejelentkezesButBej;
-    private ProgressBar progressLogin;
     private FirebaseAuth mAuth;
     private TextView forgott;
     private LottieAnimationView lottiAnim;
@@ -86,7 +83,6 @@ public class Bejelentkezes extends AppCompatActivity {
         });
 
     }
-
     private void init() {
         mAuth = FirebaseAuth.getInstance();
         visszabejelentkezes=findViewById(R.id.visszabejelentkezes);

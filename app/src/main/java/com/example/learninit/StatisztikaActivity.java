@@ -2,9 +2,7 @@ package com.example.learninit;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -96,7 +94,6 @@ private TextView hetiStatview,haviStatisztikaView,evStatisztikaView;
         });
 
     }
-
     private void init() {
 
         visszatanulnimenube=findViewById(R.id.visszatanulnimenube);

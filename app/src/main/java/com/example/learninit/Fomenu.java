@@ -98,7 +98,6 @@ public class Fomenu extends AppCompatActivity {
         });
 
     }
-
     private void init() {
         mAuth = FirebaseAuth.getInstance();
         userFire = mAuth.getCurrentUser();

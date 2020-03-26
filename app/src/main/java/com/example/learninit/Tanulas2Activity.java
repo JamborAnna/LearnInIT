@@ -434,10 +434,5 @@ public class Tanulas2Activity extends AppCompatActivity {
 
     }
 
-
-
-
-
-
 }
 

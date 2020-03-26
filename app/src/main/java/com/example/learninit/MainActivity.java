@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         }
-    public void onBackPressed(){
+   /* public void onBackPressed(){
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
         View alertViev= getLayoutInflater().inflate(R.layout.alert_dialog_style,null);
         Button igenBut=(Button)alertViev.findViewById(R.id.igenBut);
@@ -94,14 +94,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-    }
+    }*/
     private  boolean vanWifi(){
         ConnectivityManager connectivityManager= (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo= connectivityManager.getActiveNetworkInfo();
         return networkInfo!=null;
 
     }
-
     private void init() {
         RegisztracioBut=findViewById(R.id.RegisztracioBut);
         BejelentkezesBut=findViewById(R.id.BejelentkezesBut);

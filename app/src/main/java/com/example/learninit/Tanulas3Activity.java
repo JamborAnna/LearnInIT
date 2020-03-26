@@ -39,8 +39,6 @@ public class Tanulas3Activity extends AppCompatActivity  {
     private DatabaseReference databaseReference;
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -355,8 +353,6 @@ public class Tanulas3Activity extends AppCompatActivity  {
 
 
     }
-
-
     private void init() {
         tanulas3vissza=findViewById(R.id.tanulas3vissza);
         imageBut1=findViewById(R.id.imageBut1);
@@ -388,7 +384,6 @@ public class Tanulas3Activity extends AppCompatActivity  {
         s.edit().putFloat("ev", (float) ev).apply();
 
     }
-
     private void hetosszesSharedPreference(double hetosszes) {
         SharedPreferences s = getSharedPreferences("szam", Context.MODE_PRIVATE);
         s.edit().putFloat("hetosszes", (float) hetosszes).apply();

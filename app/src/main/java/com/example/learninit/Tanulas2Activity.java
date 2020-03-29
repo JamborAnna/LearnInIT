@@ -288,13 +288,14 @@ public class Tanulas2Activity extends AppCompatActivity {
                             szamlalo++;
                             sharedPreference(szamlalo);
 
-                            if (szamlalo>10){
+                            if (szamlalo>=10){
                                 Intent intent = new Intent(Tanulas2Activity.this, TanulasmenuActivity.class);
                                 startActivity(intent);
                                 finish();
                             }else {
+                                String valaszhasonlitashoz=angol.toLowerCase();
                                 String helyesValasz=bekertszoedit2.getText().toString().toLowerCase();
-                                if (helyesValasz.equals(angol) ) {
+                                if (helyesValasz.equals(valaszhasonlitashoz) && szamlalo<10) {
                                     helyesMP3.start();
                                     Toast.makeText(Tanulas2Activity.this, "Helyes válasz!", Toast.LENGTH_SHORT).show();
                                     float het =Float.parseFloat(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getFloat("het", 0)));

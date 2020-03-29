@@ -88,20 +88,24 @@ private MediaPlayer helyesMP3, helytelenMP3;
                             final int number= randomom.nextInt(3)+1;
 
                             int szamlalo = Integer.parseInt(getSharedPreferences("szam", Context.MODE_PRIVATE).getString("szamlalo", ""));
-                            sharedPreference(szamlalo);
                             szamlalo++;
+                            sharedPreference(szamlalo);
 
-                            if (szamlalo>10){
+
+                            if (szamlalo>=10){
                                 Intent intent = new Intent(Tanulas1Activity.this, TanulasmenuActivity.class);
                                 startActivity(intent);
                                 finish();
-                            }else {
+                            }
+                            else {
+                                String valaszhasonlitashoz=angol.toLowerCase();
                                 String helyesValasz=bekertszoedit.getText().toString().toLowerCase();
                                 //Log.w("",bekerendoSzoview.getText().toString());
-                                if (helyesValasz.equals(angol) && szamlalo<10 ) {
+                                if (helyesValasz.equals(valaszhasonlitashoz) && szamlalo<10) {
 
                                     Toast.makeText(Tanulas1Activity.this, "Helyes válasz!", Toast.LENGTH_SHORT).show();
                                     helyesMP3.start();
+
                                     float het =Float.parseFloat(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getFloat("het", 0)));
                                     het++;
                                     hetSharedPreference(het);

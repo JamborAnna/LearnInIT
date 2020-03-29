@@ -122,7 +122,7 @@ public class TanulasmenuActivity extends AppCompatActivity {
                     tanulhat=false;
                 }else {
                     sharedPreference( 0);
-                    sharedPreference(szamlalo+1);
+                    //sharedPreference(szamlalo+1);
 
                 }
 

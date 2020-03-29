@@ -143,8 +143,7 @@ public class Tanulas3Activity extends AppCompatActivity  {
                                 szamlalo++;
                                 sharedPreference(szamlalo);
 
-                                sharedPreference(szamlalo);
-                                if (szamlalo>10){
+                                if (szamlalo>=10){
                                     Intent intent = new Intent(Tanulas3Activity.this,TanulasmenuActivity.class);
                                     startActivity(intent);
                                     finish();
@@ -241,7 +240,7 @@ public class Tanulas3Activity extends AppCompatActivity  {
                                 szamlalo++;
                                 sharedPreference(szamlalo);
 
-                                if (szamlalo > 10) {
+                                if (szamlalo >= 10) {
                                     Intent intent = new Intent(Tanulas3Activity.this, TanulasmenuActivity.class);
                                     startActivity(intent);
                                     finish();

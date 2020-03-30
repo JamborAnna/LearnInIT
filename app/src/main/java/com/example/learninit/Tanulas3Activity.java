@@ -144,9 +144,54 @@ public class Tanulas3Activity extends AppCompatActivity  {
                                 sharedPreference(szamlalo);
 
                                 if (szamlalo>=10){
-                                    Intent intent = new Intent(Tanulas3Activity.this,TanulasmenuActivity.class);
-                                    startActivity(intent);
-                                    finish();
+
+                                    if (finalA ==1) {
+                                        helyesMP3.start();
+                                        Toast.makeText(Tanulas3Activity.this, "Helyes válasz!", Toast.LENGTH_SHORT).show();
+                                        float het = Float.parseFloat(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getFloat("het", 0)));
+                                        het++;
+                                        hetSharedPreference(het);
+
+                                        float honap = Float.parseFloat(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getFloat("honap", 0)));
+                                        honap++;
+                                        haviSharedPreference(honap);
+
+                                        float ev = Float.parseFloat(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getFloat("ev", 0)));
+                                        ev++;
+                                        evSharedPreference(ev);
+                                        Intent intent = new Intent(Tanulas3Activity.this,TanulasmenuActivity.class);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+                                    else {
+                                        helytelenMP3.start();
+
+
+                                        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(Tanulas3Activity.this);
+                                        View alertViev= getLayoutInflater().inflate(R.layout.valasz_alert,null);
+                                        Button okBut=(Button)alertViev.findViewById(R.id.okBut);
+                                        TextView valasz= alertViev.findViewById(R.id.valasz);
+                                        helytelenMP3.start();
+                                        valasz.setText(angol);
+                                        alertDialogBuilder.setView(alertViev);
+                                        final AlertDialog alert = alertDialogBuilder.create();
+                                        alert.show();
+                                        okBut.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+
+                                                alert.dismiss();
+                                                Intent intent = new Intent(Tanulas3Activity.this,TanulasmenuActivity.class);
+                                                startActivity(intent);
+                                                finish();
+                                            }
+
+                                        });
+                                    }
+
+
+
+
                                 }else {
                                     if (finalA ==1){
 
@@ -241,9 +286,53 @@ public class Tanulas3Activity extends AppCompatActivity  {
                                 sharedPreference(szamlalo);
 
                                 if (szamlalo >= 10) {
-                                    Intent intent = new Intent(Tanulas3Activity.this, TanulasmenuActivity.class);
-                                    startActivity(intent);
-                                    finish();
+
+                                    if (finalA ==0) {
+                                        helyesMP3.start();
+                                        Toast.makeText(Tanulas3Activity.this, "Helyes válasz!", Toast.LENGTH_SHORT).show();
+                                        float het = Float.parseFloat(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getFloat("het", 0)));
+                                        het++;
+                                        hetSharedPreference(het);
+
+                                        float honap = Float.parseFloat(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getFloat("honap", 0)));
+                                        honap++;
+                                        haviSharedPreference(honap);
+
+                                        float ev = Float.parseFloat(String.valueOf(getSharedPreferences("szam", Context.MODE_PRIVATE).getFloat("ev", 0)));
+                                        ev++;
+                                        evSharedPreference(ev);
+                                        Intent intent = new Intent(Tanulas3Activity.this, TanulasmenuActivity.class);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+                                    else {
+                                        helytelenMP3.start();
+
+
+                                        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(Tanulas3Activity.this);
+                                        View alertViev= getLayoutInflater().inflate(R.layout.valasz_alert,null);
+                                        Button okBut=(Button)alertViev.findViewById(R.id.okBut);
+                                        TextView valasz= alertViev.findViewById(R.id.valasz);
+                                        helytelenMP3.start();
+                                        valasz.setText(angol);
+                                        alertDialogBuilder.setView(alertViev);
+                                        final AlertDialog alert = alertDialogBuilder.create();
+                                        alert.show();
+                                        okBut.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+
+                                                alert.dismiss();
+                                                Intent intent = new Intent(Tanulas3Activity.this, TanulasmenuActivity.class);
+                                                startActivity(intent);
+                                                finish();
+                                            }
+
+
+                                        });
+                                    }
+
+
                                 } else {
                                     if (finalA==0) {
 

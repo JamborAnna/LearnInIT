@@ -78,6 +78,22 @@ public class Bejelentkezes extends AppCompatActivity {
         forgott.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+            if (!FelasznalonevBej.getText().toString().matches("")) {
+                mAuth.sendPasswordResetEmail(FelasznalonevBej.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(Bejelentkezes.this, "Jelszó visszaállító elküldve az e-mail címére!", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(Bejelentkezes.this, "Érvénytelen e-mail cím!", Toast.LENGTH_SHORT).show();
+
+                        }
+                    }
+                });
+            }else {
+                Toast.makeText(Bejelentkezes.this, "Kérlek adj meg egy e-mail címet!", Toast.LENGTH_SHORT).show();
+            }
+
 
             }
         });

@@ -89,12 +89,12 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-            }else{
+           }else{
                 ActivityCompat.requestPermissions(MainActivity.this,
                         engedely,
                         kerelemKod);
 
-            }
+           }
 
 
 
